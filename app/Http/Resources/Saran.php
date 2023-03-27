@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Kegiatan extends JsonResource
+class Saran extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,7 @@ class Kegiatan extends JsonResource
     {
         return [
             'id' => $this->id,
-            'judul' => $this->judul,
-            'tempat' => $this->tempat,
-            'hari_tanggal' => $this->hari_tanggal,
-            'deskripsi' => $this->deskripsi,
+            'komen' => $this->komen,
             'created_at' => $this->created_at->format('m/d/Y'),
             'updated_at' => $this->updated_at->format('m/d/Y'),
         ];
