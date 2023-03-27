@@ -62,13 +62,13 @@
                     <!-- Session Status -->
                     
                     <!-- Validation Errors -->
-                                        <form method="POST" action="https://templates.iqonic.design/datum/laravel/public/login" data-toggle="validator">
-                        <input type="hidden" name="_token" value="5byoTtf2zpefU31rDuoemt3VnackypMvlNHwduMg">
+                     <form method="POST" action="{{route('signin')}}" data-toggle="validator">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       <div class="row">
                          <div class="col-lg-12">
                             <div class="form-group">
                                <label class="text-secondary">NIK</label>
-                               <input id="nik" name="nik" value="" class="form-control" type="number" placeholder="Masukkan NIK anda" required autofocus>
+                               <input id="nik" name="nik" value="{{ old('nik') }}" class="form-control" type="number" placeholder="Masukkan NIK anda" required autofocus>
                             </div>
                          </div>
                          <div class="col-lg-12 mt-2">
@@ -77,13 +77,13 @@
                                     <label class="text-secondary">Password</label>
                                     <label><a href="recover-password.html">Lupa Password?</a></label>
                                 </div>                                    
-                               <input class="form-control" type="password" placeholder="Enter Password" name="password"  required autocomplete="current-password">
+                               <input class="form-control" type="password" placeholder="Enter Password" name="password" value="{{old('password')}}" required autocomplete="current-password">
                             </div>
                          </div>                              
                       </div>
                       <button type="submit" class="btn btn-primary btn-block mt-2">Masuk</button>
                       <div class="col-lg-12 mt-3">
-                           <p class="mb-0 text-center">Belum punya akun? <a href="register.html">Daftar</a></p>
+                           <p class="mb-0 text-center">Belum punya akun? <a href="{{ route('signup') }}">Daftar</a></p>
                       </div>
                    </form>
                 </div>

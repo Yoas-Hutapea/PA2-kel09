@@ -36,7 +36,7 @@
                     </div>
                    <h3 class="mb-3 font-weight-bold text-center">Daftar</h3>
                    <p class="text-center text-secondary mb-4">Silahkan daftar akun anda</p>
-                   <div class="social-btn d-flex justify-content-around align-items-center mb-4">
+                   {{-- <div class="social-btn d-flex justify-content-around align-items-center mb-4">
                        <button class="btn btn-outline-light">
                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="88.428 12.828 107.543 207.085">
                                <path d="M158.232 219.912v-94.461h31.707l4.747-36.813h-36.454V65.134c0-10.658 2.96-17.922 18.245-17.922l19.494-.009V14.278c-3.373-.447-14.944-1.449-28.406-1.449-28.106 0-47.348 17.155-47.348 48.661v27.149H88.428v36.813h31.788v94.461l38.016-.001z" fill="#3c5a9a"/>
@@ -59,58 +59,52 @@
                    <div class="mb-5">
                        <p class="line-around text-secondary mb-0"><span class="line-around-1">or register with email</span></p class="line-around mb-0">
                    </div>
-                   <!-- Session Status -->
+                   <!-- Session Status --> --}}
                    
                    <!-- Validation Errors -->
-                                      <form method="POST" action="https://templates.iqonic.design/datum/laravel/public/register" data-toggle="validator">
-                        <input type="hidden" name="_token" value="5byoTtf2zpefU31rDuoemt3VnackypMvlNHwduMg">
+                        <form method="POST" action="{{route('signup')}}" data-toggle="validator">
+                        <input type="hidden" name="_token" value="{{ csrf_token()}}">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="username" class="text-secondary">Username</label>
-                                    <input class="form-control" id="username"  name="username" value="" required placeholder="Enter Username">
+                                    <label for="nama" class="text-secondary">Nama</label>
+                                    <input class="form-control" id="nama"  name="nama" value="{{old('nama')}}" required placeholder="Enter Username">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="first_name" class="text-secondary">First Name</label>
-                                    <input class="form-control" id="first_name"  name="first_name" value="" required placeholder="Enter First Name">
+                                    <label for="nik" class="text-secondary">NIK</label>
+                                    <input class="form-control" id="nik" type="number" name="nik" value="{{old('nik')}}" required placeholder="Enter First Name">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="last_name" class="text-secondary">Last Name</label>
-                                    <input class="form-control" id="last_name"  name="last_name" value="" required placeholder="Enter Last Name">
+                                    <label for="no_telp" class="text-secondary">No Telephone</label>
+                                    <input class="form-control" id="no_telp" type="number" name="no_telp" value="{{old('no_telp')}}" required placeholder="Enter Last Name">
                                 </div>
                             </div>
                          <div class="col-lg-12">
                             <div class="form-group">
-                               <label for="email" class="text-secondary">Email</label>
-                               <input class="form-control" type="email" id="email"  name="email" value="" required placeholder="Enter Email">
+                               <label for="jenis_kelamin" class="text-secondary">Jenis Kelamin</label>
+                               <input class="form-control" id="jenis_kelamin"  name="jenis_kelamin" value="{{old('jenis_kelamin')}}" required placeholder="Enter Email">
                             </div>
                          </div>
                          <div class="col-lg-12">
                             <div class="form-group">
                                <label for="password" class="text-secondary">Password</label>
-                               <input class="form-control" type="password" id="password" name="password" required autocomplete="new-password"  placeholder="Enter Password">
+                               <input class="form-control" type="password" id="password" name="password" value="{{old('password')}}" required autocomplete="new-password"  placeholder="Enter Password">
                             </div>
                          </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="password_confirmation" class="text-secondary">Confirm Password</label>
-                                <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" required autocomplete="new-password"  placeholder="Enter Confirmation Password">
+                                <input class="form-control" type="password" id="confirm_password" name="confirm_password" value="{{old('confirm_password')}}" required autocomplete="new-password"  placeholder="Enter Confirmation Password">
                             </div>
                         </div>
-                         <div class="col-lg-12 mt-2">
-                               <div class="form-check mb-3 d-flex align-items-center">
-                                   <input type="checkbox" class="form-check-input mt-0" id="customCheck1">
-                                   <label class="form-check-label pl-2" for="customCheck1">I agree to the <a href="#">Terms of Service </a> and <a href="#">Privacy Policy</a> </label>
-                               </div>
-                         </div>
                       </div>
                       <button type="submit" class="btn btn-primary btn-block mt-2">Create Account</button>
                       <div class="col-lg-12 mt-3">
-                           <p class="mb-0 text-center">Do you have an account? <a href="login.html">Sign In</a></p>
+                           <p class="mb-0 text-center">Do you have an account? <a href="{{route('signin')}}">Sign In</a></p>
                       </div>
                    </form>
                 </div>
