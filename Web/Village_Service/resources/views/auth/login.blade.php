@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <!-- Mirrored from templates.iqonic.design/datum/laravel/public/auth/login by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 03:10:11 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
 <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="5byoTtf2zpefU31rDuoemt3VnackypMvlNHwduMg">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="5byoTtf2zpefU31rDuoemt3VnackypMvlNHwduMg">
 
-        <title>Datum</title>
+    <title>Datum</title>
 
-        <link rel="shortcut icon" href="{{asset('assets/auth/images/favicon.ico')}}" />
-        
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap">
+    <link rel="shortcut icon" href="{{ asset('assets/auth/images/favicon.ico') }}" />
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{asset('assets/auth/css/backend.css')}}">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/backend.css') }}">
 
 
 
-    </head>
-    <body class=" " >
+</head>
 
-        <div class="wrapper">
-            <section class="login-content">
-    <div class="container h-100">
-       <div class="row align-items-center justify-content-center h-100">
-          <div class="col-md-5">
-             <div class="card p-3">
-                <div class="card-body">
-                   <div class="auth-logo">
-                   <img src="{{asset('assets/auth/images/logo.png')}}" class="img-fluid  rounded-normal  darkmode-logo" alt="logo">
-                      <img src="{{asset('assets/auth/images/logo-dark.png')}}" alt="user-icon" class="img-fluid rounded-normal light-logo">
-                   </div>
-                   <h3 class="mb-3 font-weight-bold text-center">Masuk</h3>
-                   <p class="text-center text-secondary mb-4">Silahkan login dengan akun anda</p>
-                   {{-- <div class="social-btn d-flex justify-content-around align-items-center mb-4">
+<body class=" ">
+
+    <div class="wrapper">
+        <section class="login-content">
+            <div class="container h-100">
+                <div class="row align-items-center justify-content-center h-100">
+                    <div class="col-md-5">
+                        <div class="card p-3">
+                            <div class="card-body">
+                                <div class="auth-logo">
+                                    <img src="{{ asset('assets/auth/images/logo.png') }}"
+                                        class="img-fluid  rounded-normal  darkmode-logo" alt="logo">
+                                    <img src="{{ asset('assets/auth/images/logo-dark.png') }}" alt="user-icon"
+                                        class="img-fluid rounded-normal light-logo">
+                                </div>
+                                <h3 class="mb-3 font-weight-bold text-center">Masuk</h3>
+                                <p class="text-center text-secondary mb-4">Silahkan login dengan akun anda</p>
+                                {{-- <div class="social-btn d-flex justify-content-around align-items-center mb-4">
                        <button class="btn btn-outline-light">
                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="88.428 12.828 107.543 207.085">
                                <path d="M158.232 219.912v-94.461h31.707l4.747-36.813h-36.454V65.134c0-10.658 2.96-17.922 18.245-17.922l19.494-.009V14.278c-3.373-.447-14.944-1.449-28.406-1.449-28.106 0-47.348 17.155-47.348 48.661v27.149H88.428v36.813h31.788v94.461l38.016-.001z" fill="#3c5a9a"/>
@@ -59,80 +64,85 @@
                    <div class="mb-5">
                        <p class="line-around text-secondary mb-0"><span class="line-around-1">or login with email</span></p class="line-around mb-0">
                    </div> --}}
-                    <!-- Session Status -->
-                    
-                    <!-- Validation Errors -->
-                    @csrf
-                     <form id="login_form" method="POST" action="{{route('login')}}" data-toggle="validator">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      <div class="row">
-                         <div class="col-lg-12">
-                            <div class="form-group">
-                               <label class="text-secondary">NIK</label>
-                               <input id="nik" name="nik" value="{{ old('nik') }}" class="form-control" type="number" placeholder="Masukkan NIK anda" required autofocus>
-                            </div>
-                         </div>
-                         <div class="col-lg-12 mt-2">
-                            <div class="form-group">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <label class="text-secondary">Password</label>
-                                    <label><a href="recover-password.html">Lupa Password?</a></label>
-                                </div>                                    
-                               <input class="form-control" type="password" placeholder="Enter Password" name="password" value="{{old('password')}}" required autocomplete="current-password">
-                            </div>
-                         </div>                              
-                      </div>
-                      <button type="submit" class="btn btn-primary btn-block mt-2">Masuk</button>
-                      {{-- <div class="col-lg-12 mt-3">
+                                <!-- Session Status -->
+
+                                <!-- Validation Errors -->
+                                @csrf
+                                <form id="login_form" method="POST" action="{{ route('login') }}"
+                                    data-toggle="validator">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="text-secondary">NIK</label>
+                                                <input id="nik" name="nik" value="{{ old('nik') }}"
+                                                    class="form-control" type="number" placeholder="Masukkan NIK anda"
+                                                    required autofocus>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mt-2">
+                                            <div class="form-group">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <label class="text-secondary">Password</label>
+                                                    <label><a href="recover-password.html">Lupa Password?</a></label>
+                                                </div>
+                                                <input class="form-control" type="password" placeholder="Enter Password"
+                                                    name="password" value="{{ old('password') }}" required
+                                                    autocomplete="current-password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block mt-2">Masuk</button>
+                                    {{-- <div class="col-lg-12 mt-3">
                            <p class="mb-0 text-center">Belum punya akun? <a href="{{ route('signup') }}">Daftar</a></p>
                       </div> --}}
-                   </form>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-             </div>
-          </div>
-       </div>
+            </div>
+        </section>
     </div>
- </section>
-        </div>
-         <!-- Backend Bundle JavaScript -->
- <script src="{{asset('assets/auth/js/backend-bundle.min.js')}}"></script>
+    <!-- Backend Bundle JavaScript -->
+    <script src="{{ asset('assets/auth/js/backend-bundle.min.js') }}"></script>
 
- 
- <!-- Flextree Javascript-->
- <script src="{{asset('assets/auth/js/flex-tree.min.js')}}"></script>
- <script src="{{asset('assets/auth/js/tree.js')}}"></script>
 
- <!-- Table Treeview JavaScript -->
- <script src="{{asset('assets/auth/js/table-treeview.js')}}"></script>
+    <!-- Flextree Javascript-->
+    <script src="{{ asset('assets/auth/js/flex-tree.min.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/tree.js') }}"></script>
 
- <!-- SweetAlert JavaScript -->
- <script src="{{asset('assets/auth/js/sweetalert.js')}}"></script>
+    <!-- Table Treeview JavaScript -->
+    <script src="{{ asset('assets/auth/js/table-treeview.js') }}"></script>
 
- <!-- Vectoe Map JavaScript -->
- <script src="{{asset('assets/auth/js/vector-map-custom.js')}}"></script>
+    <!-- SweetAlert JavaScript -->
+    <script src="{{ asset('assets/auth/js/sweetalert.js') }}"></script>
 
- <!-- Chart Custom JavaScript -->
- <script src="{{asset('assets/auth/js/customizer.js')}}"></script>
+    <!-- Vectoe Map JavaScript -->
+    <script src="{{ asset('assets/auth/js/vector-map-custom.js') }}"></script>
 
- <script src="{{asset('assets/auth/vendor/Leaflet/leaflet.js')}}"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="{{ asset('assets/auth/js/customizer.js') }}"></script>
 
- <script src="{{asset('assets/auth/vendor/vanillajs-datepicker/dist/js/datepicker-full.js')}}""></script>
+    <script src="{{ asset('assets/auth/vendor/Leaflet/leaflet.js') }}"></script>
 
- <script src="{{('assets/auth/js/charts/progressbar.js')}}"></script>
+    <script src="{{ asset('assets/auth/vendor/vanillajs-datepicker/dist/js/datepicker-full.js') }}""></script>
 
- <!-- Chart Custom JavaScript -->
- <script src="{{asset('assets/auth/js/chart-custom.js')}}"></script>
- <script src="{{asset('assets/auth/js/charts/01.js')}}"></script>
- <script src="{{asset('assets/auth/js/charts/02.js')}}"></script>
+    <script src="{{ 'assets/auth/js/charts/progressbar.js' }}"></script>
 
- <!-- slider JavaScript -->
- <script src="{{asset('assets/auth/js/slider.js')}}"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="{{ asset('assets/auth/js/chart-custom.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/charts/01.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/charts/02.js') }}"></script>
 
- <!-- Emoji picker -->
- <script src="{{asset('assets/auth/vendor/emoji-picker-element/index.js')}}" type="module"></script>
-  <!-- app JavaScript -->
- <script src="{{asset('assets/auth/js/app.js')}}"></script>
-    </body>
+    <!-- slider JavaScript -->
+    <script src="{{ asset('assets/auth/js/slider.js') }}"></script>
+
+    <!-- Emoji picker -->
+    <script src="{{asset('assets/auth/vendor/emoji-picker-element/index.js')}}" type="module"></script>
+    <!-- app JavaScript -->
+    <script src="{{ asset('assets/auth/js/app.js') }}"></script>
+</body>
 <!-- Mirrored from templates.iqonic.design/datum/laravel/public/auth/login by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 03:10:11 GMT -->
-</html>
 
+</html>

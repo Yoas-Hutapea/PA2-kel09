@@ -1,4 +1,73 @@
 @extends('layouts.master')
+@section('body')
+    <div id="remoteModelData" class="modal fade" role="dialog"></div>
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">Tambah Penduduk</h4>
+                            </div>
+                            <div class="header-action">
+                                <i type="button" data-toggle="collapse" data-target="#form-element-1"
+                                    aria-expanded="false" aria-controls="alert-1">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                    </svg>
+                                </i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="collapse" id="form-element-1">
+                                <div class="card"><kbd class="bg-dark">
+                                        <pre id="basic-form" class="text-white"><code>
+                    &#x3C;form&#x3E;
+                    &#x3C;div class=&#x22;form-group&#x22;&#x3E;
+                        &#x3C;label for=&#x22;jabatan&#x22;&#x3E;jabatan address:&#x3C;/label&#x3E;
+                        &#x3C;input type=&#x22;jabatan&#x22; class=&#x22;form-control&#x22; id=&#x22;jabatan1&#x22;&#x3E;
+                    &#x3C;/div&#x3E;
+                    &#x3C;div class=&#x22;form-group&#x22;&#x3E;
+                        &#x3C;label for=&#x22;nama&#x22;&#x3E;Password:&#x3C;/label&#x3E;
+                        &#x3C;input type=&#x22;password&#x22; class=&#x22;form-control&#x22; id=&#x22;nama&#x22;&#x3E;
+                    &#x3C;/div&#x3E;
+                    &#x3C;div class=&#x22;checkbox mb-3&#x22;&#x3E;
+                        &#x3C;label&#x3E;&#x3C;input type=&#x22;checkbox&#x22;&#x3E; Remember me&#x3C;/label&#x3E;
+                    &#x3C;/div&#x3E;
+                    &#x3C;button type=&#x22;submit&#x22; class=&#x22;btn btn-primary&#x22;&#x3E;Submit&#x3C;/button&#x3E;
+                    &#x3C;button type=&#x22;submit&#x22; class=&#x22;btn bg-danger&#x22;&#x3E;Cancel&#x3C;/button&#x3E;
+                    &#x3C;/form&#x3E;
+                    </code></pre>
+                                    </kbd></div>
+                            </div>
+                            <form method="POST" action="{{ route('update-perangkat', $perangkat->id) }}">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-group">
+                                    <label for="nama">{{ __('Nama') }} </label>
+                                    <input type="text" name="nama" class="form-control" id="nama"
+                                        value="{{ $perangkat->nama }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="jabatan">{{ __('Jabatan') }} </label>
+                                    <input type="text" name="jabatan" class="form-control" id="jabatan1"
+                                        value="{{ $perangkat->jabatan }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="button" class="btn bg-danger"
+                                    onclick="window.location='{{ route('perangkat.index') }}'">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+@endsection
 @section('scripts')
     <script src="{{ asset('assets/auth/js/backend-bundle.min.js') }}"></script>
 
@@ -153,7 +222,7 @@
                     $.post(loadurl, function(data) {
                         $(targ).html(data);
                         $('form').append('<input type="hidden" name="active_tab" value="' + id +
-                        '" />');
+                            '" />');
                     });
 
                     $this.tab('show');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\PendudukController;
+use App\Http\Controllers\Web\PerangkatDesaController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,24 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     //Penduduk
     Route::get('/penduduk', [PendudukController::class, 'index'])->name('penduduk.index');
-    Route::get('/penduduk/create', [PendudukController::class, 'create'])->name('create_penduduk');
-    Route::put('/penduduk/update', [PendudukController::class, 'edit'])->name('update_penduduk');
-    Route::delete('/penduduk', [PendudukController::class, 'destroy'])->name('delete_penduduk');
+
+    Route::get('/penduduk/create', [PendudukController::class, 'create'])->name('penduduk.create');
+    Route::post('/penduduk/create', [PendudukController::class, 'store'])->name('create-penduduk');
+
+    Route::get('/penduduk/{penduduk}', [PendudukController::class, 'edit'])->name('penduduk.update');
+    Route::put('/penduduk/{penduduk}', [PendudukController::class, 'update'])->name('update-penduduk');
+
+    Route::delete('/penduduk/{penduduk}', [PendudukController::class, 'destroy'])->name('delete-penduduk');
+
+    //Perangkat Desa
+    Route::get('/perangkat', [PerangkatDesaController::class, 'index'])->name('perangkat.index');
+
+    Route::get('/perangkat/create', [PerangkatDesaController::class, 'create'])->name('perangkat.create');
+    Route::post('/perangkat/create', [PerangkatDesaController::class, 'store'])->name('create-perangkat');
+
+    Route::get('/perangkat/{perangkat}', [PerangkatDesaController::class, 'edit'])->name('perangkat.update');
+    Route::put('/perangkat/{perangkat}', [PerangkatDesaController::class, 'update'])->name('update-perangkat');
+
+    Route::delete('/perangkat/{perangkat}', [PerangkatDesaController::class, 'destroy'])->name('delete-perangkatd');
+
 });

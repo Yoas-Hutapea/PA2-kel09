@@ -1,36 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<!-- Mirrored from templates.iqonic.design/datum/laravel/public/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 03:07:43 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="5byoTtf2zpefU31rDuoemt3VnackypMvlNHwduMg">
-
-    <title>Dashboard</title>
-
-<link rel="shortcut icon" href="{{asset('assets/auth/images/favicon.ico')}}" />
-<link rel='stylesheet' href="{{asset('assets/auth/vendor/fullcalendar/core/main.css')}}" />
-<link rel='stylesheet' href="{{asset('assets/auth/vendor/fullcalendar/daygrid/main.css')}}" />
-<link rel='stylesheet' href="{{asset('assets/auth/vendor/fullcalendar/timegrid/main.css')}}" />
-<link rel='stylesheet' href="{{asset('assets/auth/vendor/fullcalendar/list/main.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/auth/css/backend-plugin.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/auth/css/backende209.css?v=1.0.0')}}">
-<link rel="stylesheet" href="{{asset('assets/auth/css/backende209.css?v=1.0.0')}}">
-<link rel="stylesheet" href="{{asset('assets/auth/vendor/vanillajs-datepicker/dist/css/datepicker.css')}}">
-<link rel="stylesheet" href="{{asset('assets/auth/vendor/%40fortawesome/fontawesome-free/css/all.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/auth/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/auth/vendor/remixicon/fonts/remixicon.css')}}">
-<link rel="stylesheet" href="{{asset('assets/auth/vendor/Leaflet/leaflet.css')}}">
-<link rel="stylesheet" href="{{asset('assets/auth/vendor/select2/css/select2.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/auth/css/custom.css')}}">
-</head>
-{{-- <body class="" id="app">
-<div id="loading">
-    <div id="loading-center">
-</div>
-</div> --}}
 <div class="iq-top-navbar">
     <div class="iq-navbar-custom">
         <nav class="navbar navbar-expand-lg navbar-light p-0">
@@ -67,7 +34,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-list align-items-center">
-                        <li class="nav-item nav-icon dropdown"> 
+                        <li class="nav-item nav-icon dropdown">
                             <a href="#" class="search-toggle dropdown-toggle" id="notification-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -81,7 +48,7 @@
                                             Notifications
                                         </h6>
                                     </div>
-                                    <div class="card-body overflow-auto card-header-border p-0 card-body-list" style="max-height: 500px;">                                        
+                                    <div class="card-body overflow-auto card-header-border p-0 card-body-list" style="max-height: 500px;">
                                         <ul class="dropdown-menu-1 overflow-auto list-style-1 mb-0">
                                             <li class="dropdown-item-1 float-none p-3">
                                                 <div class="list-item d-flex justify-content-start align-items-start">
@@ -105,7 +72,7 @@
                                                             3 hours ago</small>
                                                         </p>
                                                     </div>
-                                                </div>                                                
+                                                </div>
                                             </li>
                                              <li class="dropdown-item-1 float-none p-3">
                                                  <div class="list-item d-flex justify-content-start align-items-start">
@@ -127,7 +94,7 @@
                                                                 5 hours ago</small>
                                                         </p>
                                                     </div>
-                                                 </div>                                                
+                                                 </div>
                                             </li>
                                              <li class="dropdown-item-1 float-none p-3">
                                                  <div class="list-item d-flex justify-content-start align-items-start">
@@ -196,7 +163,7 @@
                                                                 5 hours ago</small>
                                                         </p>
                                                     </div>
-                                                 </div>                                                
+                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
@@ -205,7 +172,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>                        
+                        </li>
                         <li class="nav-item nav-icon dropdown">
                             <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{{asset('assets/auth/images/Flag/flag001.png')}}" class="img-fluid rounded-circle" alt="user" style="height: 30px; min-width: 30px; width: 30px;">
@@ -239,7 +206,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                         </svg>
-                                    </a> 
+                                    </a>
                                     </div>
                                 </form>
                             </div>
@@ -277,7 +244,7 @@
                                 </li>
                                 <li class="dropdown-item  d-flex svg-icon border-top">
                                     <form method="POST" action="{{route('logout')}}">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">                                       
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <svg class="svg-icon mr-0 text-secondary" id="h-05-p" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                     </svg>
@@ -288,308 +255,13 @@
                                         </a>
                                     </form>
                                 </li>
-                                
+
                             </ul>
                         </li>
-                    </ul>                     
-                </div> 
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
 </div>
 
-
-<div class="iq-sidebar sidebar-default ">
-    <div class="iq-sidebar-logo d-flex align-items-end justify-content-between">
-        <a href="dashboard1.html" class="header-logo">
-            <img src="{{asset('assets/auth/images/logo.png')}}" class="img-fluid rounded-normal light-logo" alt="logo">
-            <img src="{{asset('assets/auth/images/logo-dark.png')}}" class="img-fluid rounded-normal darkmode-logo" alt="logo">
-            <span>OR Hutapea</span>
-        </a>
-        <div class="side-menu-bt-sidebar-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="text-light wrapper-menu" width="30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </div>
-    </div>
-    <div class="data-scrollbar" data-scroll="1">
-        <nav class="iq-sidebar-menu">
-            <ul id="iq-sidebar-toggle" class="side-menu">
-                <li class=" sidebar-layout">
-                    <a href="{{route('dashboard')}}" class="svg-icon">
-                        <i class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                            </svg>
-                        </i>
-                        <span class="ml-2">Dashboard</span>
-                        {{-- <p class="mb-0 w-10 badge badge-pill badge-primary">6</p> --}}
-                    </a>
-                </li>
-                <li class="px-3 pt-3 pb-2 ">
-                    <span class="text-uppercase small font-weight-bold">Kelola Data</span>
-                </li>
-                <li class=" sidebar-layout">
-                    <a href="{{route('penduduk.index')}}" class="svg-icon ">
-                        <i class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                        </i>
-                        <span class="ml-2">Kelola Kependudukan</span>
-                    </a>
-                </li>
-                <li class=" sidebar-layout">
-                    <a href="customer.html" class="svg-icon ">
-                        <i class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                        </i>
-                        <span class="ml-2">Kelola Perangkat Desa</span>
-                    </a>
-                </li>
-                <li class=" sidebar-layout">
-                    <a href="invoice.html" class="svg-icon">
-                        <i class="">
-                            <svg class="icon line" width="18" id="receipt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
-                                <path d="M17,16V3L13,5,10,3,7,5,3,3V17.83A3.13,3.13,0,0,0,5.84,21,3,3,0,0,0,9,18V17a1,1,0,0,1,1-1H20a1,1,0,0,1,1,1v1a3,3,0,0,1-3,3H6" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
-                                <line x1="8" y1="10" x2="12" y2="10" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></line>
-                            </svg> 
-                        </i>
-                        <span class="ml-2">Kelola Kegiatan</span>
-                    </a>
-                </li>
-                <li class=" sidebar-layout">
-                    <a href="app/todo.html" class="svg-icon">
-                        <i class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                            </svg>
-                        </i><span class="ml-2">Kelola Pengumuman</span>
-                    </a>
-                </li>
-                <li class=" sidebar-layout">
-                    <a href="calender.html" class="svg-icon">
-                        <i class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                        </i>
-                        <span class="ml-2">Kelola Pengajuan</span>
-                        {{-- <p class="mb-0 px-2 badge badge-pill badge-success">New</p> --}}
-                    </a>
-                </li>
-                <li class=" sidebar-layout">
-                    <a href="calender.html" class="svg-icon">
-                        <i class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                        </i>
-                        <span class="ml-2">Kelola Saran</span>
-                        {{-- <p class="mb-0 px-2 badge badge-pill badge-success">New</p> --}}
-                    </a>
-                </li>
-            </ul>
-        </nav>
-         
-        <div class="pt-5 pb-5"></div>
-    </div>
-</div>
-
-<div id="remoteModelData" class="modal fade" role="dialog"></div>
-<div class="content-page">
-    </div>
-</div>
-
-<footer class="iq-footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item"><a href="app/user/privacy-setting.html">Privacy Policy</a></li>
-                    <li class="list-inline-item"><a href="app/user/terms-of-services.html">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-6 text-right">
-                <span class="mr-1">
-                    Copyright 2023© <a href="#" class="">PA2</a>
-                    Kelompok 09.
-                </span>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- Backend Bundle JavaScript -->
- <script src="{{asset('assets/auth/js/backend-bundle.min.js')}}"></script>
-
- 
- <!-- Flextree Javascript-->
- <script src="{{asset('assets/auth/js/flex-tree.min.js')}}"></script>
- <script src="{{asset('assets/auth/js/tree.js')}}"></script>
-
- <!-- Table Treeview JavaScript -->
- <script src="{{('assets/auth/js/table-treeview.js')}}"></script>
-
- <!-- SweetAlert JavaScript -->
- <script src="{{asset('assets/auth/js/sweetalert.js')}}"></script>
-
- <!-- Vectoe Map JavaScript -->
- <script src="{{('assets/auth/js/vector-map-custom.js')}}"></script>
-
- <!-- Chart Custom JavaScript -->
- <script src="{{asset('assets/auth/js/customizer.js')}}"></script>
-
- <script src="{{asset('assets/auth/vendor/Leaflet/leaflet.js')}}"></script>
-
- <script src="{{asset('assets/auth/vendor/vanillajs-datepicker/dist/js/datepicker-full.js')}}"></script>
-
- <script src="{{asset('assets/auth/js/charts/progressbar.js')}}"></script>
-
- <!-- Chart Custom JavaScript -->
- <script src="{{asset('assets/auth/js/chart-custom.js')}}"></script>
- <script src="{{asset('assets/auth/js/charts/01.js')}}"></script>
- <script src="{{asset('assets/auth/js/charts/02.js')}}"></script>
-
- <!-- slider JavaScript -->
- <script src="{{asset('assets/auth/js/slider.js')}}"></script>
-
- <!-- Emoji picker -->
- <script src="{{asset('assets/auth/vendor/emoji-picker-element/index.js')}}" type="module"></script>
-  <!-- app JavaScript -->
- <script src="{{asset('assets/auth/js/app.js')}}"></script>
-<script>
-(function($) {
-    "use strict";
-    
-    $(document).ready(function(){
-        $('.select2js').select2();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $(document).on('click', '.loadRemoteModel', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-
-            if (url.indexOf('#') == 0) {
-                $(url).modal('open');
-            } else {
-                $.get(url, function(data) {
-                    $('#remoteModelData').html(data);
-                    $('#remoteModelData').modal();
-                    $('form').validator();
-                    $(".datepicker").flatpickr({
-                        dateFormat: "d-m-Y"
-                    });
-                });
-            }
-        });
-
-        $(document).on('click', '[data-form="ajax"]', function(f) {
-            $('form').validator('update');
-            f.preventDefault();
-            var current = $(this);
-            current.addClass('disabled');
-            var form = $(this).closest('form');
-            var url = form.attr('action');
-            var fd = new FormData(form[0]);
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: fd, // serializes the form's elements.
-                success: function(e) {
-                    if (e.status == true) {
-                        if (e.event == "submited") {
-                            showMessage(e.message);
-                            $(".modal").modal('hide');
-                        }
-                        if(e.event == 'refresh'){
-                            // showMessage(e.message);
-                            window.location.reload();
-                        }
-                        if(e.event == "callback"){
-                            showMessage(e.message);
-                            $(".modal").modal('hide');
-                            location.reload();
-                        }
-                    }
-                    if (e.status == false) {
-                        if (e.event == 'validation') {
-                            errorMessage(e.message);
-                        }
-                    }
-                },
-                error: function(error) {
-
-                },
-                cache: false,
-                contentType: false,
-                processData: false,
-            });
-            f.preventDefault(); // avoid to execute the actual submit of the form.
-
-        });
-
-        $(document).ready(function () {
-            
-            $(document).on('change','.change_status', function() {
-
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                console.log(status)
-                var id = $(this).attr('data-id');
-                var type = $(this).attr('data-type');
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: "https://templates.iqonic.design/datum/laravel/public/changeStatus",
-                    data: { 'status': status, 'id': id ,'type': type  },
-                    success: function(data){
-                        alert(data.message);
-                    }
-                });
-            })
-        })
-
-        $(document).on('click', '[data-toggle="tabajax"]', function(e) {
-            e.preventDefault();
-            var selectDiv = this;
-            ajaxMethodCall(selectDiv);
-        });
-        
-        function ajaxMethodCall(selectDiv) {
-
-            var $this = $(selectDiv),
-                loadurl = $this.attr('data-href'),
-                targ = $this.attr('data-target'),
-                id = selectDiv.id || '';
-
-            $.post(loadurl, function(data) {
-                $(targ).html(data);
-                $('form').append('<input type="hidden" name="active_tab" value="'+id+'" />');
-            });
-
-            $this.tab('show');
-            return false;
-        }
-
-        $('form[data-toggle="validator"]').on('submit', function (e) {
-            window.setTimeout(function () {
-                var errors = $('.has-error')
-                if (errors.length) {
-                    $('html, body').animate({ scrollTop: "0" }, 500);
-                    e.preventDefault()
-                }
-            }, 0);
-        });   
-    });
-})(jQuery);
-</script>
-</body>
-
-<!-- Mirrored from templates.iqonic.design/datum/laravel/public/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 03:07:48 GMT -->
-</html>

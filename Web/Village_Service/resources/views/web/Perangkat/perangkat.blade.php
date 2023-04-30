@@ -26,7 +26,7 @@
                                             </a>
                                         </div>
                                     </form>
-                                    <a href="{{ route('penduduk.create') }}"
+                                    <a href="{{ route('perangkat.create') }}"
                                         class="btn btn-primary position-relative d-flex align-items-center justify-content-between">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="20" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
@@ -73,7 +73,7 @@
                                                         Nama
                                                     </th>
                                                     <th scope="col">
-                                                        NIK
+                                                        Jabatan
                                                     </th>
                                                     <th scope="col" class="text-right">
                                                         Aksi
@@ -81,13 +81,13 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($penduduk as $penduduk)
+                                                @foreach ($perangkat as $perangkat)
                                                     <tr class="white-space-no-wrap">
                                                         <td class="pr-0 ">
                                                             <div
                                                                 class="custom-control custom-checkbox custom-control-inline">
                                                                 <input type="checkbox" class="custom-control-input m-0"
-                                                                    id="customCheck" value="{{ $penduduk->id }}">
+                                                                    id="customCheck" value="{{ $perangkat->id }}">
                                                                 <label class="custom-control-label"
                                                                     for="customCheck"></label>
                                                             </div>
@@ -96,13 +96,13 @@
                                                             <div class="active-project-1 d-flex align-items-center mt-0 ">
                                                                 <div class="data-content">
                                                                     <div>
-                                                                        <a href="{{ route('update-penduduk', $penduduk->id) }}"
-                                                                            class="font-weight-bold">{{ $penduduk->nama }}</a>
+                                                                        <a href="{{ route('update-perangkat', $perangkat->id) }}"
+                                                                            class="font-weight-bold">{{ $perangkat->nama }}</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td>{{ $penduduk->nik }}</td>
+                                                        <td>{{ $perangkat->jabatan }}</td>
                                                         <td>
                                                             <div class="d-flex justify-content-end align-items-center">
                                                                 <a class="" data-toggle="tooltip" data-placement="top"
@@ -120,7 +120,7 @@
                                                                             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                                     </svg>
                                                                 </a>
-                                                                {{-- <a class="update-penduduk" data-toggle="tooltip"
+                                                                {{-- <a class="update-perangkat" data-toggle="tooltip"
                                                                     data-placement="top" title=""
                                                                     data-original-title="Edit" href="#">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +135,7 @@
                                                                 <a class="" data-toggle="tooltip"
                                                                     data-placement="top" title=""
                                                                     data-original-title="Edit" href="#"
-                                                                    onclick="redirectToPendudukUpdate({{ $penduduk->id }})">
+                                                                    onclick="redirectToPendudukUpdate({{ $perangkat->id }})">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                         class="text-secondary mx-4" width="20"
                                                                         fill="none" viewBox="0 0 24 24"
@@ -148,7 +148,7 @@
                                                                 <a class="badge bg-danger" data-toggle="tooltip"
                                                                     data-placement="top" title=""
                                                                     data-original-title="Delete" href="#"
-                                                                    onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this?')){ deletePenduduk({{ $penduduk->id }}); }">
+                                                                    onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this?')){ deletePenduduk({{ $perangkat->id }}); }">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         fill="none" viewBox="0 0 24 24"
                                                                         stroke="currentColor">
@@ -351,14 +351,14 @@
     <script>
         function deletePenduduk(id) {
             $.ajax({
-                url: '/penduduk/' + id,
+                url: '/perangkat/' + id,
                 type: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function() {
                     // Handle success response here
-                    window.location.href = "{{ route('penduduk.index') }}";
+                    window.location.href = "{{ route('perangkat.index') }}";
                     console.log('Record deleted successfully');
                 },
                 error: function() {
@@ -369,8 +369,8 @@
         }
     </script>
     <script>
-        function redirectToPendudukUpdate(pendudukId) {
-            window.location.href = "{{ route('penduduk.update', ':id') }}".replace(':id', pendudukId);
+        function redirectToPendudukUpdate(perangkatId) {
+            window.location.href = "{{ route('perangkat.update', ':id') }}".replace(':id', perangkatId);
         }
     </script>
 @endsection

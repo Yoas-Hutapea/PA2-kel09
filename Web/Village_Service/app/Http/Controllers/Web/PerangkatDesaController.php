@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Penduduk;
 use Illuminate\Http\Request;
+use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class PendudukController extends Controller
+class PerangkatDesaController extends Controller
 {
     public function index(Request $request)
     {
-        $penduduk = Penduduk::all();
-        return view('web.Penduduk.penduduk', compact('penduduk'));
+        $perangkat = PerangkatDesa::all();
+        return view('web.Perangkat.perangkat', compact('perangkat'));
     }
 
     /**
@@ -23,7 +23,7 @@ class PendudukController extends Controller
      */
     public function create()
     {
-        return view('web.Penduduk.create');
+        return view('web.Perangkat.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class PendudukController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::Make($request->all(), [
-            'nik' => 'required|unique:penduduk',
+            'jabatan' => 'required|unique:perangkat',
             'nama' => 'required',
         ]);
 
@@ -46,23 +46,23 @@ class PendudukController extends Controller
             ]);
         }
 
-        Penduduk::create($request->all());
+        PerangkatDesa::create($request->all());
 
         // return response()->json([
         //     'status' => 'success',
-        //     'message' => 'Penduduk created successfully',
+        //     'message' => 'Perangkat created successfully',
         // ]);
-        return redirect()->route('penduduk.index');
+        return redirect()->route('perangkat.index');
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Penduduk  $penduduk
+     * @param  \App\Models\PerangkatDesa  $perangkat
      * @return \Illuminate\Http\Response
      */
-    public function show(Penduduk $penduduk)
+    public function show(PerangkatDesa $perangkat)
     {
         //
     }
@@ -70,27 +70,27 @@ class PendudukController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Penduduk  $penduduk
+     * @param  \App\Models\PerangkatDesa  $perangkat
      * @return \Illuminate\Http\Response
      */
-    public function edit(Penduduk $penduduk)
+    public function edit(PerangkatDesa $perangkat)
     {
-        return view('web.Penduduk.update', compact('penduduk'));
+        return view('web.Perangkat.update', compact('perangkat'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Penduduk  $penduduk
+     * @param  \App\Models\PerangkatDesa  $perangkat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Penduduk $penduduk)
+    public function update(Request $request, PerangkatDesa $perangkat)
 {
     $validator = Validator::make($request->all(), [
-        'nik' => [
+        'jabatan' => [
             'required',
-            Rule::unique('penduduk')->ignore($penduduk->id),
+            Rule::unique('perangkat')->ignore($perangkat->id),
         ],
         'nama' => 'required',
     ]);
@@ -102,22 +102,27 @@ class PendudukController extends Controller
         ]);
     }
 
-    $penduduk->update($request->all());
+    $perangkat->update($request->all());
 
-    return redirect()->route('penduduk.index');
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Perangkat updated successfully',
+    ]);
+
+    return redirect()->route('perangkat.index');
 }
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Penduduk  $penduduk
+     * @param  \App\Models\PerangkatDesa  $perangkat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Penduduk $penduduk)
+    public function destroy(PerangkatDesa $perangkat)
     {
-        $penduduk->delete();
+        $perangkat->delete();
         return response()->json([
             'status' => 'success',
-            'message' => 'Penduduk deleted successfully',
+            'message' => 'Perangkat deleted successfully',
         ]);
     }
 }
