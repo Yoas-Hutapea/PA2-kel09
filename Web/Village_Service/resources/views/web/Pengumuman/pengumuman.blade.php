@@ -26,14 +26,14 @@
                                             </a>
                                         </div>
                                     </form>
-                                    <a href="{{ route('perangkat.create') }}"
+                                    <a href="{{ route('pengumuman.create') }}"
                                         class="btn btn-primary position-relative d-flex align-items-center justify-content-between">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="20" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                         </svg>
-                                        Add Perangkat
+                                        Add Pengumuman
                                     </a>
                                 </div>
                             </div>
@@ -70,24 +70,27 @@
                                                         </div>
                                                     </th>
                                                     <th scope="col">
-                                                        Nama
+                                                        Tanggal
                                                     </th>
                                                     <th scope="col">
-                                                        Jabatan
+                                                        Judul
+                                                    </th>
+                                                    <th scope="col">
+                                                        Deskripsi
                                                     </th>
                                                     <th scope="col" class="text-right">
                                                         Aksi
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                @foreach ($perangkat as $perangkat)
+                                            <tbody style="overflow:hidden; height: 100px;">
+                                                @foreach ($pengumuman as $pengumuman)
                                                     <tr class="white-space-no-wrap">
                                                         <td class="pr-0 ">
                                                             <div
                                                                 class="custom-control custom-checkbox custom-control-inline">
                                                                 <input type="checkbox" class="custom-control-input m-0"
-                                                                    id="customCheck" value="{{ $perangkat->id }}">
+                                                                    id="customCheck" value="{{ $pengumuman->id }}">
                                                                 <label class="custom-control-label"
                                                                     for="customCheck"></label>
                                                             </div>
@@ -96,13 +99,16 @@
                                                             <div class="active-project-1 d-flex align-items-center mt-0 ">
                                                                 <div class="data-content">
                                                                     <div>
-                                                                        <a href="{{ route('update-perangkat', $perangkat->id) }}"
-                                                                            class="font-weight-bold">{{ $perangkat->nama }}</a>
+                                                                        <a href="{{ route('update-pengumuman', $pengumuman->id) }}"
+                                                                            class="font-weight-bold">{{ $pengumuman->tanggal }}</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td>{{ $perangkat->jabatan }}</td>
+                                                        <td>{{ $pengumuman->judul }}</td>
+                                                        <td
+                                                            style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                                            {{ $pengumuman->deskripsi }}</td>
                                                         <td>
                                                             <div class="d-flex justify-content-end align-items-center">
                                                                 <a class="" data-toggle="tooltip" data-placement="top"
@@ -120,7 +126,7 @@
                                                                             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                                     </svg>
                                                                 </a>
-                                                                {{-- <a class="update-perangkat" data-toggle="tooltip"
+                                                                {{-- <a class="update-pengumuman" data-toggle="tooltip"
                                                                     data-placement="top" title=""
                                                                     data-original-title="Edit" href="#">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +141,7 @@
                                                                 <a class="" data-toggle="tooltip"
                                                                     data-placement="top" title=""
                                                                     data-original-title="Edit" href="#"
-                                                                    onclick="redirectToPerangkatUpdate({{ $perangkat->id }})">
+                                                                    onclick="redirectToPengumumanUpdate({{ $pengumuman->id }})">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                         class="text-secondary mx-4" width="20"
                                                                         fill="none" viewBox="0 0 24 24"
@@ -148,7 +154,7 @@
                                                                 <a class="badge bg-danger" data-toggle="tooltip"
                                                                     data-placement="top" title=""
                                                                     data-original-title="Delete" href="#"
-                                                                    onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this?')){ deletePerangkat({{ $perangkat->id }}); }">
+                                                                    onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this?')){ deletePengumuman({{ $pengumuman->id }}); }">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         fill="none" viewBox="0 0 24 24"
                                                                         stroke="currentColor">
@@ -349,16 +355,16 @@
         })(jQuery);
     </script>
     <script>
-        function deletePerangkat(id) {
+        function deletePengumuman(id) {
             $.ajax({
-                url: '/perangkat/' + id,
+                url: '/pengumuman/' + id,
                 type: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function() {
                     // Handle success response here
-                    window.location.href = "{{ route('perangkat.index') }}";
+                    window.location.href = "{{ route('pengumuman.index') }}";
                     console.log('Record deleted successfully');
                 },
                 error: function() {
@@ -369,8 +375,8 @@
         }
     </script>
     <script>
-        function redirectToPerangkatUpdate(perangkatId) {
-            window.location.href = "{{ route('perangkat.update', ':id') }}".replace(':id', perangkatId);
+        function redirectToPengumumanUpdate(pengumumanId) {
+            window.location.href = "{{ route('pengumuman.update', ':id') }}".replace(':id', pengumumanId);
         }
     </script>
 @endsection

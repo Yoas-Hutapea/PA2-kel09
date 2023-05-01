@@ -1,4 +1,4 @@
-@extends('layouts/master')
+@extends('layouts.master')
 @section('body')
     <div id="remoteModelData" class="modal fade" role="dialog"></div>
     <div class="content-page">
@@ -8,13 +8,13 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Tambah Perangkat</h4>
+                                <h4 class="card-title">Tambah Penduduk</h4>
                             </div>
                             <div class="header-action">
-                                <i type="button" data-toggle="collapse" data-target="#form-element-1" aria-expanded="false"
-                                    aria-controls="alert-1">
-                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                <i type="button" data-toggle="collapse" data-target="#form-element-1"
+                                    aria-expanded="false" aria-controls="alert-1">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                                     </svg>
@@ -28,9 +28,9 @@
                     &#x3C;form&#x3E;
                     &#x3C;div class=&#x22;form-group&#x22;&#x3E;
                         &#x3C;label for=&#x22;jabatan&#x22;&#x3E;jabatan address:&#x3C;/label&#x3E;
-                        &#x3C;input type=&#x22;jabatan&#x22; class=&#x22;form-control&#x22; id=&#x22;jabatan&#x22;&#x3E;
+                        &#x3C;input type=&#x22;jabatan&#x22; class=&#x22;form-control&#x22; id=&#x22;jabatan1&#x22;&#x3E;
                     &#x3C;/div&#x3E;
-                    &#x3C;div class=&#x22;form-group&#x22;&#x3E;penduduk
+                    &#x3C;div class=&#x22;form-group&#x22;&#x3E;
                         &#x3C;label for=&#x22;nama&#x22;&#x3E;Password:&#x3C;/label&#x3E;
                         &#x3C;input type=&#x22;password&#x22; class=&#x22;form-control&#x22; id=&#x22;nama&#x22;&#x3E;
                     &#x3C;/div&#x3E;
@@ -43,18 +43,25 @@
                     </code></pre>
                                     </kbd></div>
                             </div>
-                            <form method="POST" action="{{ route('create-perangkat') }}">
+                            <form method="POST" action="{{ route('update-pengumuman', $pengumuman->id) }}">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group">
-                                    <label for="nama">Nama </label>
-                                    <input type="text" name="nama" class="form-control" id="nama">
+                                    <label for="tanggal">{{__('Tanggal')}} </label>
+                                    <input type="date" class="form-control" id="exampleInputdate" name="tanggal" value="{{$pengumuman->tanggal}}">
+
                                 </div>
                                 <div class="form-group">
-                                    <label for="jabatan">Jabatan </label>
-                                    <input type="text" name="jabatan" class="form-control" id="jabatan">
+                                    <label for="judul">{{__('Judul')}}l </label>
+                                    <input type="text" name="judul" class="form-control" id="judul" value="{{$pengumuman->judul}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="deskripsi">{{__('Deskripsi')}} </label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi">{{$pengumuman->deskripsi}}</textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="submit" class="btn bg-danger">Cancel</button>
+                                <button type="button" class="btn bg-danger"
+                                    onclick="window.location='{{ route('pengumuman.index') }}'">Cancel</button>
                             </form>
                         </div>
                     </div>

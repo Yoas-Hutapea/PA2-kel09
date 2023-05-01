@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Tambah Perangkat</h4>
+                                <h4 class="card-title">Tambah Penduduk</h4>
                             </div>
                             <div class="header-action">
                                 <i type="button" data-toggle="collapse" data-target="#form-element-1" aria-expanded="false"
@@ -43,15 +43,20 @@
                     </code></pre>
                                     </kbd></div>
                             </div>
-                            <form method="POST" action="{{ route('create-perangkat') }}">
+                            <form method="POST" action="{{ route('create-pengumuman') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nama">Nama </label>
-                                    <input type="text" name="nama" class="form-control" id="nama">
+                                    <label for="tanggal">Tanggal </label>
+                                    <input type="date" class="form-control" id="exampleInputdate" name="tanggal">
+
                                 </div>
                                 <div class="form-group">
-                                    <label for="jabatan">Jabatan </label>
-                                    <input type="text" name="jabatan" class="form-control" id="jabatan">
+                                    <label for="judul">Judul </label>
+                                    <input type="text" name="judul" class="form-control" id="judul">
+                                </div>
+                                <div class="form-group">
+                                    <label for="deskripsi">Deskripsi </label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 <button type="submit" class="btn bg-danger">Cancel</button>

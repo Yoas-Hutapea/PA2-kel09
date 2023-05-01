@@ -35,7 +35,7 @@ class PerangkatDesaController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::Make($request->all(), [
-            'jabatan' => 'required|unique:perangkat',
+            'jabatan' => 'required',
             'nama' => 'required',
         ]);
 
@@ -88,10 +88,7 @@ class PerangkatDesaController extends Controller
     public function update(Request $request, PerangkatDesa $perangkat)
 {
     $validator = Validator::make($request->all(), [
-        'jabatan' => [
-            'required',
-            Rule::unique('perangkat')->ignore($perangkat->id),
-        ],
+        'jabatan' => 'required',
         'nama' => 'required',
     ]);
 

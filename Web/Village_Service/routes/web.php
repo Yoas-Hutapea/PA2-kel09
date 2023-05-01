@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\PendudukController;
 use App\Http\Controllers\Web\PerangkatDesaController;
+use App\Http\Controllers\Web\PengumumanController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,16 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/perangkat/{perangkat}', [PerangkatDesaController::class, 'edit'])->name('perangkat.update');
     Route::put('/perangkat/{perangkat}', [PerangkatDesaController::class, 'update'])->name('update-perangkat');
 
-    Route::delete('/perangkat/{perangkat}', [PerangkatDesaController::class, 'destroy'])->name('delete-perangkatd');
+    Route::delete('/perangkat/{perangkat}', [PerangkatDesaController::class, 'destroy'])->name('delete-perangkat');
 
+    //Pengumuman
+    Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
+
+    Route::get('/pengumuman/create', [PengumumanController::class, 'create'])->name('pengumuman.create');
+    Route::post('/pengumuman/create', [PengumumanController::class, 'store'])->name('create-pengumuman');
+
+    Route::get('/pengumuman/{pengumuman}', [PengumumanController::class, 'edit'])->name('pengumuman.update');
+    Route::put('/pengumuman/{pengumuman}', [PengumumanController::class, 'update'])->name('update-pengumuman');
+
+    Route::delete('/pengumuman/{pengumuman}', [PengumumanController::class, 'destroy'])->name('delete-pengumuman');
 });

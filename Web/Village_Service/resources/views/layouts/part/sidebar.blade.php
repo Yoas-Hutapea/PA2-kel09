@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <li class=" sidebar-layout">
-                    <a href="app/todo.html" class="svg-icon">
+                    <a href="{{route('pengumuman.index')}}" class="svg-icon">
                         <i class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
