@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class=" sidebar-layout">
-                    <a href="invoice.html" class="svg-icon">
+                    <a href="{{route('kegiatan.index')}}" class="svg-icon">
                         <i class="">
                             <svg class="icon line" width="18" id="receipt" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" stroke="currentColor">

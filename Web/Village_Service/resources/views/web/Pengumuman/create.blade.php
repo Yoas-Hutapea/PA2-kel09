@@ -84,7 +84,7 @@
     <script src="{{ asset('assets/auth/js/sweetalert.js') }}"></script>
 
     <!-- Vectoe Map JavaScript -->
-    <script src="{{ 'assets/auth/js/vector-map-custom.js' }}"></script>
+<script src="{{ asset('assets/auth/js/vector-map-custom.js') }}"></script>
 
     <!-- Chart Custom JavaScript -->
     <script src="{{ asset('assets/auth/js/customizer.js') }}"></script>

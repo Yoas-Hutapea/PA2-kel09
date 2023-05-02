@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\PendudukController;
+use App\Http\Controllers\Web\KegiatanController;
 use App\Http\Controllers\Web\PerangkatDesaController;
 use App\Http\Controllers\Web\PengumumanController;
 use App\Http\Controllers\Web\DashboardController;
@@ -61,4 +62,15 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::put('/pengumuman/{pengumuman}', [PengumumanController::class, 'update'])->name('update-pengumuman');
 
     Route::delete('/pengumuman/{pengumuman}', [PengumumanController::class, 'destroy'])->name('delete-pengumuman');
+
+    //Kegiatan
+    Route::get('/kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
+
+    Route::get('/kegiatan/create', [KegiatanController::class, 'create'])->name('kegiatan.create');
+    Route::post('/kegiatan/create', [KegiatanController::class, 'store'])->name('create-kegiatan');
+
+    Route::get('/kegiatan/{kegiatan}', [KegiatanController::class, 'edit'])->name('kegiatan.update');
+    Route::put('/kegiatan/{kegiatan}', [KegiatanController::class, 'update'])->name('update-kegiatan');
+
+    Route::delete('/kegiatan/{kegiatan}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');
 });
