@@ -4,9 +4,10 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\kegiatan;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Models\Kegiatan;
+
 
 class KegiatanController extends Controller
 {
@@ -16,15 +17,6 @@ class KegiatanController extends Controller
         return view('web.Kegiatan.kegiatan', compact('kegiatan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('web.Kegiatan.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -37,7 +29,8 @@ class KegiatanController extends Controller
         $validator = Validator::Make($request->all(), [
             'judul' => 'required',
             'tempat' => 'required',
-            'tanggal' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_akhir' => 'required',
             'deskripsi' => 'required'
         ]);
 
@@ -92,7 +85,8 @@ class KegiatanController extends Controller
     $validator = Validator::make($request->all(), [
         'judul' => 'required',
         'tempat' => 'required',
-        'tanggal' => 'required',
+        'tanggal_mulai' => 'required',
+        'tanggal_akhir' => 'required',
         'deskripsi' => 'required'
     ]);
 

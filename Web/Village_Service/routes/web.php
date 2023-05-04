@@ -8,6 +8,8 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\AuthController;
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,8 +68,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     //Kegiatan
     Route::get('/kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
 
-    Route::get('/kegiatan/create', [KegiatanController::class, 'create'])->name('kegiatan.create');
-    Route::post('/kegiatan/create', [KegiatanController::class, 'store'])->name('create-kegiatan');
+    Route::post('/kegiatan', [KegiatanController::class, 'store'])->name('create-kegiatan');
 
     Route::get('/kegiatan/{kegiatan}', [KegiatanController::class, 'edit'])->name('kegiatan.update');
     Route::put('/kegiatan/{kegiatan}', [KegiatanController::class, 'update'])->name('update-kegiatan');

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('tempat');
-            $table->date('tanggal');
+            $table->dateTime('tanggal_mulai');
+            $table->dateTime('tanggal_akhir');
             $table->string('deskripsi');
             $table->timestamps();
             $table->softDeletes();
