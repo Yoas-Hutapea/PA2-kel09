@@ -40,7 +40,7 @@
                                         class="img-fluid rounded-normal light-logo">
                                 </div>
                                 <h3 class="mb-3 font-weight-bold text-center">Masuk</h3>
-                                <p class="text-center text-secondary mb-4">Silahkan login dengan akun anda</p>
+                                <p class="text-center text-secondary mb-4">Silahkan login dengan akun yang telah anda daftarkan</p>
                                 {{-- <div class="social-btn d-flex justify-content-around align-items-center mb-4">
                        <button class="btn btn-outline-light">
                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="88.428 12.828 107.543 207.085">
