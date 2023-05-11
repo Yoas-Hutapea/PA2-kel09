@@ -66,6 +66,7 @@
                    </div> --}}
                                 <!-- Session Status -->
 
+
                                 <!-- Validation Errors -->
                                 @csrf
                                 <form id="login_form" method="POST" action="{{ route('login') }}"
@@ -94,7 +95,7 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-block mt-2">Masuk</button>
                                     {{-- <div class="col-lg-12 mt-3">
-                           <p class="mb-0 text-center">Belum punya akun? <a href="{{ route('signup') }}">Daftar</a></p>
+                           <p class="mb-0 text-center">Belum memiliki akun?? <a href="{{ route('signup') }}">Daftar</a></p>
                       </div> --}}
                                 </form>
                             </div>
