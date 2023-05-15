@@ -40,7 +40,7 @@
                                         class="img-fluid rounded-normal light-logo">
                                 </div>
                                 <h3 class="mb-3 font-weight-bold text-center">Masuk</h3>
-                                <p class="text-center text-secondary mb-4">Silahkan login dengan akun anda</p>
+                                <p class="text-center text-secondary mb-4">Silahkan login dengan akun yang telah anda daftarkan</p>
                                 {{-- <div class="social-btn d-flex justify-content-around align-items-center mb-4">
                        <button class="btn btn-outline-light">
                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="88.428 12.828 107.543 207.085">
@@ -65,6 +65,7 @@
                        <p class="line-around text-secondary mb-0"><span class="line-around-1">or login with email</span></p class="line-around mb-0">
                    </div> --}}
                                 <!-- Session Status -->
+
 
                                 <!-- Validation Errors -->
                                 @csrf
@@ -94,7 +95,7 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-block mt-2">Masuk</button>
                                     {{-- <div class="col-lg-12 mt-3">
-                           <p class="mb-0 text-center">Belum punya akun? <a href="{{ route('signup') }}">Daftar</a></p>
+                           <p class="mb-0 text-center">Belum memiliki akun?? <a href="{{ route('signup') }}">Daftar</a></p>
                       </div> --}}
                                 </form>
                             </div>
