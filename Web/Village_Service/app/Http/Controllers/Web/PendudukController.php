@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Penduduk;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PendudukController extends Controller
 {
     public function index(Request $request)
     {
-        $penduduk = Penduduk::all();
+        $penduduk = User::all();
         return view('web.Penduduk.penduduk', compact('penduduk'));
     }
 
@@ -34,9 +36,10 @@ class PendudukController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::Make($request->all(), [
-            'nik' => 'required|unique:penduduk',
+        $validator = Validator::make($request->all(), [
+            'nik' => 'required|unique:users',
             'nama' => 'required',
+            'password' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -46,23 +49,22 @@ class PendudukController extends Controller
             ]);
         }
 
-        Penduduk::create($request->all());
+        $user = new User();
+        $user->nik = $request->input('nik');
+        $user->nama = $request->input('nama');
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
 
-        // return response()->json([
-        //     'status' => 'success',
-        //     'message' => 'Penduduk created successfully',
-        // ]);
         return redirect()->route('penduduk.index');
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Penduduk  $penduduk
+     * @param  \App\Models\User  $penduduk
      * @return \Illuminate\Http\Response
      */
-    public function show(Penduduk $penduduk)
+    public function show(User $penduduk)
     {
         //
     }
@@ -70,10 +72,10 @@ class PendudukController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Penduduk  $penduduk
+     * @param  \App\Models\User  $penduduk
      * @return \Illuminate\Http\Response
      */
-    public function edit(Penduduk $penduduk)
+    public function edit(User $penduduk)
     {
         return view('web.Penduduk.update', compact('penduduk'));
     }
@@ -82,17 +84,23 @@ class PendudukController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Penduduk  $penduduk
+     * @param  \App\Models\User  $penduduk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Penduduk $penduduk)
+    public function update(Request $request, User $penduduk)
 {
     $validator = Validator::make($request->all(), [
-        'nik' => [
-            'required',
-            Rule::unique('penduduk')->ignore($penduduk->id),
-        ],
+        'nik' => 'required',
         'nama' => 'required',
+        'no_telp' => 'required',
+        'tempat_lahir' => 'required',
+        'tanggal_lahir' => 'required',
+        'usia' => 'required',
+        'jenis_kelamin' => 'required',
+        'pekerjaan' => 'required',
+        'agama' => 'required',
+        'kk' => 'required',
+        'alamat' => 'required',
     ]);
 
     if ($validator->fails()) {
@@ -109,10 +117,10 @@ class PendudukController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Penduduk  $penduduk
+     * @param  \App\Models\User  $penduduk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Penduduk $penduduk)
+    public function destroy(User $penduduk)
     {
         $penduduk->delete();
         return response()->json([

@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('penduduk_nik')->unique()->nullable();
             $table->string('nama');
             $table->string('nik')->unique();
             $table->string('no_telp')->nullable();
-            $table->string('alamat')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
+            $table->string('usia')->nullable();
             $table->string('jenis_kelamin')->nullable();
+            $table->string('pekerjaan')->nullable();
             $table->string('agama')->nullable();
             $table->string('kk')->nullable();
-            $table->string('ktp')->nullable();
+            $table->string('alamat')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();

@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\PerangkatDesaController;
 use App\Http\Controllers\Web\PengumumanController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\PdfController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -74,4 +75,9 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::put('/kegiatan/{kegiatan}', [KegiatanController::class, 'update'])->name('update-kegiatan');
 
     Route::delete('/kegiatan/{kegiatan}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');
+
+    //pdf
+    Route::get('/penduduk/pdf', [PdfController::class, 'generateUserPdf'])->name('user-pdf');
+    Route::get('/perangkat/pdf', [PdfController::class, 'generatePerangkatPdf'])->name('perangkat-pdf');
+    
 });

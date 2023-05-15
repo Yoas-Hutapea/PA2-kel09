@@ -53,6 +53,10 @@
                                     <label for="nama">Nama </label>
                                     <input type="text" name="nama" class="form-control" id="nama">
                                 </div>
+                                <div class="form-group">
+                                    <label for="nama">Password </label>
+                                    <input type="password" name="password" class="form-control" id="password">
+                                </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 <button type="submit" class="btn bg-danger">Cancel</button>
                             </form>

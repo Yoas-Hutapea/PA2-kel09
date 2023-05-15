@@ -54,15 +54,11 @@ class AuthController extends Controller
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 if (Auth::attempt(['nik' => $request->nik, 'password' => $request->password], $request->remember)) {
-                    // return response()->json([
-                    //     'alert' => 'success',
-                    //     'message' => 'Selamat datang ' . Auth::user()->nama,
-                    //     'callback' => 'reload',
-                    // ]);
+                    return redirect('dashboard');
                 }
             } else {
                 return response()->json([
-                    'alert' => 'error',
+                'alert' => 'error',
                     'message' => 'Maaf, Password Salah.',
                 ]);
             }

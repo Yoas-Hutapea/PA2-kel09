@@ -35,16 +35,13 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <form method="POST" action="{{ route('update-penduduk', $penduduk->id) }}">
-                                            @csrf
-                                            @method('PUT')
+                                        <form>
                                             <div class="form-group row align-items-center">
                                                 <div class="col-md-12">
                                                     <div class="profile-img-edit">
                                                         <div class="crm-profile-img-edit">
                                                             <img class="crm-profile-pic rounded-circle avatar-100"
-                                                                src="{{ asset('assets/auth/images/user/1.jpg') }}"
-                                                                alt="profile-pic">
+                                                                src="{{asset('assets/auth/images/user/1.jpg')}}" alt="profile-pic">
                                                             <div class="crm-p-image bg-primary">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18"
                                                                     fill="none" viewBox="0 0 24 24"
@@ -63,75 +60,70 @@
                                                 <div class="form-group col-sm-6">
                                                     <label for="nama">Nama</label>
                                                     <input type="text" class="form-control" id="nama"
-                                                       name="nama" value="{{ $penduduk->nama }}">
-                                                </div> 
+                                                        value="{{ Auth::user()->nama}}" readonly>
+                                                </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="nik">NIK</label>
                                                     <input type="text" class="form-control" id="nik"
-                                                     name="nik"   value="{{ $penduduk->nik }}">
+                                                        value="{{ Auth::user()->nik}}" readonly>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="no_telp">No Telepon</label>
                                                     <input type="text" class="form-control" id="no_telp"
-                                                       name="no_telp" value="{{ $penduduk->no_telp }}">
+                                                        value="{{ Auth::user()->no_telp}}" readonly>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="tempat_lahir">Tempat Lahir</label>
                                                     <input type="text" class="form-control" id="tempat_lahir"
-                                                       name="tempat_lahir" value="{{ $penduduk->tempat_lahir }}">
+                                                        value="{{ Auth::user()->tempat_lahir}}" readonly>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="tanggal_lahir">Tanggal Lahir</label>
-                                                    <input type="date" class="form-control" id="tanggal_lahir"
-                                                    name="tanggal_lahir"  value="{{ $penduduk->tanggal_lahir }}">
+                                                    <input type="text" class="form-control" id="tanggal_lahir"
+                                                        value="{{ Auth::user()->tanggal_lahir}}" readonly>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="Usia">Usia</label>
-                                                    <input text="text" class="form-control" id="usia"
-                                                      name="usia"  value="{{ $penduduk->usia }}">
+                                                    <input text="text" class="form-control" id="usia" value="{{ Auth::user()->usia}}" readonly>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="jenis_kelamin">Jenis Kelamin</label>
-                                                    <input text="text" class="form-control" id="jenis_kelamin"
-                                                      name="jenis_kelamin"  value="{{ $penduduk->jenis_kelamin }}">
+                                                    <input text="text" class="form-control" id="jenis_kelamin" value="{{ Auth::user()->jenis_kelamin}}" readonly>
                                                 </div>
                                                 {{-- <div class="form-group col-sm-6" @disabled(true)>
-                                                <label class="d-block">Jenis Kelamin</label>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="customRadio6" name="customRadio1"
-                                                        class="custom-control-input" checked="">
-                                                    <label class="custom-control-label" for="customRadio6"> Pria
-                                                    </label>
-                                                </div>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="customRadio7" name="customRadio1"
-                                                        class="custom-control-input">
-                                                    <label class="custom-control-label" for="customRadio7"> Wanita
-                                                    </label>
-                                                </div>
-                                            </div> --}}
+                                                    <label class="d-block">Jenis Kelamin</label>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" id="customRadio6" name="customRadio1"
+                                                            class="custom-control-input" checked="">
+                                                        <label class="custom-control-label" for="customRadio6"> Pria
+                                                        </label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" id="customRadio7" name="customRadio1"
+                                                            class="custom-control-input">
+                                                        <label class="custom-control-label" for="customRadio7"> Wanita
+                                                        </label>
+                                                    </div>
+                                                </div> --}}
                                                 <div class="form-group col-sm-6">
                                                     <label for="pekerjaan">Pekerjaan</label>
-                                                    <input type="text" class="form-control" id="pekerjaan"
-                                                       name="pekerjaan" value="{{ $penduduk->pekerjaan }}">
+                                                    <input type="text" class="form-control" id="pekerjaan" value="{{ Auth::user()->pekerjaan}}" readonly>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="agama">Agama</label>
-                                                    <input type="text" class="form-control" id="agama"
-                                                      name="agama"  value="{{ $penduduk->agama }}">
+                                                    <input type="text" class="form-control" id="agama" value="{{ Auth::user()->agama}}" readonly>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="kk">No KK</label>
-                                                    <input class="form-control" id="kk"
-                                                      name="kk"  value="{{ $penduduk->kk }}">
+                                                    <input class="form-control" id="kk" value="{{ Auth::user()->kk}}" readonly>
                                                 </div>
                                                 <div class="form-group col-sm-12">
                                                     <label>Alamat</label>
-                                                    <textarea class="form-control" name="alamat" id="alamat" rows="5" style="line-height: 22px;"> {{ $penduduk->alamat }}</textarea>
+                                                    <textarea class="form-control" name="address" rows="5" style="line-height: 22px;" readonly> {{ Auth::user()->alamat }}</textarea>
                                                 </div>
                                             </div>
                                             {{-- <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button> --}}
-                                            <button type="submit" class="btn btn-primary">Update</button>
+                                            <a href="{{route('penduduk.update')}}"><button type="submit" class="btn btn-primary">Ubah Data</button></a>
                                         </form>
                                     </div>
                                 </div>
@@ -162,7 +154,7 @@
                                                     value="">
                                             </div>
                                             {{-- <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button> --}}
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <a href="{{route('penduduk.update')}}"><button type="button" class="btn btn-primary">Ubah Data</button></a>
                                         </form>
                                     </div>
                                 </div>
@@ -176,7 +168,6 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/auth/js/backend-bundle.min.js') }}"></script>
-
 
     <!-- Flextree Javascript-->
     <script src="{{ asset('assets/auth/js/flex-tree.min.js') }}"></script>
