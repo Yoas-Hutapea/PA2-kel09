@@ -14,30 +14,16 @@ class PdfController extends Controller
     {
         $user = User::all();
 
-        $data = [
-            'users' => $user
-        ];
-
-        view()->share('penduduk', $data);
-
-        $pdf = PDF::loadView('daftar_penduduk', $data);
-
-        return $pdf->download('daftar_penduduk.pdf');
+        $pdf = PDF::loadView('pdf.penduduk', compact('penduduk'));
+        return $pdf->stream();
     }
 
     public function generatePerangkatPdf()
     {
         $perangkat = Perangkat::all();
 
-        $data = [
-            'perangkat' => $perangkat
-        ];
-
-        view()->share('perangkat', $data);
-
-        $pdf = PDF::loadView('daftar_perangkat', $data);
-
-        return $pdf->download('daftar_perangkat.pdf');
+        $pdf = PDF::loadView('pdf.perangkat', compact('perangkat'));
+        return $pdf->stream();
     }
 
 }

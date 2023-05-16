@@ -18,6 +18,10 @@ class PendudukController extends Controller
         return view('web.Penduduk.penduduk', compact('penduduk'));
     }
 
+    public function profile(){
+        return view('web.Penduduk.profile');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

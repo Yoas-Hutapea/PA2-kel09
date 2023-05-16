@@ -35,6 +35,8 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     //Penduduk
     Route::get('/penduduk', [PendudukController::class, 'index'])->name('penduduk.index');
+    Route::get('/penduduk/profile', [PendudukController::class, 'profile'])->name('profile');
+
 
     Route::get('/penduduk/create', [PendudukController::class, 'create'])->name('penduduk.create');
     Route::post('/penduduk/create', [PendudukController::class, 'store'])->name('create-penduduk');
@@ -79,5 +81,5 @@ Route::group(['middleware' => ['role:admin']], function () {
     //pdf
     Route::get('/penduduk/pdf', [PdfController::class, 'generateUserPdf'])->name('user-pdf');
     Route::get('/perangkat/pdf', [PdfController::class, 'generatePerangkatPdf'])->name('perangkat-pdf');
-    
+
 });
