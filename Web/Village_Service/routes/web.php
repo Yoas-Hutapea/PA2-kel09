@@ -79,7 +79,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::delete('/kegiatan/{kegiatan}', [KegiatanController::class, 'destroy'])->name('delete-kegiatan');
 
     //pdf
-    Route::get('/penduduk/pdf', [PdfController::class, 'generateUserPdf'])->name('user-pdf');
+    Route::get('/penduduk/export-pdf', [PdfController::class, 'generateUserPdf'])->name('user-pdf');
     Route::get('/perangkat/pdf', [PdfController::class, 'generatePerangkatPdf'])->name('perangkat-pdf');
 
 });
