@@ -35,6 +35,7 @@ class AuthController extends Controller
             'nik' => 'required|min:16|max:16',
             'password' => 'required|min:8',
         ], $messages);
+
         if ($validator->fails()) {
             $errors = $validator->errors();
             if ($errors->has('nik')) {
@@ -58,7 +59,7 @@ class AuthController extends Controller
                 }
             } else {
                 return response()->json([
-                'alert' => 'error',
+                    'alert' => 'error',
                     'message' => 'Maaf, Password Salah.',
                 ]);
             }
@@ -69,6 +70,7 @@ class AuthController extends Controller
             ]);
         }
     }
+
     public function do_logout()
     {
         Auth::guard('web')->logout();

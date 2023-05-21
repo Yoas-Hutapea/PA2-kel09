@@ -40,11 +40,21 @@ class PendudukController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'nik.required' => 'NIK harus diisi',
+            'nik.min' => 'NIK harus 16 angka',
+            'nik.max' => 'NIK harus 16 angka',
+            'nama.required' => 'nama harus diisi',
+            'nama.regex' => 'Nama hanya boleh mengandung huruf dan spasi',
+            'password.required' => 'Password harus diisi',
+            'password.min' => 'Password minimal 8 karakter',
+        ];
+
         $validator = Validator::make($request->all(), [
             'nik' => 'required|unique:users',
-            'nama' => 'required',
-            'password' => 'required',
-        ]);
+            'nama' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
+            'password' => 'required|min:8',
+        ], $messages);
 
         if ($validator->fails()) {
             return response()->json([

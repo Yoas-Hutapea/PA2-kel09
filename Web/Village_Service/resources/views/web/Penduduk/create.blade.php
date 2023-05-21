@@ -10,53 +10,31 @@
                             <div class="header-title">
                                 <h4 class="card-title">Tambah Penduduk</h4>
                             </div>
-                            <div class="header-action">
-                                <i type="button" data-toggle="collapse" data-target="#form-element-1" aria-expanded="false"
-                                    aria-controls="alert-1">
-                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                    </svg>
-                                </i>
-                            </div>
                         </div>
                         <div class="card-body">
-                            <div class="collapse" id="form-element-1">
-                                <div class="card"><kbd class="bg-dark">
-                                        <pre id="basic-form" class="text-white"><code>
-                    &#x3C;form&#x3E;
-                    &#x3C;div class=&#x22;form-group&#x22;&#x3E;
-                        &#x3C;label for=&#x22;nik&#x22;&#x3E;nik address:&#x3C;/label&#x3E;
-                        &#x3C;input type=&#x22;nik&#x22; class=&#x22;form-control&#x22; id=&#x22;nik1&#x22;&#x3E;
-                    &#x3C;/div&#x3E;
-                    &#x3C;div class=&#x22;form-group&#x22;&#x3E;
-                        &#x3C;label for=&#x22;nama&#x22;&#x3E;Password:&#x3C;/label&#x3E;
-                        &#x3C;input type=&#x22;password&#x22; class=&#x22;form-control&#x22; id=&#x22;nama&#x22;&#x3E;
-                    &#x3C;/div&#x3E;
-                    &#x3C;div class=&#x22;checkbox mb-3&#x22;&#x3E;
-                        &#x3C;label&#x3E;&#x3C;input type=&#x22;checkbox&#x22;&#x3E; Remember me&#x3C;/label&#x3E;
-                    &#x3C;/div&#x3E;
-                    &#x3C;button type=&#x22;submit&#x22; class=&#x22;btn btn-primary&#x22;&#x3E;Submit&#x3C;/button&#x3E;
-                    &#x3C;button type=&#x22;submit&#x22; class=&#x22;btn bg-danger&#x22;&#x3E;Cancel&#x3C;/button&#x3E;
-                    &#x3C;/form&#x3E;
-                    </code></pre>
-                                    </kbd></div>
-                            </div>
-                            <form method="POST" action="{{ route('create-penduduk') }}">
+                            <form method="POST" action="{{ route('create-penduduk') }}" data-toggle="validator" id="penduduk_form">
                                 @csrf
                                 <div class="form-group">
                                     <label for="nik">NIK </label>
-                                    <input type="text" name="nik" class="form-control" id="nik1">
+                                    <input type="number" name="nik" class="form-control" id="nik"
+                                        placeholder="Masukkan NIK Warga yang ingin anda daftarkan" required autofocus>
+                                    <div id="nik_error" class="error-message"></div>
                                 </div>
                                 <div class="form-group">
                                     <label for="nama">Nama </label>
-                                    <input type="text" name="nama" class="form-control" id="nama">
+                                    <input type="text" name="nama" class="form-control" id="nama"
+                                        placeholder="Masukkan Nama Lengkap Warga yang ingin anda daftarkan" required
+                                        autofocus>
+                                    <div id="nama_error" class="error-message"></div>
                                 </div>
                                 <div class="form-group">
                                     <label for="nama">Password </label>
-                                    <input type="password" name="password" class="form-control" id="password">
+                                    <input type="password" name="password" class="form-control" id="password"
+                                        placeholder="Masukkan Password akun warga yang akan digunakan warga nantinya"
+                                        required autofocus>
+                                    <div id="password_error" class="error-message"></div>
                                 </div>
+
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 <button type="submit" class="btn bg-danger">Cancel</button>
                             </form>
@@ -83,7 +61,7 @@
     <script src="{{ asset('assets/auth/js/sweetalert.js') }}"></script>
 
     <!-- Vectoe Map JavaScript -->
-<script src="{{ asset('assets/auth/js/vector-map-custom.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/vector-map-custom.js') }}"></script>
 
     <!-- Chart Custom JavaScript -->
     <script src="{{ asset('assets/auth/js/customizer.js') }}"></script>
@@ -242,5 +220,45 @@
                 });
             });
         })(jQuery);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Handle form submission
+        document.getElementById('penduduk_form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Clear previous error messages
+            document.getElementById('nik_error').innerHTML = '';
+            document.getElementById('nama_error').innerHTML = '';
+            document.getElementById('password_error').innerHTML = '';
+
+            // Send AJAX request to validate the form
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', this.action);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'error') {
+                        // Display error messages using SweetAlert
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Validation Error',
+                            text: response.message,
+                        });
+                    } else {
+                        // Form submission successful, redirect to dashboard or desired page
+                        window.location.href = '';
+                    }
+                }
+            };
+
+            // Get form data
+            var formData = new FormData(this);
+            var encodedData = new URLSearchParams(formData).toString();
+
+            // Send the request
+            xhr.send(encodedData);
+        });
     </script>
 @endsection

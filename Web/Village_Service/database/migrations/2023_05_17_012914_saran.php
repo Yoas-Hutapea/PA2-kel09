@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kegiatan', function (Blueprint $table) {
+        Schema::create('saran', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('judul');
-            $table->string('tempat');
-            $table->dateTime('tanggal_mulai');
-            $table->dateTime('tanggal_akhir');
-            $table->string('deskripsi');
+            $table->string('user_name');
+            $table->string('saran');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,7 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kegiatan');
+        Schema::dropIfExists('saran');
     }
 };
-

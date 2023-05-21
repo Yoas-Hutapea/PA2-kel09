@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Saran extends Model
 {
     use HasFactory;
+    protected $table = 'saran';
+    protected $fillable = [
+        'saran',
+    ];
 }

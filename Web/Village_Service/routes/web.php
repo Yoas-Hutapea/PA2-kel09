@@ -7,6 +7,8 @@ use App\Http\Controllers\Web\PengumumanController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\PdfController;
+use App\Http\Controllers\Web\SaranController;
+use App\Http\Controllers\Web\PengajuanController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -81,5 +83,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     //pdf
     Route::get('/penduduk/export-pdf', [PdfController::class, 'generateUserPdf'])->name('user-pdf');
     Route::get('/perangkat/pdf', [PdfController::class, 'generatePerangkatPdf'])->name('perangkat-pdf');
+
+    //saran
+    Route::get('/saran', [SaranController::class, 'index'])->name('saran.index');
+
+    //pengajuan
+    Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan.index');
 
 });
