@@ -35,7 +35,8 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <form method="POST" action="{{ route('update-penduduk', $penduduk->id) }}">
+                                        <form method="POST" action="{{ route('update-penduduk', $penduduk->id) }}"
+                                            id="update-form">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-group row align-items-center">
@@ -62,72 +63,85 @@
                                             <div class=" row align-items-center">
                                                 <div class="form-group col-sm-6">
                                                     <label for="nama">Nama</label>
-                                                    <input type="text" class="form-control" id="nama"
-                                                       name="nama" value="{{ $penduduk->nama }}">
-                                                </div> 
+                                                    <input type="text" class="form-control" id="nama" name="nama"
+                                                        value="{{ $penduduk->nama }}">
+                                                    <div id="nama_error" class="error-message"></div>
+
+                                                </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="nik">NIK</label>
-                                                    <input type="text" class="form-control" id="nik"
-                                                     name="nik"   value="{{ $penduduk->nik }}">
+                                                    <input type="text" class="form-control" id="nik" name="nik"
+                                                        value="{{ $penduduk->nik }}">
+                                                    <div id="nik_error" class="error-message"></div>
+
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="no_telp">No Telepon</label>
-                                                    <input type="text" class="form-control" id="no_telp"
-                                                       name="no_telp" value="{{ $penduduk->no_telp }}">
+                                                    <input type="text" class="form-control" id="no_telp" name="no_telp"
+                                                        value="{{ $penduduk->no_telp }}">
+                                                    <div id="no_telp_error" class="error-message"></div>
+
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="tempat_lahir">Tempat Lahir</label>
                                                     <input type="text" class="form-control" id="tempat_lahir"
-                                                       name="tempat_lahir" value="{{ $penduduk->tempat_lahir }}">
+                                                        name="tempat_lahir" value="{{ $penduduk->tempat_lahir }}">
+                                                    <div id="tempat_lahir_error" class="error-message"></div>
+
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="tanggal_lahir">Tanggal Lahir</label>
                                                     <input type="date" class="form-control" id="tanggal_lahir"
-                                                    name="tanggal_lahir"  value="{{ $penduduk->tanggal_lahir }}">
+                                                        name="tanggal_lahir" value="{{ $penduduk->tanggal_lahir }}">
+                                                    <div id="tanggal_lahir_error" class="error-message"></div>
+
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="Usia">Usia</label>
                                                     <input text="text" class="form-control" id="usia"
-                                                      name="usia"  value="{{ $penduduk->usia }}">
+                                                        name="usia" value="{{ $penduduk->usia }}">
+                                                    <div id="usia_error" class="error-message"></div>
+
                                                 </div>
-                                                <div class="form-group col-sm-6">
+                                                {{-- <div class="form-group col-sm-6">
                                                     <label for="jenis_kelamin">Jenis Kelamin</label>
                                                     <input text="text" class="form-control" id="jenis_kelamin"
                                                       name="jenis_kelamin"  value="{{ $penduduk->jenis_kelamin }}">
+                                                </div> --}}
+                                                <div class="form-group col-sm-6">
+                                                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                    <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                                                        <option>{{ $penduduk->jenis_kelamin }}</option>
+                                                        <option>Laki-laki</option>
+                                                        <option>Perempuan</option>
+                                                    </select>
+                                                    <div id="jenis_kelamin_error" class="error-message"></div>
+
                                                 </div>
-                                                {{-- <div class="form-group col-sm-6" @disabled(true)>
-                                                <label class="d-block">Jenis Kelamin</label>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="customRadio6" name="customRadio1"
-                                                        class="custom-control-input" checked="">
-                                                    <label class="custom-control-label" for="customRadio6"> Pria
-                                                    </label>
-                                                </div>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="customRadio7" name="customRadio1"
-                                                        class="custom-control-input">
-                                                    <label class="custom-control-label" for="customRadio7"> Wanita
-                                                    </label>
-                                                </div>
-                                            </div> --}}
                                                 <div class="form-group col-sm-6">
                                                     <label for="pekerjaan">Pekerjaan</label>
                                                     <input type="text" class="form-control" id="pekerjaan"
-                                                       name="pekerjaan" value="{{ $penduduk->pekerjaan }}">
+                                                        name="pekerjaan" value="{{ $penduduk->pekerjaan }}">
+                                                    <div id="pekerjaan_error" class="error-message"></div>
+
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="agama">Agama</label>
                                                     <input type="text" class="form-control" id="agama"
-                                                      name="agama"  value="{{ $penduduk->agama }}">
+                                                        name="agama" value="{{ $penduduk->agama }}">
+                                                    <div id="agama_error" class="error-message"></div>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="kk">No KK</label>
-                                                    <input class="form-control" id="kk"
-                                                      name="kk"  value="{{ $penduduk->kk }}">
+                                                    <input class="form-control" id="kk" name="kk"
+                                                        value="{{ $penduduk->kk }}">
+                                                    <div id="kk_error" class="error-message"></div>
+
                                                 </div>
                                                 <div class="form-group col-sm-12">
                                                     <label>Alamat</label>
                                                     <textarea class="form-control" name="alamat" id="alamat" rows="5" style="line-height: 22px;"> {{ $penduduk->alamat }}</textarea>
+                                                    <div id="alamat_error" class="error-message"></div>
                                                 </div>
                                             </div>
                                             {{-- <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button> --}}
@@ -348,5 +362,47 @@
                 });
             });
         })(jQuery);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#update-form').submit(function(event) {
+                event.preventDefault(); // Prevent form submission
+
+                // Perform AJAX request
+                $.ajax({
+                    url: $(this).attr('action'), // Use form action attribute for the URL
+                    type: 'POST', // or 'GET', 'PUT', etc.
+                    data: $(this).serialize(), // Serialize form data
+                    success: function(response) {
+                        // Handle successful response
+                        if (response.status === 'error') {
+                            // Show error message using SweetAlert
+                            Swal.fire('Error!', response.message, 'error');
+                        } else {
+                            // Show success message using SweetAlert
+                            Swal.fire('Success!', response.message, 'success').then((
+                            result) => {
+                                if (result.isConfirmed) {
+                                    // Redirect to the desired page
+                                    window.location.href =
+                                        "{{ route('penduduk.index') }}";
+                                }
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        // Handle error response
+                        Swal.fire('Error!', 'AJAX request failed!', 'error');
+                    }
+                });
+            });
+
+            // Cancel button click event
+            $('#cancel_button').click(function() {
+                // Redirect to index page
+                window.location.href = '{{ route('penduduk.index') }}';
+            });
+        });
     </script>
 @endsection

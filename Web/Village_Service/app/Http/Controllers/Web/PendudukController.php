@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -69,7 +70,9 @@ class PendudukController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->save();
 
-        return redirect()->route('penduduk.index');
+        return response()->json([
+            'status' => 'success', // Use 'success' status for successful submission
+        ]);
     }
 
     /**
@@ -102,32 +105,68 @@ class PendudukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $penduduk)
-{
-    $validator = Validator::make($request->all(), [
-        'nik' => 'required',
-        'nama' => 'required',
-        'no_telp' => 'required',
-        'tempat_lahir' => 'required',
-        'tanggal_lahir' => 'required',
-        'usia' => 'required',
-        'jenis_kelamin' => 'required',
-        'pekerjaan' => 'required',
-        'agama' => 'required',
-        'kk' => 'required',
-        'alamat' => 'required',
-    ]);
+    {
+        $messages = [
+            'nik.required' => 'NIK harus diisi.',
+            'nik.min' => 'NIK harus terdiri dari 16 angka.',
+            'nik.max' => 'NIK harus terdiri dari 16 angka.',
+            'nama.required' => 'Nama harus diisi.',
+            'nama.regex' => 'Nama hanya boleh mengandung huruf dan spasi.',
+            'no_telp.required' => 'Nomor telepon harus diisi.',
+            'no_telp.min' => 'Nomor telepon harus terdiri dari minimal 10 digit.',
+            'no_telp.max' => 'Nomor telepon harus terdiri dari maksimal 13 digit.',
+            'tempat_lahir.required' => 'Tempat lahir harus diisi.',
+            'tanggal_lahir.required' => 'Tanggal lahir harus diisi.',
+            'tanggal_lahir.before' => 'Tanggal lahir tidak boleh lebih dari tanggal saat ini.',
+            'usia.required' => 'Usia harus diisi.',
+            'jenis_kelamin.required' => 'Jenis kelamin harus diisi.',
+            'jenis_kelamin.in' => 'Jenis kelamin hanya boleh "laki-laki" atau "perempuan".',
+            'pekerjaan.required' => 'Pekerjaan harus diisi.',
+            'agama.required' => 'Agama harus diisi.',
+            'agama.regex' => 'Agama tidak boleh mengandung angka dan simbol.',
+            'kk.required' => 'Nomor Kartu Keluarga (KK) harus diisi.',
+            'kk.min' => 'Nomor Kartu Keluarga (KK) harus terdiri dari 16 karakter.',
+            'kk.max' => 'Nomor Kartu Keluarga (KK) harus terdiri dari 16 karakter.',
+            'alamat.required' => 'Alamat harus diisi.',
+        ];
 
-    if ($validator->fails()) {
-        return response()->json([
-            'status' => 'error',
-            'message' => $validator->errors()->first(),
-        ]);
+        $validator = Validator::make($request->all(), [
+            'nik' => 'required|string|min:16|max:16',
+            'nama' => 'required|string|regex:/^[a-zA-Z\s]+$/u',
+            'no_telp' => 'required|string|min:10|max:13',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required|date|before:today',
+            'usia' => 'required',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'pekerjaan' => 'required',
+            'agama' => 'required|string|regex:/^[a-zA-Z\s]+$/u',
+            'kk' => 'required|string|min:16|max:16',
+            'alamat' => 'required',
+        ], $messages);
+
+        if ($validator->fails()) {
+            if ($request->ajax()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $validator->errors()->first(),
+                ]);
+            } else {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+        }
+
+        $penduduk->update($request->all());
+
+        if ($request->ajax()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Penduduk updated successfully.',
+            ]);
+        } else {
+            return redirect()->route('penduduk.index')->with('success', 'Data Penduduk berhasil diubah.');
+        }
     }
 
-    $penduduk->update($request->all());
-
-    return redirect()->route('penduduk.index');
-}
     /**
      * Remove the specified resource from storage.
      *

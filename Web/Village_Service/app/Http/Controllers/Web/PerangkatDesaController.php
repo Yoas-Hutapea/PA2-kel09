@@ -34,10 +34,17 @@ class PerangkatDesaController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::Make($request->all(), [
-            'jabatan' => 'required',
-            'nama' => 'required',
-        ]);
+        $messages = [
+            'jabatan.required' => 'Jabatan harus diisi.',
+            'jabatan.regex' => 'Jabatan tidak boleh mengandung simbol.',
+            'nama.required' => 'Nama harus diisi.',
+            'nama.regex' => 'Nama tidak boleh mengandung angka dan simbol.',
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|string|regex:/^[a-zA-Z\s]+$/u',
+            'jabatan' => 'required|string|regex:/^[a-zA-Z\s]+$/u',
+        ], $messages);
 
         if ($validator->fails()) {
             return response()->json([
@@ -46,15 +53,13 @@ class PerangkatDesaController extends Controller
             ]);
         }
 
-        PerangkatDesa::create($request->all());
-
-        // return response()->json([
-        //     'status' => 'success',
-        //     'message' => 'Perangkat created successfully',
-        // ]);
-        return redirect()->route('perangkat.index');
-
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Perangkat Desa created successfully.',
+        ]);
     }
+
+
 
     /**
      * Display the specified resource.

@@ -30,6 +30,7 @@ class User extends Authenticatable
             'pekerjaan',
             'agama',
             'kk',
+            'gambar',
         'password',
     ];
 

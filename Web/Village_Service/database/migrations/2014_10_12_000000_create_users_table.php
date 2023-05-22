@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('agama')->nullable();
             $table->string('kk')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('gambar')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();

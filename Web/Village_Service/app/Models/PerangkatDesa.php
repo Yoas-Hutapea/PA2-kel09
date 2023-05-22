@@ -10,6 +10,7 @@ class PerangkatDesa extends Model
     use HasFactory;
     protected $table = 'perangkat';
     protected $fillable = [
+        'gambar',
         'nama',
         'jabatan',
     ];

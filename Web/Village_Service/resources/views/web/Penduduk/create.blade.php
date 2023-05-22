@@ -12,7 +12,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('create-penduduk') }}" data-toggle="validator" id="penduduk_form">
+                            <form method="POST" action="{{ route('create-penduduk') }}" data-toggle="validator"
+                                id="penduduk_form">
                                 @csrf
                                 <div class="form-group">
                                     <label for="nik">NIK </label>
@@ -28,7 +29,7 @@
                                     <div id="nama_error" class="error-message"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nama">Password </label>
+                                    <label for="password">Password </label>
                                     <input type="password" name="password" class="form-control" id="password"
                                         placeholder="Masukkan Password akun warga yang akan digunakan warga nantinya"
                                         required autofocus>
@@ -36,7 +37,7 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="submit" class="btn bg-danger">Cancel</button>
+                                <button type="button" class="btn bg-danger" id="cancel_button">Cancel</button>
                             </form>
                         </div>
                     </div>
@@ -221,44 +222,39 @@
             });
         })(jQuery);
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
     <script>
-        // Handle form submission
-        document.getElementById('penduduk_form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
+        $(document).ready(function() {
+            $('#penduduk_form').submit(function(event) {
+                event.preventDefault(); // Prevent form submission
 
-            // Clear previous error messages
-            document.getElementById('nik_error').innerHTML = '';
-            document.getElementById('nama_error').innerHTML = '';
-            document.getElementById('password_error').innerHTML = '';
-
-            // Send AJAX request to validate the form
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', this.action);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response.status === 'error') {
-                        // Display error messages using SweetAlert
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Validation Error',
-                            text: response.message,
-                        });
-                    } else {
-                        // Form submission successful, redirect to dashboard or desired page
-                        window.location.href = '';
+                // Perform AJAX request
+                $.ajax({
+                    url: $(this).attr('action'), // Use form action attribute for the URL
+                    type: 'POST', // or 'GET', 'PUT', etc.
+                    data: $(this).serialize(), // Serialize form data
+                    success: function(response) {
+                        // Handle successful response
+                        if (response.status === 'error') {
+                            // Show error message using SweetAlert
+                            Swal.fire('Error!', response.message, 'error');
+                        } else {
+                            // Validation passed, redirect to index page
+                            window.location.href = '{{ route('penduduk.index') }}';
+                        }
+                    },
+                    error: function(xhr) {
+                        // Handle error response
+                        Swal.fire('Error!', 'AJAX request failed!', 'error');
                     }
-                }
-            };
+                });
+            });
 
-            // Get form data
-            var formData = new FormData(this);
-            var encodedData = new URLSearchParams(formData).toString();
-
-            // Send the request
-            xhr.send(encodedData);
+            // Cancel button click event
+            $('#cancel_button').click(function() {
+                // Redirect to index page
+                window.location.href = '{{ route('penduduk.index') }}';
+            });
         });
     </script>
 @endsection
