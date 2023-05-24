@@ -49,10 +49,10 @@ class PengumumanController extends Controller
 
         Pengumuman::create($request->all());
 
-        // return response()->json([
-        //     'status' => 'success',
-        //     'message' => 'Pengumuman created successfully',
-        // ]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Pengumuman created successfully',
+        ]);
         return redirect()->route('pengumuman.index');
 
     }

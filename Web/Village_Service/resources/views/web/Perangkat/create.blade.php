@@ -12,18 +12,16 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="collapse" id="form-element-1">
-                            </div>
                             <form method="POST" action="{{ route('create-perangkat') }}" id="perangkat_form">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nama">Nama </label>
+                                    <label for="nama">Nama</label>
                                     <input type="text" name="nama" class="form-control" id="nama"
                                         placeholder="Masukkan Nama Perangkat Desa">
                                     <div id="nama_error" class="error-message"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="jabatan">Jabatan </label>
+                                    <label for="jabatan">Jabatan</label>
                                     <input type="text" name="jabatan" class="form-control" id="jabatan"
                                         placeholder="Masukkan Jabatan">
                                     <div id="jabatan_error" class="error-message"></div>
@@ -213,66 +211,40 @@
             });
         })(jQuery);
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#perangkat_form').submit(function(event) {
-                event.preventDefault(); // Prevent form submission
+    <!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-                // Perform AJAX request
-                $.ajax({
-                    url: $(this).attr('action'), // Use form action attribute for the URL
-                    type: 'POST', // or 'GET', 'PUT', etc.
-                    data: new FormData(this), // Use FormData to handle file uploads
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        if (response.status === 'error') {
-                            // Show SweetAlert error message
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: response.message
-                            });
-                        } else {
-                            // Redirect to the desired page or show success message
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success',
-                                text: 'Perangkat Desa created successfully.'
-                            }).then(function() {
-                                window.location.href =
-                                '{{ route('perangkat.index') }}';
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        // Show SweetAlert error message for AJAX error
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'AJAX Error',
-                            text: error
+<!-- Include SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.min.js"></script>
+<script>
+        // Attach event listener to the form submission
+        $('#perangkat_form').submit(function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Perform your Ajax validation here
+            $.ajax({
+                url: '{{ route('create-perangkat') }}', // Replace with your route name
+                type: 'POST',
+                data: $(this).serialize(), // Serialize form data
+                success: function(response) {
+                    // Handle the response from the server
+
+                    if (response.status === 'success') {
+                        // Validation successful, show success message
+                        Swal.fire('Success', response.message, 'success').then(function() {
+                            // Redirect to the desired page after successful validation
+                            window.location.href =
+                            '{{ route('perangkat.index  ') }}'; // Replace with your desired route
                         });
+                    } else {
+                        // Validation failed, show error message
+                        Swal.fire('Validation Error', response.message, 'error');
                     }
-                });
-            });
-
-            // Handle cancel button click
-            $('#cancel_button').click(function() {
-                // Show SweetAlert confirmation message
-                Swal.fire({
-                    icon: 'question',
-                    title: 'Cancel',
-                    text: 'Are you sure you want to cancel?',
-                    showCancelButton: true,
-                    cancelButtonText: 'No',
-                    confirmButtonText: 'Yes'
-                }).then(function(result) {
-                    if (result.value) {
-                        // Redirect to the desired page
-                        window.location.href = '{{ route('perangkat.index') }}';
-                    }
-                });
+                },
+                error: function(xhr, status, error) {
+                    // Handle any errors that occur during the Ajax request
+                    console.log('Ajax request error:', error);
+                }
             });
         });
     </script>

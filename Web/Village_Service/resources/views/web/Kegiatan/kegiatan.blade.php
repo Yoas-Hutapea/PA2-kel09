@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                     <div class="d-flex flex-wrap align-items-center justify-content-between my-schedule mb-4">
                         <div class="d-flex align-items-center justify-content-between">
-                            <h4>Set Your weekly hours</h4>
+                            <h4>Kalender Kegiatan</h4>
                         </div>
                         <div class="create-workform">
                             <button type="button"
@@ -18,7 +18,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                 </svg>
-                                Add New Event
+                                Tambah Kegiatan Baru
                             </button>
                         </div>
                     </div>
@@ -45,24 +45,25 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form method="POST" action="{{ route('create-kegiatan') }}">
+                        <form id="kegiatanForm" method="POST" action="{{ route('create-kegiatan') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label for="judul"
                                         class="form-label font-weight-bold text-muted text-uppercase">Judul</label>
                                     <input type="text" class="form-control" id="judul"
-                                        placeholder="Enter Event Title" name="judul">
+                                        placeholder="Masukkan judul kegiatan" name="judul">
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="tempat"
                                         class="form-label font-weight-bold text-muted text-uppercase">Tempat</label>
                                     <input type="text" class="form-control" id="tempat"
-                                        placeholder="Enter Event Title" name="tempat">
+                                        placeholder="Masukkan tempat pelaksanaan" name="tempat">
                                 </div>
                                 <div class="col-md-12">
-                                    <label for="tanggal" class="form-label font-weight-bold text-muted text-uppercase">Date
-                                        & Time</label>
+                                    <label for="tanggal"
+                                        class="form-label font-weight-bold text-muted text-uppercase">Tanggal Mulai dan
+                                        Akhir Kegiatan</label>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="input-group">
@@ -74,19 +75,19 @@
                                     <div class="input-group">
                                         <input type="datetime-local" class="form-control" id="tanggal_akhir"
                                             name="tanggal_akhir" placeholder="End Date">
-
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="deskripsi"
-                                        class="form-label font-weight-bold text-muted text-uppercase">Description</label>
-                                    <textarea class="form-control" id="deskripsi" rows="2" name="deskripsi" placeholder="Enter Description"></textarea>
+                                        class="form-label font-weight-bold text-muted text-uppercase">Deskripsi</label>
+                                    <textarea class="form-control" id="deskripsi" rows="2" name="deskripsi" placeholder="Masukkan Deskripsi"></textarea>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary">Add Event</button>
+                                <button type="submit" class="btn btn-primary">Tambah Kegiatan</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -354,5 +355,49 @@
                 calendar1.addEvent(event)
             })
         }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+    <script>
+        // Submit form using AJAX
+        $('#kegiatanForm').submit(function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            var form = $(this);
+            var url = form.attr('action');
+            var method = form.attr('method');
+            var formData = new FormData(this);
+
+            // Perform AJAX request
+            $.ajax({
+                url: url,
+                type: method,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    // Handle success response
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message,
+                            onClose: function() {
+                                // Redirect or perform any other action
+                                window.location.href = "{{ route('kegiatan.index') }}";
+                            }
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle error response
+                    var errorMessage = xhr.responseJSON.message;
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: errorMessage
+                    });
+                }
+            });
+        });
     </script>
 @endsection

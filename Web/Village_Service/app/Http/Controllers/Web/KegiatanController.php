@@ -26,13 +26,24 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::Make($request->all(), [
+        $messages = [
+            'judul.required' => 'Judul kegiatan harus diisi.',
+            'tempat.required' => 'Tempat kegiatan harus diisi.',
+            'tanggal_mulai.required' => 'Tanggal mulai kegiatan harus diisi.',
+            'tanggal_mulai.date' => 'Tanggal mulai kegiatan harus dalam format tanggal yang valid.',
+            'tanggal_akhir.required' => 'Tanggal akhir kegiatan harus diisi.',
+            'tanggal_akhir.date' => 'Tanggal akhir kegiatan harus dalam format tanggal yang valid.',
+            'tanggal_akhir.after_or_equal' => 'Tanggal akhir kegiatan harus setelah atau sama dengan tanggal mulai kegiatan.',
+            'deskripsi.required' => 'Deskripsi kegiatan harus diisi.',
+        ];
+
+        $validator = Validator::make($request->all(), [
             'judul' => 'required',
             'tempat' => 'required',
-            'tanggal_mulai' => 'required',
-            'tanggal_akhir' => 'required',
-            'deskripsi' => 'required'
-        ]);
+            'tanggal_mulai' => 'required|date',
+            'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai',
+            'deskripsi' => 'required',
+        ], $messages);
 
         if ($validator->fails()) {
             return response()->json([
@@ -43,12 +54,10 @@ class KegiatanController extends Controller
 
         Kegiatan::create($request->all());
 
-        // return response()->json([
-        //     'status' => 'success',
-        //     'message' => 'Kegiatan created successfully',
-        // ]);
-        return redirect()->route('kegiatan.index');
-
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Kegiatan created successfully',
+        ]);
     }
 
     /**

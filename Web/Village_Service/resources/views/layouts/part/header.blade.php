@@ -20,5 +20,6 @@
 <link rel="stylesheet" href="{{asset('assets/auth/vendor/Leaflet/leaflet.css')}}">
 <link rel="stylesheet" href="{{asset('assets/auth/vendor/select2/css/select2.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/auth/css/custom.css')}}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
 </head>
 

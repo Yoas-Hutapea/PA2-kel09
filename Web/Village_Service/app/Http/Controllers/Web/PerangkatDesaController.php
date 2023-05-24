@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class PerangkatDesaController extends Controller
 {
@@ -42,7 +44,11 @@ class PerangkatDesaController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'nama' => 'required|string|regex:/^[a-zA-Z\s]+$/u',
+            'nama' => [
+                'required',
+                'string',
+                'regex:/^[a-zA-Z\s]+$/u',
+            ],
             'jabatan' => 'required|string|regex:/^[a-zA-Z\s]+$/u',
         ], $messages);
 
@@ -53,12 +59,33 @@ class PerangkatDesaController extends Controller
             ]);
         }
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Perangkat Desa created successfully.',
-        ]);
-    }
+        $user = User::where('nama', 'like', '%' . $request->nama . '%')->first();
 
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Nama yang anda masukkan salah atau kurang.',
+            ]);
+        }
+
+        $perangkatDesa = new PerangkatDesa();
+        $perangkatDesa->nama = $request->nama;
+        $perangkatDesa->user_id = $user->id;
+        $perangkatDesa->jabatan = $request->jabatan;
+        $perangkatDesa->save();
+
+        if ($perangkatDesa) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Perangkat Desa created successfully.',
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to create Perangkat Desa.',
+            ]);
+        }
+    }
 
 
     /**
