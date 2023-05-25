@@ -1,28 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Spatie\Permission\Contracts\Role;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest')->except('do_logout');
-    }
-
-    public function index()
-    {
-        return view('auth.login');
-    }
-
-    public function do_login(Request $request)
+    public function login(Request $request)
     {
         $messages = [
             'nik.required' => 'nik harus diisi',
@@ -42,42 +30,46 @@ class AuthController extends Controller
                 return response()->json([
                     'alert' => 'error',
                     'message' => $errors->first('nik'),
-                ]);
+                ], 400);
             } else {
                 return response()->json([
                     'alert' => 'error',
                     'message' => $errors->first('password'),
-                ]);
+                ], 400);
             }
         }
 
         $user = User::where('nik', $request->nik)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
-                if (Auth::attempt(['nik' => $request->nik, 'password' => $request->password], $request->remember)) {
+                if (Auth::attempt(['nik' => $request->nik, 'password' => $request->password])) {
+                    $token = $user->createToken('authToken')->plainTextToken;
                     return response()->json([
                         'alert' => 'valid',
-                        'message' => 'Berhasil Login',
-                    ]);
-                    return redirect('dashboard');
+                        'message' => 'Berhasil Login.',
+                        'token' => $token,
+                    ], 200);
                 }
             } else {
                 return response()->json([
                     'alert' => 'error',
                     'message' => 'Maaf, Password Salah.',
-                ]);
+                ], 401);
             }
         } else {
             return response()->json([
                 'alert' => 'error',
                 'message' => 'Maaf, nik Salah atau belum terdaftar.',
-            ]);
+            ], 401);
         }
     }
 
-    public function do_logout()
+    public function logout(Request $request)
     {
-        Auth::guard('web')->logout();
-        return redirect('/');
+        $request->user()->tokens()->delete();
+
+        return response()->json([
+            'message' => 'Logged out successfully.',
+        ], 200);
     }
 }

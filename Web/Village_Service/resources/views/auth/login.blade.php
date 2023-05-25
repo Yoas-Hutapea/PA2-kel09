@@ -133,9 +133,12 @@
                         if (response.alert === 'error') {
                             // Show error message using SweetAlert
                             Swal.fire('Error!', response.message, 'error');
-                        } else {
-                            // Validation passed, redirect to dashboard
-                            window.location.href = 'dashboard';
+                        } else if (response.alert === 'valid') {
+                            // Show success message using SweetAlert
+                            Swal.fire('Success!', response.message, 'success').then(function() {
+                                // Redirect to dashboard
+                                window.location.href = 'dashboard';
+                            });
                         }
                     },
                     error: function(xhr) {
@@ -146,6 +149,7 @@
             });
         });
     </script>
+
 </body>
 <!-- Mirrored from templates.iqonic.design/datum/laravel/public/auth/login by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 03:10:11 GMT -->
 
