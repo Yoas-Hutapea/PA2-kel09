@@ -12,8 +12,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('create-penduduk') }}" data-toggle="validator"
-                                id="penduduk_form">
+                            <form method="POST" action="{{ route('create-penduduk') }}" data-toggle="validator" id="penduduk_form">
                                 @csrf
                                 <div class="form-group">
                                     <label for="nik">NIK </label>
@@ -35,7 +34,6 @@
                                         required autofocus>
                                     <div id="password_error" class="error-message"></div>
                                 </div>
-
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 <button type="button" class="btn bg-danger" id="cancel_button">Cancel</button>
                             </form>
@@ -49,7 +47,6 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/auth/js/backend-bundle.min.js') }}"></script>
-
 
     <!-- Flextree Javascript-->
     <script src="{{ asset('assets/auth/js/flex-tree.min.js') }}"></script>
