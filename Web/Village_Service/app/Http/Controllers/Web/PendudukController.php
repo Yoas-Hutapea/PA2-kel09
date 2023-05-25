@@ -52,7 +52,7 @@ class PendudukController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'nik' => 'required|unique:users',
+            'nik' => 'required|unique:users|min:16|max:16',
             'nama' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
             'password' => 'required|min:8',
         ], $messages);
