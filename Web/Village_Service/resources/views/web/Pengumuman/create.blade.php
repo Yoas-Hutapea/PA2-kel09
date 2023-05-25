@@ -62,7 +62,7 @@
     <script src="{{ asset('assets/auth/js/sweetalert.js') }}"></script>
 
     <!-- Vectoe Map JavaScript -->
-<script src="{{ asset('assets/auth/js/vector-map-custom.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/vector-map-custom.js') }}"></script>
 
     <!-- Chart Custom JavaScript -->
     <script src="{{ asset('assets/auth/js/customizer.js') }}"></script>
@@ -240,7 +240,8 @@
                         // Validation successful, show success message
                         Swal.fire('Success', response.message, 'success').then(function() {
                             // Redirect to the desired page after successful validation
-                            window.location.href = '{{ route('pengumuman.index') }}'; // Replace with your desired route
+                            window.location.href =
+                            '{{ route('pengumuman.index') }}'; // Replace with your desired route
                         });
                     } else {
                         // Validation failed, show error message
@@ -252,11 +253,12 @@
                     console.log('Ajax request error:', error);
                 }
             });
-
-            $('#cancel_button').click(function() {
-                // Redirect to index page
-                window.location.href = '{{ route('pengumuman.index') }}';
-            });
+        });
+    </script>
+    <script>
+        $('#cancel_button').click(function() {
+            // Redirect to index page
+            window.location.href = '{{ route('perangkat.index') }}';
         });
     </script>
 @endsection

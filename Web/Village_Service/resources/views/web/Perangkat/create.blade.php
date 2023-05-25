@@ -212,11 +212,11 @@
         })(jQuery);
     </script>
     <!-- Include jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Include SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.min.js"></script>
-<script>
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.min.js"></script>
+    <script>
         // Attach event listener to the form submission
         $('#perangkat_form').submit(function(event) {
             event.preventDefault(); // Prevent the form from submitting
@@ -234,7 +234,7 @@
                         Swal.fire('Success', response.message, 'success').then(function() {
                             // Redirect to the desired page after successful validation
                             window.location.href =
-                            '{{ route('perangkat.index') }}'; // Replace with your desired route
+                                '{{ route('perangkat.index') }}'; // Replace with your desired route
                         });
                     } else {
                         // Validation failed, show error message
@@ -247,10 +247,12 @@
                 }
 
             });
-            $('#cancel_button').click(function() {
-                // Redirect to index page
-                window.location.href = '{{ route('perangkat.index') }}';
-            });
+        });
+    </script>
+    <script>
+        $('#cancel_button').click(function() {
+            // Redirect to index page
+            window.location.href = '{{ route('perangkat.index') }}';
         });
     </script>
 @endsection

@@ -14,17 +14,6 @@
                             <div class="d-flex flex-wrap align-items-center justify-content-between">
                                 <div class="modal-product-search d-flex">
                                     <form class="mr-3 position-relative">
-                                        <div class="form-group mb-0">
-                                            <input type="text" class="form-control" id="exampleInputText"
-                                                aria-describedby="textHelp" placeholder="Search Customer">
-                                            <a class="search-link" href="#">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="" width="20"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                                </svg>
-                                            </a>
-                                        </div>
                                     </form>
                                     <a href="{{ route('pengumuman.create') }}"
                                         class="btn btn-primary position-relative d-flex align-items-center justify-content-between">
