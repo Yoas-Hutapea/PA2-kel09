@@ -358,44 +358,33 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
     <script>
-        // Submit form using AJAX
+        // Attach event listener to the form submission
         $('#kegiatanForm').submit(function(event) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault(); // Prevent the form from submitting
 
-            var form = $(this);
-            var url = form.attr('action');
-            var method = form.attr('method');
-            var formData = new FormData(this);
-
-            // Perform AJAX request
+            // Perform your Ajax validation here
             $.ajax({
-                url: url,
-                type: method,
-                data: formData,
-                processData: false,
-                contentType: false,
+                url: '{{ route('create-kegiatan') }}', // Replace with your route name
+                type: 'POST',
+                data: $(this).serialize(), // Serialize form data
                 success: function(response) {
-                    // Handle success response
+                    // Handle the response from the server
+
                     if (response.status === 'success') {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: response.message,
-                            onClose: function() {
-                                // Redirect or perform any other action
-                                window.location.href = "{{ route('kegiatan.index') }}";
-                            }
+                        // Validation successful, show success message
+                        Swal.fire('Success', response.message, 'success').then(function() {
+                            // Redirect to the desired page after successful validation
+                            window.location.href =
+                            '{{ route('kegiatan.index') }}'; // Replace with your desired route
                         });
+                    } else {
+                        // Validation failed, show error message
+                        Swal.fire('Validation Error', response.message, 'error');
                     }
                 },
                 error: function(xhr, status, error) {
-                    // Handle error response
-                    var errorMessage = xhr.responseJSON.message;
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: errorMessage
-                    });
+                    // Handle any errors that occur during the Ajax request
+                    console.log('Ajax request error:', error);
                 }
             });
         });

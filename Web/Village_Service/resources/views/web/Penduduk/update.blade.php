@@ -146,6 +146,7 @@
                                             </div>
                                             {{-- <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button> --}}
                                             <button type="submit" class="btn btn-primary">Update</button>
+                                            <button type="button" class="btn bg-danger" id="cancel_button">Cancel</button>
                                         </form>
                                     </div>
                                 </div>
@@ -177,6 +178,7 @@
                                             </div>
                                             {{-- <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button> --}}
                                             <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="button" class="btn bg-danger" id="cancel_button">Cancel</button>
                                         </form>
                                     </div>
                                 </div>

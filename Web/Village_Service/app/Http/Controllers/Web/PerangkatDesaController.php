@@ -49,7 +49,7 @@ class PerangkatDesaController extends Controller
                 'string',
                 'regex:/^[a-zA-Z\s]+$/u',
             ],
-            'jabatan' => 'required|string|regex:/^[a-zA-Z\s]+$/u',
+            'jabatan' => 'required|string|regex:/^[a-zA-Z0-9\s]+$/u',
         ], $messages);
 
         if ($validator->fails()) {
@@ -117,29 +117,47 @@ class PerangkatDesaController extends Controller
      * @param  \App\Models\PerangkatDesa  $perangkat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PerangkatDesa $perangkat)
-{
-    $validator = Validator::make($request->all(), [
-        'jabatan' => 'required',
-        'nama' => 'required',
-    ]);
+        public function update(Request $request, PerangkatDesa $perangkat)
+    {
+        $messages = [
+            'nama.required' => 'Nama harus diisi.',
+            'jabatan.required' => 'Jabatan harus diisi.',
+            'nama.regex' => 'Nama hanya boleh mengandung huruf.',
+            'jabatan.regex' => 'Jabatan tidak boleh mengandung simbol.',
+        ];
 
-    if ($validator->fails()) {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|regex:/^[A-Za-z\s]+$/',
+            'jabatan' => 'required|regex:/^[A-Za-z0-9\s]+$/',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $validator->errors()->first(),
+            ]);
+        }
+
+        $user = User::where('nama', 'like', '%' . $request->nama . '%')->first();
+
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Nama yang anda masukkan salah atau kurang.',
+            ]);
+        }
+
+        $perangkat->nama = $request->nama;
+        $perangkat->user_id = $user->id;
+        $perangkat->jabatan = $request->jabatan;
+        $perangkat->save();
+
         return response()->json([
-            'status' => 'error',
-            'message' => $validator->errors()->first(),
+            'status' => 'success',
+            'message' => 'Perangkat updated successfully',
         ]);
     }
 
-    $perangkat->update($request->all());
-
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Perangkat updated successfully',
-    ]);
-
-    return redirect()->route('perangkat.index');
-}
     /**
      * Remove the specified resource from storage.
      *

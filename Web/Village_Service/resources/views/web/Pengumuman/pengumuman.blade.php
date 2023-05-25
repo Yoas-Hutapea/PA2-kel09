@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <div class="d-flex flex-wrap align-items-center justify-content-between my-schedule mb-4">
                         <div class="d-flex align-items-center justify-content-between">
-                            <h4 class="font-weight-bold">Customer</h4>
+                            <h4 class="font-weight-bold">Pengumuman</h4>
                         </div>
                         <div class="create-workform">
                             <div class="d-flex flex-wrap align-items-center justify-content-between">
@@ -33,7 +33,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                         </svg>
-                                        Add Pengumuman
+                                        Tambah Pengumuman
                                     </a>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                             <div class="card card-block card-stretch">
                                 <div class="card-body p-0">
                                     <div class="d-flex justify-content-between align-items-center p-3">
-                                        <h5 class="font-weight-bold">Customer List</h5>
+                                        <h5 class="font-weight-bold">Daftar Pengumuman</h5>
                                         <button class="btn btn-secondary btn-sm">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="20"
                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">

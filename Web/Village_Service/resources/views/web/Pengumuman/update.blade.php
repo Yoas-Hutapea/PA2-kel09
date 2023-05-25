@@ -11,10 +11,10 @@
                                 <h4 class="card-title">Tambah Penduduk</h4>
                             </div>
                             <div class="header-action">
-                                <i type="button" data-toggle="collapse" data-target="#form-element-1"
-                                    aria-expanded="false" aria-controls="alert-1">
-                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <i type="button" data-toggle="collapse" data-target="#form-element-1" aria-expanded="false"
+                                    aria-controls="alert-1">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                                     </svg>
@@ -22,47 +22,29 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="collapse" id="form-element-1">
-                                <div class="card"><kbd class="bg-dark">
-                                        <pre id="basic-form" class="text-white"><code>
-                    &#x3C;form&#x3E;
-                    &#x3C;div class=&#x22;form-group&#x22;&#x3E;
-                        &#x3C;label for=&#x22;jabatan&#x22;&#x3E;jabatan address:&#x3C;/label&#x3E;
-                        &#x3C;input type=&#x22;jabatan&#x22; class=&#x22;form-control&#x22; id=&#x22;jabatan1&#x22;&#x3E;
-                    &#x3C;/div&#x3E;
-                    &#x3C;div class=&#x22;form-group&#x22;&#x3E;
-                        &#x3C;label for=&#x22;nama&#x22;&#x3E;Password:&#x3C;/label&#x3E;
-                        &#x3C;input type=&#x22;password&#x22; class=&#x22;form-control&#x22; id=&#x22;nama&#x22;&#x3E;
-                    &#x3C;/div&#x3E;
-                    &#x3C;div class=&#x22;checkbox mb-3&#x22;&#x3E;
-                        &#x3C;label&#x3E;&#x3C;input type=&#x22;checkbox&#x22;&#x3E; Remember me&#x3C;/label&#x3E;
-                    &#x3C;/div&#x3E;
-                    &#x3C;button type=&#x22;submit&#x22; class=&#x22;btn btn-primary&#x22;&#x3E;Submit&#x3C;/button&#x3E;
-                    &#x3C;button type=&#x22;submit&#x22; class=&#x22;btn bg-danger&#x22;&#x3E;Cancel&#x3C;/button&#x3E;
-                    &#x3C;/form&#x3E;
-                    </code></pre>
-                                    </kbd></div>
-                            </div>
-                            <form method="POST" action="{{ route('update-pengumuman', $pengumuman->id) }}">
+                            <form method="POST" action="{{ route('update-pengumuman', $pengumuman->id) }}"
+                                id="update_pengumuman_form">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="tanggal">{{__('Tanggal')}} </label>
-                                    <input type="date" class="form-control" id="exampleInputdate" name="tanggal" value="{{$pengumuman->tanggal}}">
-
+                                    <label for="tanggal">{{ __('Tanggal') }} </label>
+                                    <input type="date" class="form-control" id="exampleInputdate" name="tanggal"
+                                        value="{{ $pengumuman->tanggal }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="judul">{{__('Judul')}}l </label>
-                                    <input type="text" name="judul" class="form-control" id="judul" value="{{$pengumuman->judul}}">
+                                    <label for="judul">{{ __('Judul') }} </label>
+                                    <input type="text" name="judul" class="form-control" id="judul"
+                                        value="{{ $pengumuman->judul }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="deskripsi">{{__('Deskripsi')}} </label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi">{{$pengumuman->deskripsi}}</textarea>
+                                    <label for="deskripsi">{{ __('Deskripsi') }} </label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi">{{ $pengumuman->deskripsi }}</textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 <button type="button" class="btn bg-danger"
                                     onclick="window.location='{{ route('pengumuman.index') }}'">Cancel</button>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -86,7 +68,7 @@
     <script src="{{ asset('assets/auth/js/sweetalert.js') }}"></script>
 
     <!-- Vectoe Map JavaScript -->
-<script src="{{ asset('assets/auth/js/vector-map-custom.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/vector-map-custom.js') }}"></script>
 
     <!-- Chart Custom JavaScript -->
     <script src="{{ asset('assets/auth/js/customizer.js') }}"></script>
@@ -245,5 +227,38 @@
                 });
             });
         })(jQuery);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+    <script>
+        // Attach event listener to the form submission
+        $('#update_pengumuman_form').submit(function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Perform your Ajax validation here
+            $.ajax({
+                url: '{{ route('update-pengumuman', $pengumuman->id) }}', // Replace with your route name and pengumuman ID
+                type: 'PUT',
+                data: $(this).serialize(), // Serialize form data
+                success: function(response) {
+                    // Handle the response from the server
+
+                    if (response.status === 'success') {
+                        // Validation successful, show success message
+                        Swal.fire('Success', response.message, 'success').then(function() {
+                            // Redirect to the desired page after successful validation
+                            window.location.href =
+                                '{{ route('pengumuman.index') }}'; // Replace with your desired route
+                        });
+                    } else {
+                        // Validation failed, show error message
+                        Swal.fire('Validation Error', response.message, 'error');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle any errors that occur during the Ajax request
+                    console.log('Ajax request error:', error);
+                }
+            });
+        });
     </script>
 @endsection

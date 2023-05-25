@@ -234,7 +234,7 @@
                         Swal.fire('Success', response.message, 'success').then(function() {
                             // Redirect to the desired page after successful validation
                             window.location.href =
-                            '{{ route('perangkat.index  ') }}'; // Replace with your desired route
+                            '{{ route('perangkat.index') }}'; // Replace with your desired route
                         });
                     } else {
                         // Validation failed, show error message
@@ -245,6 +245,11 @@
                     // Handle any errors that occur during the Ajax request
                     console.log('Ajax request error:', error);
                 }
+
+            });
+            $('#cancel_button').click(function() {
+                // Redirect to index page
+                window.location.href = '{{ route('perangkat.index') }}';
             });
         });
     </script>

@@ -34,11 +34,18 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::Make($request->all(), [
-            'tanggal' => 'required',
+        $messages = [
+            'tanggal.required' => 'Tanggal harus diisi.',
+            'tanggal.after_or_equal' => 'Tanggal harus setelah atau sama dengan tanggal sekarang.',
+            'judul.required' => 'Judul harus diisi.',
+            'deskripsi.required' => 'Deskripsi harus diisi.',
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'tanggal' => 'required|date|after_or_equal:today',
             'judul' => 'required',
             'deskripsi' => 'required',
-        ]);
+        ], $messages);
 
         if ($validator->fails()) {
             return response()->json([
@@ -53,9 +60,8 @@ class PengumumanController extends Controller
             'status' => 'success',
             'message' => 'Pengumuman created successfully',
         ]);
-        return redirect()->route('pengumuman.index');
-
     }
+
 
     /**
      * Display the specified resource.
@@ -87,29 +93,36 @@ class PengumumanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Pengumuman $pengumuman)
-{
-    $validator = Validator::make($request->all(), [
-        'tanggal' => 'required',
-        'judul' => 'required',
-        'deskripsi' => 'required',
-    ]);
+    {
+        $messages = [
+            'tanggal.required' => 'Tanggal harus diisi.',
+            'tanggal.after_or_equal' => 'Tanggal harus setelah atau sama dengan tanggal sekarang.',
+            'judul.required' => 'Judul harus diisi.',
+            'deskripsi.required' => 'Deskripsi harus diisi.',
+        ];
 
-    if ($validator->fails()) {
+        $validator = Validator::make($request->all(), [
+            'tanggal' => 'required|date|after_or_equal:today',
+            'judul' => 'required',
+            'deskripsi' => 'required',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $validator->errors()->first(),
+            ]);
+        }
+
+        $pengumuman->update($request->all());
+
         return response()->json([
-            'status' => 'error',
-            'message' => $validator->errors()->first(),
+            'status' => 'success',
+            'message' => 'Pengumuman updated successfully',
         ]);
+
+        return redirect()->route('pengumuman.index');
     }
-
-    $pengumuman->update($request->all());
-
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Pengumuman updated successfully',
-    ]);
-
-    return redirect()->route('pengumuman.index');
-}
     /**
      * Remove the specified resource from storage.
      *
