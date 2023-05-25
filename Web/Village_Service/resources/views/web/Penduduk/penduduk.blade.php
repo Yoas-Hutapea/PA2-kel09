@@ -4,7 +4,6 @@
     <div class="content-page">
         <div class="container-fluid">
             <div class="row">
-
                 <div class="col-lg-12">
                     <div class="d-flex flex-wrap align-items-center justify-content-between my-schedule mb-4">
                         <div class="d-flex align-items-center justify-content-between">
@@ -162,7 +161,6 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/auth/js/backend-bundle.min.js') }}"></script>
-
 
     <!-- Flextree Javascript-->
     <script src="{{ asset('assets/auth/js/flex-tree.min.js') }}"></script>
