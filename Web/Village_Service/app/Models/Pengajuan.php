@@ -10,7 +10,6 @@ class Pengajuan extends Model
     use HasFactory;
     protected $table = 'pengajuan';
     protected $fillable = [
-        'user_name'
         'jenis_pengajuan',
         'deskripsi',
         'file',

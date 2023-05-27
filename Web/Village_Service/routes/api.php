@@ -1,25 +1,21 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\PengajuanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\AuthController;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
-    // Add more API routes as needed
-});
+
+//Pengajuan
+Route::middleware('auth:sanctum')->get('/pengajuan/{id}', [PengajuanController::class, 'select']);
+Route::middleware('auth:sanctum')->get('/pengajuan', [PengajuanController::class, 'select']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->post('/pengajuan', [PengajuanController::class, 'create']);
+Route::middleware('auth:sanctum')->put('/pengajuan/{id}', [PengajuanController::class, 'update']);
+Route::middleware('auth:sanctum')->delete('/pengajuan/{id}', [PengajuanController::class, 'delete']);
+
+
 
 
 
