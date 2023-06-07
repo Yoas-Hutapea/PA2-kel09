@@ -15,7 +15,7 @@ class ApiService {
 
   Future<dynamic> loginUser(User user) async {
     final request = await http.post(
-      Uri.parse('http://localhost:8000/api/login'),
+      Uri.parse('http://192.168.94.85:8000/api/login'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json", // Add Accept header

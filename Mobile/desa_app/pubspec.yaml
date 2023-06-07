@@ -40,10 +40,10 @@ dependencies:
   hexcolor: ^3.0.0
   font_awesome_flutter: ^9.1.0
   otp_text_field: ^1.1.1
-  google_sign_in: ^5.2.1
   get: ^4.6.1
   http: ^0.13.4
   rflutter_alert: ^2.0.0
+  draggable_customized_btn_navy_bar: ^1.0.1+1
 
 dev_dependencies:
   flutter_test:
@@ -61,7 +61,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  assets:
+    - assets/images/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

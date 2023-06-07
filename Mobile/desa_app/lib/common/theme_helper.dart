@@ -24,15 +24,15 @@ class ThemeHelper{
     return BoxDecoration(boxShadow: [
       BoxShadow(
         color: Colors.black.withOpacity(0.7),
-        blurRadius: 20,
+        blurRadius: 5,
         offset: const Offset(0, 5),
       )
     ]);
   }
 
   BoxDecoration buttonBoxDecoration(BuildContext context, [String color1 = "", String color2 = ""]) {
-    Color c1 = Theme.of(context).primaryColor;
-    Color c2 = Theme.of(context).colorScheme.secondary;
+    Color c1 = Colors.indigo;
+    Color c2 = Colors.indigo;
     if (color1.isEmpty == false) {
       c1 = HexColor(color1);
     }

@@ -1,141 +1,301 @@
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+import 'package:draggable_customized_btn_navy_bar/draggable_customized_btn_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:desa_app/common/theme_helper.dart';
-import 'package:desa_app/pages/widgets/header_widget.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
 
+import 'dart:math';
 
+import 'package:hexcolor/hexcolor.dart';
 
-class HomePage extends StatefulWidget{
-  const HomePage({Key? key}): super(key:key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
-  
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class PieData {
-  PieData(this.activity, this.time);
-    String activity;
-    double time;
-    
-}
-
-
-class _HomePageState extends State<HomePage>{
-  double _headerHeight = 150;
-  Key _formKey = GlobalKey<FormState>();
-  int _selectedIndex = 0;
-  late List<charts.Series<PieData, String>> _pieData;
-
-  @override void initState() {
-    super.initState();
-    _pieData = <charts.Series<PieData, String>>[];
-}
-
-    generateData() {
-        var piedata = [
-            new PieData('Work', 35.8),
-            new PieData('Eat', 8.3),
-            new PieData('Commute', 10.8),
-            new PieData('TV', 15.6),
-            new PieData('Sleep', 19.2),
-            new PieData('Other', 10.3),
-        ];
-    _pieData.add(
-        charts.Series(
-            domainFn: (PieData data, _) => data.activity,
-            measureFn: (PieData data, _) => data.time,
-            id: 'Time spent',
-            data: piedata,
-            labelAccessorFn: (PieData row, _) => '${row.activity}',
-        ),
-    );
-    return _pieData;
-}
-
-     
+class MyHomePageState extends State<MyHomePage> {
+  String _itemSelected = 'item-1';
+  bool _enableAnimation = true;
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: _headerHeight,
-              child: HeaderWidget(_headerHeight, true, Icons.person), 
-            ),
-            SafeArea(
-              child: Container( 
-                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  margin: EdgeInsets.fromLTRB(20, 10, 20, 10),// This will be the login form
-                child: Column(
-                  children: [
-                    Text(
-                      'Homepage',
-                      style: TextStyle(fontSize: 40,color: Colors.indigoAccent , fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      '',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    SizedBox(height: 0.0),
-                    Form(
-                      key: _formKey,
-                        child: Column(
-                          children: [
-                            Container(
-                              child: TextField(
-                                decoration: ThemeHelper().textInputDecoration('search'),
-                              ),
-                              decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                            ),
-                            SizedBox(height: 20.0),
-                            SizedBox(height: 15.0),
-                          ]
-                        ),
-                    ),
-                  ]
-                ),
-              ),
-            ),
-          ]
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.white,
+      body: Stack(
+        children: <Widget>[
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 700),
+            switchOutCurve: const Interval(0.0, 0.0),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              final revealAnimation = Tween(begin: 0.0, end: 1.0).animate(
+                  CurvedAnimation(parent: animation, curve: Curves.ease));
+              return AnimatedBuilder(
+                builder: (BuildContext context, Widget? _) {
+                  return _buildAnimation(
+                      context, _itemSelected, child, revealAnimation.value);
+                },
+                animation: animation,
+              );
+            },
+            child: _buildPage(_itemSelected),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.badge_rounded),
-            label: 'Business',
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-            backgroundColor: Colors.white,
-          ),
+          DraggableCustomizedBtnNavyBar(
+              width: (MediaQuery.of(context).size.width > 600) ? 500.0 : null,
+              keyItemSelected: _itemSelected,
+              doneText: 'Done',
+              settingTitleText: 'Your Menu',
+              settingSubTitleText: 'Drag and drop',
+              hiddenItems: <DraggableCustomizedDotBarItem>[
+                DraggableCustomizedDotBarItem('item-6',
+                    icon: Icons.message,
+                    name: 'Saran',
+                    onTap: (itemSelected) => _changePage(itemSelected)),
+                DraggableCustomizedDotBarItem('item-7',
+                    icon: Icons.notifications,
+                    name: 'Notifications',
+                    onTap: (itemSelected) => _changePage(itemSelected)),
+                DraggableCustomizedDotBarItem('item-8',
+                    icon: Icons.security,
+                    name: 'Security',
+                    onTap: (itemSelected) => _changePage(itemSelected)),
+                DraggableCustomizedDotBarItem('item-9',
+                    icon: Icons.help,
+                    name: 'Help',
+                    onTap: (itemSelected) => _changePage(itemSelected)),
+                DraggableCustomizedDotBarItem('item-10',
+                    icon: Icons.settings,
+                    name: 'Settings',
+                    onTap: (itemSelected) => _changePage(itemSelected)),
+              ],
+              items: <DraggableCustomizedDotBarItem>[
+                DraggableCustomizedDotBarItem('item-1',
+                    icon: Icons.home,
+                    name: 'Home',
+                    onTap: (itemSelected) => _changePage(itemSelected)),
+                DraggableCustomizedDotBarItem('item-2',
+                    icon: Icons.favorite_border,
+                    name: 'Favorite',
+                    onTap: (itemSelected) => _changePage(itemSelected)),
+                DraggableCustomizedDotBarItem('item-3',
+                    icon: Icons.face,
+                    name: 'Profile',
+                    onTap: (itemSelected) => _changePage(itemSelected)),
+                DraggableCustomizedDotBarItem('item-4',
+                    icon: Icons.cloud,
+                    name: 'Cloud',
+                    onTap: (itemSelected) => _changePage(itemSelected)),
+                DraggableCustomizedDotBarItem('item-5',
+                    icon: Icons.logout,
+                    name: 'Logout',
+                    onTap: (itemSelected) => _changePage(itemSelected)),
+              ]),
         ],
-        currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.blue,
       ),
-      
+    );
+  }
+
+  void _changePage(String itemSelected) {
+    if (_itemSelected != itemSelected && _enableAnimation) {
+      _enableAnimation = false;
+      setState(() => _itemSelected = itemSelected);
+      Future.delayed(
+          const Duration(milliseconds: 700), () => _enableAnimation = true);
+    }
+  }
+
+  Widget _buildAnimation(BuildContext context, String itemSelected,
+      Widget child, double valueAnimation) {
+    switch (itemSelected) {
+      case 'item-1':
+        return Transform.translate(
+            offset: Offset(
+                .0,
+                -(valueAnimation - 1).abs() *
+                    MediaQuery.of(context).size.width),
+            child: child);
+      case 'item-2':
+        return PageReveal(revealPercent: valueAnimation, child: child);
+      case 'item-3':
+        return Opacity(opacity: valueAnimation, child: child);
+      case 'item-4':
+        return Transform.translate(
+            offset: Offset(
+                -(valueAnimation - 1).abs() * MediaQuery.of(context).size.width,
+                .0),
+            child: child);
+      case 'item-5':
+        return Transform.translate(
+            offset: Offset(
+                (valueAnimation - 1).abs() * MediaQuery.of(context).size.width,
+                .0),
+            child: child);
+      case 'item-6':
+        return Transform.translate(
+            offset: Offset(.0,
+                (valueAnimation - 1).abs() * MediaQuery.of(context).size.width),
+            child: child);
+      case 'item-7':
+        return Transform.scale(scale: valueAnimation, child: child);
+      case 'item-8':
+        return PageReveal(revealPercent: valueAnimation, child: child);
+      case 'item-9':
+        return Transform.translate(
+            offset: Offset(
+                .0,
+                -(valueAnimation - 1).abs() *
+                    MediaQuery.of(context).size.width),
+            child: child);
+      case 'item-10':
+        return Transform.translate(
+            offset: Offset(
+                (valueAnimation - 1).abs() * MediaQuery.of(context).size.width,
+                .0),
+            child: child);
+      default:
+        return Transform.translate(
+            offset: Offset(
+                .0,
+                -(valueAnimation - 1).abs() *
+                    MediaQuery.of(context).size.width),
+            child: child);
+    }
+  }
+
+  Widget _buildPage(String itemSelected) {
+    switch (itemSelected) {
+      case 'item-1':
+        return FlutterPage(
+            key: UniqueKey(),
+            title: 'THE DART SIDE!',
+            urlAsset: 'assets/images/dash-logo.png',
+            backgroundColor: HexColor('#F7F7F7'));
+      case 'item-2':
+        return FlutterPage(
+            key: UniqueKey(),
+            title: 'FAVORITOS',
+            urlAsset: 'assets/images/flutter-img-1.png',
+            backgroundColor: HexColor('#F7F7F7'));
+      case 'item-3':
+        return FlutterPage(
+            key: UniqueKey(),
+            title: 'PERFIL',
+            urlAsset: 'assets/images/flutter-img-2.png',
+            backgroundColor: HexColor('#F7F7F7'));
+      case 'item-4':
+        return FlutterPage(
+            key: UniqueKey(),
+            title: 'NUBE',
+            urlAsset: 'assets/images/flutter-img-3.png',
+            backgroundColor: HexColor('#F7F7F7'));
+      case 'item-5':
+        return FlutterPage(
+            key: UniqueKey(),
+            title: 'ALARMA',
+            urlAsset: 'assets/images/flutter-img-4.png',
+            backgroundColor: HexColor('#F7F7F7'));
+      case 'item-6':
+        return FlutterPage(
+            key: UniqueKey(),
+            title: 'MENSAJE',
+            urlAsset: 'assets/images/flutter-img-5.png',
+            backgroundColor: HexColor('#F7F7F7'));
+      case 'item-7':
+        return FlutterPage(
+            key: UniqueKey(),
+            title: 'ALERTA',
+            urlAsset: 'assets/images/flutter-img-6.png',
+            backgroundColor: HexColor('#F7F7F7'));
+      case 'item-8':
+        return FlutterPage(
+            key: UniqueKey(),
+            title: 'SEGURIDAD',
+            urlAsset: 'assets/images/flutter-img-7.png',
+            backgroundColor: HexColor('#F7F7F7'));
+      case 'item-9':
+        return FlutterPage(
+            key: UniqueKey(),
+            title: 'AYUDA',
+            urlAsset: 'assets/images/flutter-img-8.png',
+            backgroundColor: HexColor('#F7F7F7'));
+      case 'item-10':
+        return FlutterPage(
+            key: UniqueKey(),
+            title: 'CONFIGURACION',
+            urlAsset: 'assets/images/flutter-img-9.png',
+            backgroundColor: HexColor('#F7F7F7'));
+      default:
+        return FlutterPage(key: UniqueKey(), backgroundColor: Colors.white);
+    }
+  }
+}
+
+class FlutterPage extends StatelessWidget {
+  final Color? backgroundColor;
+  final String? urlAsset;
+  final String? title;
+
+  const FlutterPage({Key? key, this.backgroundColor, this.urlAsset, this.title})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      alignment: Alignment.center,
+      color: backgroundColor,
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1, vertical: 120.0),
+      child: Column(
+        children: <Widget>[
+          Text(title!,
+              style: const TextStyle(
+                color: Color(0xBB000000),
+                fontSize: 35.0,
+                fontWeight: FontWeight.w700,
+              )),
+          Expanded(child: Image.asset(urlAsset!, fit: BoxFit.contain)),
+        ],
+      ),
     );
   }
 }
 
+class PageReveal extends StatelessWidget {
+  final double? revealPercent;
+  final Widget? child;
+
+  const PageReveal({Key? key, this.revealPercent, this.child})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipOval(
+      clipper: CircleRevealClipper(revealPercent!),
+      child: child,
+    );
+  }
+}
+
+class CircleRevealClipper extends CustomClipper<Rect> {
+  final double revealPercent;
+
+  CircleRevealClipper(this.revealPercent);
+
+  @override
+  Rect getClip(Size size) {
+    final epicenter = Offset(size.width / 2, size.height * 0.5);
+    double theta = atan(epicenter.dy / epicenter.dx);
+    final distanceToCorner = epicenter.dy / sin(theta);
+
+    final radius = distanceToCorner * revealPercent;
+
+    final diameter = 2 * radius;
+
+    return Rect.fromLTWH(
+        epicenter.dx - radius, epicenter.dy - radius, diameter, diameter);
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Rect> oldClipper) {
+    return true;
+  }
+}
