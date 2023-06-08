@@ -1,5 +1,4 @@
 import 'package:desa_app/home_page.dart';
-import 'package:desa_app/pages/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:desa_app/common/theme_helper.dart';
@@ -7,6 +6,7 @@ import 'package:desa_app/core/services/apiService.dart';
 import 'package:desa_app/models/userModel.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import '../../Core/Animation/Fade_Animation.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -35,7 +35,9 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SafeArea(
+            FadeAnimation(
+              delay: 1,
+              child: SafeArea(
               child: Container(
                   padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                   margin: EdgeInsets.fromLTRB(
@@ -65,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                                       'NIK', 'Masukkan Nik Anda'),
                                 ),
                                 decoration:
-                                    ThemeHelper().inputBoxDecorationShaddow(),
+                                ThemeHelper().inputBoxDecorationShaddow(),
                               ),
                               SizedBox(height: 30.0),
                               Container(
@@ -76,17 +78,17 @@ class _LoginPageState extends State<LoginPage> {
                                       'Password', 'Masukkan Password Anda'),
                                 ),
                                 decoration:
-                                    ThemeHelper().inputBoxDecorationShaddow(),
+                                ThemeHelper().inputBoxDecorationShaddow(),
                               ),
                               SizedBox(height: 15.0),
                               Container(
                                 decoration:
-                                    ThemeHelper().buttonBoxDecoration(context),
+                                ThemeHelper().buttonBoxDecoration(context),
                                 child: ElevatedButton(
                                   style: ThemeHelper().buttonStyle(),
                                   child: Padding(
                                     padding:
-                                        EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                    EdgeInsets.fromLTRB(40, 10, 40, 10),
                                     child: Text(
                                       'Sign In'.toUpperCase(),
                                       style: TextStyle(
@@ -120,7 +122,8 @@ class _LoginPageState extends State<LoginPage> {
                           )),
                     ],
                   )),
-            ),
+            ),)
+
           ],
         ),
       ),

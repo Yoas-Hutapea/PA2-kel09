@@ -1,3 +1,6 @@
+import 'package:desa_app/pages/home/home.dart';
+import 'package:desa_app/pages/settings.dart';
+import 'package:desa_app/pages/settings_editprofile.dart';
 import 'package:draggable_customized_btn_navy_bar/draggable_customized_btn_navy_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -162,11 +165,7 @@ class MyHomePageState extends State<MyHomePage> {
   Widget _buildPage(String itemSelected) {
     switch (itemSelected) {
       case 'item-1':
-        return FlutterPage(
-            key: UniqueKey(),
-            title: 'THE DART SIDE!',
-            urlAsset: 'assets/images/dash-logo.png',
-            backgroundColor: HexColor('#F7F7F7'));
+        return HomePage(key: UniqueKey());
       case 'item-2':
         return FlutterPage(
             key: UniqueKey(),
@@ -174,11 +173,7 @@ class MyHomePageState extends State<MyHomePage> {
             urlAsset: 'assets/images/flutter-img-1.png',
             backgroundColor: HexColor('#F7F7F7'));
       case 'item-3':
-        return FlutterPage(
-            key: UniqueKey(),
-            title: 'PERFIL',
-            urlAsset: 'assets/images/flutter-img-2.png',
-            backgroundColor: HexColor('#F7F7F7'));
+        return SettingsPage();
       case 'item-4':
         return FlutterPage(
             key: UniqueKey(),
