@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Today',
+                            'Kegiatan hari ini',
                             style: TextStyle(
                               color: Colors.white70,
                               fontSize: 16,
@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                             )
                           else
                             Text(
-                              'You have no projects',
+                              'Tidak ada kegiatan',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 30,
@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       children: [
                         Text(
-                          'In progress',
+                          'Kegiatan yang belum selesai',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
@@ -215,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       children: [
                         Text(
-                          'Finished projects',
+                          'Kegiatan yang telah lewat',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
