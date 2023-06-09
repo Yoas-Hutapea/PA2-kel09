@@ -28,7 +28,6 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchKegiatanData() async {
     try {
-      // Fetch kegiatan data using the ApiService
       final kegiatanResponse = await ApiService().getKegiatan(Kegiatan());
 
       if (kegiatanResponse is Map<String, dynamic> && kegiatanResponse.containsKey('data')) {
@@ -71,7 +70,6 @@ class _HomePageState extends State<HomePage> {
       print('Failed to fetch kegiatan data: $error');
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
