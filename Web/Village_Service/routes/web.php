@@ -43,10 +43,10 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/penduduk/create', [PendudukController::class, 'create'])->name('penduduk.create');
     Route::post('/penduduk/create', [PendudukController::class, 'store'])->name('create-penduduk');
 
-    Route::get('/penduduk/{penduduk}', [PendudukController::class, 'edit'])->name('penduduk.update');
-    Route::put('/penduduk/{penduduk}', [PendudukController::class, 'update'])->name('update-penduduk');
+    Route::get('/penduduk/{penduduk}/edit', [PendudukController::class, 'edit'])->name('penduduk.update');
+    Route::put('/penduduk/{penduduk}/update', [PendudukController::class, 'update'])->name('update-penduduk');
 
-    Route::delete('/penduduk/{penduduk}', [PendudukController::class, 'destroy'])->name('delete-penduduk');
+    Route::delete('/penduduk/{penduduk}/delete', [PendudukController::class, 'destroy'])->name('delete-penduduk');
 
     //Perangkat Desa
     Route::get('/perangkat', [PerangkatDesaController::class, 'index'])->name('perangkat.index');

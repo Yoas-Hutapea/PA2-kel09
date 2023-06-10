@@ -15,9 +15,11 @@ class PdfController extends Controller
     {
 
         $user = User::all();
-        $view = view('web.Pdf.penduduk', compact('penduduk'))->render();
+        $view = view('web.Pdf.penduduk', compact('user'))->render();
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
+
+        return $pdf->download('example.pdf');
     }
 
     public function generatePerangkatPdf()
