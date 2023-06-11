@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Hello, ${widget.authenticatedUserName}',
+                  'Halo, ${widget.authenticatedUserName}',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
