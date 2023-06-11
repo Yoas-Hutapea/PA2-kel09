@@ -129,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                                       Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => NavbarPage(authenticatedUserName: authenticatedUserName ?? 'Unknown User'),
+                                          builder: (context) => NavbarPage(authenticatedUserName: authenticatedUserName ?? 'Unknown User', authenticatedUser: authenticatedUser),
                                         ),
                                       );
                                     } else {

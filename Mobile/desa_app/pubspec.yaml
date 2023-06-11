@@ -64,6 +64,11 @@ dependencies:
   animate_do: ^2.1.0
   marquee: ^2.0.0
 
+  email_validator: ^2.0.1
+  string_validator: ^0.3.0
+  path_provider: ^2.0.4
+  shared_preferences: ^2.0.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

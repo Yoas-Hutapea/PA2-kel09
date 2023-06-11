@@ -18,7 +18,7 @@ class ApiService {
 
   Future<dynamic> loginUser(User user) async {
     final request = await http.post(
-      Uri.parse('https://afdb-140-213-158-209.ngrok-free.app/api/login'),
+      Uri.parse('https://2ddf-140-213-159-211.ngrok-free.app/api/login'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json", // Add Accept header
@@ -42,7 +42,7 @@ class ApiService {
     }
 
     final request = await http.get(
-      Uri.parse('https://afdb-140-213-158-209.ngrok-free.app/api/penduduk/$nik'),
+      Uri.parse('https://2ddf-140-213-159-211.ngrok-free.app/api/penduduk/$nik'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json",
@@ -64,7 +64,7 @@ class ApiService {
     }
 
     final request = await http.get(
-      Uri.parse('https://afdb-140-213-158-209.ngrok-free.app/api/kegiatan'),
+      Uri.parse('https://2ddf-140-213-159-211.ngrok-free.app/api/kegiatan'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json",

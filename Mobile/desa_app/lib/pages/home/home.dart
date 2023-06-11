@@ -78,10 +78,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        toolbarHeight: 15,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
