@@ -18,7 +18,7 @@ class ApiService {
 
   Future<dynamic> loginUser(User user) async {
     final request = await http.post(
-      Uri.parse('http://192.168.151.166:8000/api/login'),
+      Uri.parse('https://bb63-2001-448a-10cb-2596-605c-603-45ac-947e.ngrok-free.app/api/login'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json", // Add Accept header
@@ -41,7 +41,7 @@ class ApiService {
     }
 
     final request = await http.get(
-      Uri.parse('http://192.168.151.166:8000/api/kegiatan'),
+      Uri.parse('https://bb63-2001-448a-10cb-2596-605c-603-45ac-947e.ngrok-free.app/api/kegiatan'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json",

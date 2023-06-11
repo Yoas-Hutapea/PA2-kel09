@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Kegiatan hari ini',
+                            'Kegiatan saat ini',
                             style: TextStyle(
                               color: Colors.white70,
                               fontSize: 16,
@@ -144,10 +144,10 @@ class _HomePageState extends State<HomePage> {
                             )
                           else
                             Text(
-                              'Tidak ada kegiatan',
+                              'Tidak ada kegiatan saat ini',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 30,
+                                fontSize: 25,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

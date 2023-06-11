@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _SplashScreenState(){
 
-    new Timer(const Duration(milliseconds: 2000), (){
+    new Timer(const Duration(milliseconds: 3000), (){
       setState(() {
         Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
@@ -57,16 +57,15 @@ class _SplashScreenState extends State<SplashScreen> {
             width: 140.0,
             child: Center(
               child: ClipOval(
-                child: Image.network(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS32XbesQKbOrYG_D86HL_nFKBvvDiXLYj5fg&usqp=CAU",
-                  width: 100,
-                  height: 100,
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  width: 150,
+                  height: 150,
                 ), //put your logo here
               ),
             ),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.white,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.3),

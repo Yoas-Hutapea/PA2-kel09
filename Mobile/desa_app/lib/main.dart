@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:flutter/painting.dart';
 
@@ -21,13 +22,13 @@ class LoginUiApp extends StatelessWidget {
       secondary: _accentColor,
     );
 
-    return MaterialApp(
-      title: 'Flutter Login UI',
+    return GetMaterialApp(
+      title: 'Pelayanan Desa',
       theme: ThemeData(
         colorScheme: colorScheme,
         scaffoldBackgroundColor: Colors.grey.shade100,
       ),
-      home: SplashScreen(title: 'Go Plan'),
+      home: SplashScreen(title: 'Pelayanan Desa'),
     );
   }
 }

@@ -1,8 +1,10 @@
 import 'package:desa_app/pages/home/home.dart';
 import 'package:desa_app/pages/settings.dart';
 import 'package:desa_app/pages/settings_editprofile.dart';
+import 'package:desa_app/pages/informasi/information_list.dart';
 import 'package:draggable_customized_btn_navy_bar/draggable_customized_btn_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'dart:math';
 
@@ -70,12 +72,12 @@ class MyHomePageState extends State<MyHomePage> {
               ],
               items: <DraggableCustomizedDotBarItem>[
                 DraggableCustomizedDotBarItem('item-1',
-                    icon: Icons.home,
-                    name: 'Home',
+                    icon: Icons.calendar_month_outlined,
+                    name: 'Kegiatan',
                     onTap: (itemSelected) => _changePage(itemSelected)),
                 DraggableCustomizedDotBarItem('item-2',
-                    icon: Icons.favorite_border,
-                    name: 'Favorite',
+                    icon: Icons.home,
+                    name: 'Beranda',
                     onTap: (itemSelected) => _changePage(itemSelected)),
                 DraggableCustomizedDotBarItem('item-3',
                     icon: Icons.face,
@@ -167,11 +169,7 @@ class MyHomePageState extends State<MyHomePage> {
       case 'item-1':
         return HomePage(key: UniqueKey());
       case 'item-2':
-        return FlutterPage(
-            key: UniqueKey(),
-            title: 'FAVORITOS',
-            urlAsset: 'assets/images/flutter-img-1.png',
-            backgroundColor: HexColor('#F7F7F7'));
+        return Information(key: UniqueKey());
       case 'item-3':
         return SettingsPage();
       case 'item-4':
