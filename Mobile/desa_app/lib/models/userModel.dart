@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 class User {
   User
@@ -18,19 +19,19 @@ class User {
         this.password
       });
 
-  String? nama;
-  String? nik;
-  String? no_telp;
-  String? tempat_lahir;
-  String? tanggal_lahir;
-  String? usia;
-  String? jenis_kelamin;
-  String? pekerjaan;
-  String? agama;
-  String? kk;
-  String? alamat;
-  String? gambar;
-  String? password;
+  String?   nama;
+  String?   nik;
+  String?   no_telp;
+  String?   tempat_lahir;
+  DateTime? tanggal_lahir;
+  String?   usia;
+  String?   jenis_kelamin;
+  String?   pekerjaan;
+  String?   agama;
+  String?   kk;
+  String?   alamat;
+  String?   gambar;
+  String?   password;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
       nama: json["nama"],

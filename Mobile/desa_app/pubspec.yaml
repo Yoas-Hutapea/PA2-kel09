@@ -62,6 +62,7 @@ dependencies:
 
   velocity_x: ^3.4.0
   animate_do: ^2.1.0
+  marquee: ^2.0.0
 
 dev_dependencies:
   flutter_test:

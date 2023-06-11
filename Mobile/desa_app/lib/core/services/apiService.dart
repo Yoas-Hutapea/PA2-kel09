@@ -18,7 +18,7 @@ class ApiService {
 
   Future<dynamic> loginUser(User user) async {
     final request = await http.post(
-      Uri.parse('https://bb63-2001-448a-10cb-2596-605c-603-45ac-947e.ngrok-free.app/api/login'),
+      Uri.parse('https://afdb-140-213-158-209.ngrok-free.app/api/login'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json", // Add Accept header
@@ -31,7 +31,30 @@ class ApiService {
       authToken = response['access_token']; // Set the authToken property
       return response;
     } else {
+      print('Response body: ${request.body}');
       throw Exception('Failed to login user');
+    }
+  }
+
+  Future<dynamic> getUser(String nik) async {
+    if (authToken == null) {
+      throw Exception('Auth token is not set');
+    }
+
+    final request = await http.get(
+      Uri.parse('https://afdb-140-213-158-209.ngrok-free.app/api/penduduk/$nik'),
+      headers: {
+        "Content-type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer $authToken",
+      },
+    );
+
+    if (request.statusCode == 200) {
+      print('Response body: ${request.body}');
+      return jsonDecode(request.body);
+    } else {
+      throw Exception('Failed to get user data');
     }
   }
 
@@ -41,7 +64,7 @@ class ApiService {
     }
 
     final request = await http.get(
-      Uri.parse('https://bb63-2001-448a-10cb-2596-605c-603-45ac-947e.ngrok-free.app/api/kegiatan'),
+      Uri.parse('https://afdb-140-213-158-209.ngrok-free.app/api/kegiatan'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json",

@@ -10,14 +10,15 @@ import 'dart:math';
 
 import 'package:hexcolor/hexcolor.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class NavbarPage extends StatefulWidget {
+  final String  authenticatedUserName;
+  NavbarPage({required this.authenticatedUserName});
 
   @override
-  MyHomePageState createState() => MyHomePageState();
+  NavbarPageState createState() => NavbarPageState();
 }
 
-class MyHomePageState extends State<MyHomePage> {
+class NavbarPageState extends State<NavbarPage> {
   String _itemSelected = 'item-1';
   bool _enableAnimation = true;
 
@@ -167,7 +168,7 @@ class MyHomePageState extends State<MyHomePage> {
   Widget _buildPage(String itemSelected) {
     switch (itemSelected) {
       case 'item-1':
-        return HomePage(key: UniqueKey());
+        return HomePage(key: UniqueKey(), authenticatedUserName: widget.authenticatedUserName);
       case 'item-2':
         return Information(key: UniqueKey());
       case 'item-3':

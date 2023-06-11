@@ -57,8 +57,8 @@ List<InformationModel> daftarWisataBudaya = [
   InformationModel(
       name: 'Wisata Budaya 2',
       img: 'assets/images/wisataBudaya2.jpg',
-      location: 'Rusun',
-      description: 'Wisata kita bersama',
+      location: 'Onan na Godang',
+      description: 'Mual Nagodang. Sumur yang sering dikunjungi oleh Raja Sisingamangaraja saat berkunjung ke Laguboti. Terletak di kampung Onan Nagodang yang konon adalah Pasar (Onan) terbesar di Laguboti.',
       isSelected: false,
       color: Colors.amber.shade700),
   InformationModel(

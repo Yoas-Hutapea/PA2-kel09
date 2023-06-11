@@ -1,4 +1,4 @@
-import 'package:desa_app/home_page.dart';
+import 'package:desa_app/navbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:desa_app/common/theme_helper.dart';
@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   Key _formKey = GlobalKey<FormState>();
   late TextEditingController _nikController;
   late TextEditingController _passwordController;
+  String? authenticatedUserName ='';
 
   @override
   void initState() {
@@ -117,10 +118,18 @@ class _LoginPageState extends State<LoginPage> {
                                       final accessToken =
                                       response['access_token'];
                                       ApiService().authToken = accessToken;
+
+                                      // Set the authenticated user's name
+                                      final userResponse = await ApiService().getUser(nik);
+                                      final authenticatedUser = userResponse['data'];
+                                      var authenticatedUserName = authenticatedUser['nama'];
+                                      setState(() {
+                                        authenticatedUserName = authenticatedUserName;
+                                      });
                                       Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => MyHomePage(),
+                                          builder: (context) => NavbarPage(authenticatedUserName: authenticatedUserName ?? 'Unknown User'),
                                         ),
                                       );
                                     } else {

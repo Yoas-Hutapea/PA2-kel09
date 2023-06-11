@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:desa_app/models/userModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../Core/Theme/theme_colors.dart';
@@ -7,9 +8,11 @@ import '../../core/widgets/custom_widget.dart';
 import '../../core/widgets/widget_home.dart';
 import 'package:desa_app/models/kegiatanModel.dart';
 import 'package:desa_app/core/services/apiService.dart';
+import 'package:marquee/marquee.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({required Key key}) : super(key: key);
+  final String authenticatedUserName;
+  HomePage({required this.authenticatedUserName, Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -88,9 +91,9 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Hello, User',
+                  'Hello, ${widget.authenticatedUserName}',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

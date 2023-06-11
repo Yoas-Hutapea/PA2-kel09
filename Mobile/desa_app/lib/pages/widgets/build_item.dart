@@ -10,7 +10,7 @@ Widget buildItem({required List<InformationModel> items, required int index}) {
     tag: 'Detail',
     child: InkWell(
       onTap: () {
-        Get.to(() => DetailsScreen(
+        Get.off(() => DetailsScreen(
           detail_item: items[index],
         ));
       },
