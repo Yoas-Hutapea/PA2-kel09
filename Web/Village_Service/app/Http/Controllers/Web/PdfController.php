@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use PDF;
 use App\Models\User;
-use Illuminate\Support\Facades\App;
+use App\Models\Pengumuman;
+use Illuminate\Http\Request;
 use App\Models\PerangkatDesa;
+use Illuminate\Support\Facades\App;
+use App\Http\Controllers\Controller;
 
 class PdfController extends Controller
 {
@@ -19,15 +20,26 @@ class PdfController extends Controller
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
 
-        return $pdf->download('example.pdf');
+        return $pdf->download('user.pdf');
     }
 
     public function generatePerangkatPdf()
     {
-        $perangkat = Perangkat::all();
+        $perangkat = PerangkatDesa::all();
 
-        $pdf = PDF::loadView('pdf.perangkat', compact('perangkat'));
-        return $pdf->stream();
+        $view = view('web.pdf.perangkat', compact('perangkat'))->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->download('perangkat.pdf');
+    }
+
+    public function generatePengumumanPdf()
+    {
+        $pengumuman = Pengumuman::all();
+        $view = view('web.pdf.pengumuman', compact('pengumuman'))->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->download('pengumuman.pdf');
     }
 
 }

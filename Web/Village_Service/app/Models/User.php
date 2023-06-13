@@ -31,7 +31,7 @@ class User extends Authenticatable
             'agama',
             'kk',
             'gambar',
-        'password',
+            'password',
     ];
 
     /**

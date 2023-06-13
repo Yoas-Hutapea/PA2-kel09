@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login', [AuthController::class, 'do_login'])->name('login');
+Route::post('/login', [AuthController::class, 'do_login']);
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -46,7 +46,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/penduduk/{penduduk}/edit', [PendudukController::class, 'edit'])->name('penduduk.update');
     Route::put('/penduduk/{penduduk}/update', [PendudukController::class, 'update'])->name('update-penduduk');
 
-    Route::delete('/penduduk/{penduduk}/delete', [PendudukController::class, 'destroy'])->name('delete-penduduk');
+    Route::delete('/penduduk/{penduduk}', [PendudukController::class, 'destroy'])->name('delete-penduduk');
 
     //Perangkat Desa
     Route::get('/perangkat', [PerangkatDesaController::class, 'index'])->name('perangkat.index');
@@ -54,8 +54,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/perangkat/create', [PerangkatDesaController::class, 'create'])->name('perangkat.create');
     Route::post('/perangkat/create', [PerangkatDesaController::class, 'store'])->name('create-perangkat');
 
-    Route::get('/perangkat/{perangkat}', [PerangkatDesaController::class, 'edit'])->name('perangkat.update');
-    Route::put('/perangkat/{perangkat}', [PerangkatDesaController::class, 'update'])->name('update-perangkat');
+    Route::get('/perangkat/{perangkat}/edit', [PerangkatDesaController::class, 'edit'])->name('perangkat.update');
+    Route::put('/perangkat/{perangkat}/update', [PerangkatDesaController::class, 'update'])->name('update-perangkat');
 
     Route::delete('/perangkat/{perangkat}', [PerangkatDesaController::class, 'destroy'])->name('delete-perangkat');
 
@@ -83,6 +83,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     //pdf
     Route::get('/penduduk/export-pdf', [PdfController::class, 'generateUserPdf'])->name('user-pdf');
     Route::get('/perangkat/pdf', [PdfController::class, 'generatePerangkatPdf'])->name('perangkat-pdf');
+    Route::get('/pengumuman/pdf/download', [PdfController::class, 'generatePengumumanPdf'])->name('pengumuman-pdf.download');
 
     //saran
     Route::get('/saran', [SaranController::class, 'index'])->name('saran.index');

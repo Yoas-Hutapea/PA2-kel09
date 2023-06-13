@@ -3,8 +3,8 @@
         <a href="{{route('dashboard')}}" class="header-logo">
             <img src="{{ asset('assets/auth/images/logo.png') }}" class="img-fluid rounded-normal light-logo"
                 alt="logo">
-            <img src="{{ asset('assets/auth/images/logo-dark.png') }}" class="img-fluid rounded-normal darkmode-logo"
-                alt="logo">
+            {{-- <img src="{{ asset('assets/auth/images/logo-dark.png') }}" class="img-fluid rounded-normal darkmode-logo"
+                alt="logo"> --}}
             <span>OR Hutapea</span>
         </a>
         <div class="side-menu-bt-sidebar-1">

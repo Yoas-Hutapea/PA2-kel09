@@ -34,7 +34,7 @@
                                 <div class="card-body p-0">
                                     <div class="d-flex justify-content-between align-items-center p-3">
                                         <h5 class="font-weight-bold">Daftar Pengumuman</h5>
-                                        <button class="btn btn-secondary btn-sm">
+                                        <button class="btn btn-secondary btn-sm" onclick="window.location.href='{{ route('pengumuman-pdf.download') }}'">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="20"
                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
