@@ -54,7 +54,7 @@ class ThemeHelper{
         ],
       ),
       color: Colors.deepPurple.shade300,
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(20),
     );
   }
 

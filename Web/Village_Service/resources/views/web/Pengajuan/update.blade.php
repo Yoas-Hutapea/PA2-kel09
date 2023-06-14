@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Ubah Data Pengumuman</h4>
+                                <h4 class="card-title">Ubah Data Pengajuan</h4>
                             </div>
                             <div class="header-action">
                                 <i type="button" data-toggle="collapse" data-target="#form-element-1" aria-expanded="false"
@@ -22,27 +22,26 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('update-pengumuman', $pengumuman->id) }}"
-                                id="update_pengumuman_form">
+                            <form method="POST" action="{{ route('update-pengajuan', $pengajuan->id) }}"
+                                id="update_pengajuan_form" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="tanggal">{{ __('Tanggal') }} </label>
-                                    <input type="date" class="form-control" id="exampleInputdate" name="tanggal"
-                                        value="{{ $pengumuman->tanggal }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="judul">{{ __('Judul') }} </label>
-                                    <input type="text" name="judul" class="form-control" id="judul"
-                                        value="{{ $pengumuman->judul }}">
+                                    <label for="jenis_pengajuan">{{ __('Jenis Pengajuan') }} </label>
+                                    <input type="text" class="form-control" name="jenis_pengajuan" readonly
+                                        value="{{ $pengajuan->jenis_pengajuan }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="deskripsi">{{ __('Deskripsi') }} </label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi">{{ $pengumuman->deskripsi }}</textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi" readonly>{{ $pengajuan->deskripsi }}</textarea>
                                 </div>
+                                <div class="custom-file mb-3">
+                                    <input type="file" class="custom-file-input" name="file">
+                                    <label class="custom-file-label" for="file">{{ $pengajuan->file}}</label>
+                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 <button type="button" class="btn bg-danger"
-                                    onclick="window.location='{{ route('pengumuman.index') }}'">Cancel</button>
+                                    onclick="window.location='{{ route('pengajuan.index') }}'">Cancel</button>
                             </form>
 
                         </div>
@@ -231,12 +230,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
     <script>
         // Attach event listener to the form submission
-        $('#update_pengumuman_form').submit(function(event) {
+        $('#update_pengajuan_form').submit(function(event) {
             event.preventDefault(); // Prevent the form from submitting
 
             // Perform your Ajax validation here
             $.ajax({
-                url: '{{ route('update-pengumuman', $pengumuman->id) }}', // Replace with your route name and pengumuman ID
+                url: '{{ route('update-pengajuan', $pengajuan->id) }}', // Replace with your route name and pengajuan ID
                 type: 'PUT',
                 data: $(this).serialize(), // Serialize form data
                 success: function(response) {
@@ -247,7 +246,7 @@
                         Swal.fire('Success', response.message, 'success').then(function() {
                             // Redirect to the desired page after successful validation
                             window.location.href =
-                                '{{ route('pengumuman.index') }}'; // Replace with your desired route
+                                '{{ route('pengajuan.index') }}'; // Replace with your desired route
                         });
                     } else {
                         // Validation failed, show error message

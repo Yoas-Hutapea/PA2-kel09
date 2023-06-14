@@ -60,6 +60,12 @@ class PengajuanController extends Controller
         $pengajuan->file = $request->file;
         $pengajuan->save();
 
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filePath = $file->store('/storage');
+            $pengajuan->file = $filePath;
+        }
+
         return response()->json([
             'message' => 'Pengajuan created successfully.',
             'data' => $pengajuan,
@@ -93,7 +99,11 @@ class PengajuanController extends Controller
 
         $pengajuan->jenis_pengajuan = $request->jenis_pengajuan;
         $pengajuan->deskripsi = $request->deskripsi;
-        $pengajuan->file = $request->file;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filePath = $file->store('/storage'); // Replace 'your-directory-name' with the desired directory name
+            $pengajuan->file = $filePath;
+        }
         $pengajuan->save();
 
         return response()->json([

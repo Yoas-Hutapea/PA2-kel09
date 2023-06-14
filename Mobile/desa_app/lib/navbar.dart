@@ -1,7 +1,10 @@
+import 'package:desa_app/models/saranModel.dart';
 import 'package:desa_app/pages/home/home.dart';
 import 'package:desa_app/pages/Profile/settings_editprofile.dart';
 import 'package:desa_app/pages/informasi/information_list.dart';
-import 'package:draggable_customized_btn_navy_bar/draggable_customized_btn_navy_bar.dart';
+import 'package:desa_app/pages/pengajuan/createPengajuan.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:desa_app/pages/saran/createSaran.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,14 +15,15 @@ import 'package:hexcolor/hexcolor.dart';
 class NavbarPage extends StatefulWidget {
   final String authenticatedUserName;
   final dynamic authenticatedUser;
+  final String authToken;
 
-  const NavbarPage({required this.authenticatedUserName, required this.authenticatedUser});
+  const NavbarPage({required this.authenticatedUserName, required this.authenticatedUser, required this.authToken});
 
   @override
   NavbarPageState createState() => NavbarPageState();
 }
 
-class NavbarPageState extends State<NavbarPage>  {
+class NavbarPageState extends State<NavbarPage> {
   String _itemSelected = 'item-1';
   bool _enableAnimation = true;
 
@@ -46,47 +50,42 @@ class NavbarPageState extends State<NavbarPage>  {
               },
               child: _buildPage(_itemSelected),
             ),
-            DraggableCustomizedBtnNavyBar(
-              width: (MediaQuery.of(context).size.width > 600) ? 500.0 : null,
-              keyItemSelected: _itemSelected,
-              doneText: 'Done',
-              settingTitleText: 'Your Menu',
-              settingSubTitleText: 'Drag and drop',
-              hiddenItems: <DraggableCustomizedDotBarItem>[
-                DraggableCustomizedDotBarItem('item-6',
-                    icon: Icons.message,
-                    name: 'Saran',
-                    onTap: (itemSelected) => _changePage(itemSelected)),
-                DraggableCustomizedDotBarItem('item-7',
-                    icon: Icons.notifications_active,
-                    name: 'Pengumuman',
-                    onTap: (itemSelected) => _changePage(itemSelected)),
-                ],
-              items: <DraggableCustomizedDotBarItem>[
-                DraggableCustomizedDotBarItem('item-1',
-                    icon: Icons.home,
-                    name: 'Beranda',
-                    onTap: (itemSelected) => _changePage(itemSelected)),
-                DraggableCustomizedDotBarItem('item-2',
-                    icon: Icons.calendar_month_outlined,
-                    name: 'Kegiatan',
-                    onTap: (itemSelected) => _changePage(itemSelected)),
-                DraggableCustomizedDotBarItem('item-3',
-                    icon: Icons.add_box_rounded,
-                    name: 'Pengajuan',
-                    onTap: (itemSelected) => _changePage(itemSelected)),
-                DraggableCustomizedDotBarItem('item-4',
-                    icon: Icons.face,
-                    name: 'Profil',
-                    onTap: (itemSelected) => _changePage(itemSelected)),
-                DraggableCustomizedDotBarItem('item-5',
-                    icon: Icons.message,
-                    name: 'Saran',
-                    onTap: (itemSelected) => _changePage(itemSelected)),
-              ],
-            ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: _getSelectedIndex(_itemSelected),
+        onItemSelected: (index) {
+          final selectedItem = _getSelectedItem(index);
+          _changePage(selectedItem);
+        },
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            icon: Icon(Icons.home),
+            title: Center(child: Text('Beranda')),
+            activeColor: Colors.indigo,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.calendar_month_outlined),
+            title: Center(child: Text('Kegiatan')),
+            activeColor: Colors.indigo,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.add_box_rounded),
+            title: Center(child: Text('Pengajuan')),
+            activeColor: Colors.indigo,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.face),
+            title: Center(child: Text('Profil')),
+            activeColor: Colors.indigo,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.message),
+            title: Center(child: Text('Saran')),
+            activeColor: Colors.indigo,
+          ),
+        ],
       ),
     );
   }
@@ -126,15 +125,6 @@ class NavbarPageState extends State<NavbarPage>  {
                 (valueAnimation - 1).abs() * MediaQuery.of(context).size.width,
                 .0),
             child: child);
-      case 'item-6':
-        return Transform.translate(
-            offset: Offset(
-                .0,
-                (valueAnimation - 1).abs() *
-                    MediaQuery.of(context).size.width),
-            child: child);
-      case 'item-7':
-        return Transform.scale(scale: valueAnimation, child: child);
       default:
         return Transform.translate(
             offset: Offset(
@@ -154,33 +144,48 @@ class NavbarPageState extends State<NavbarPage>  {
             key: UniqueKey(),
             authenticatedUserName: widget.authenticatedUserName);
       case 'item-3':
-        return FlutterPage(
-            key: UniqueKey(),
-            title: 'NUBE',
-            urlAsset: 'assets/images/flutter-img-3.png',
-            backgroundColor: HexColor('#F7F7F7'));
+        // return CreatePengajuan();
+        return CreatePengajuan(authToken: widget.authToken);
       case 'item-4':
-        return SettingsUI(authenticatedUser: widget.authenticatedUser);
+        return EditProfilePage(authenticatedUser: widget.authenticatedUser);
       case 'item-5':
-        return FlutterPage(
-            key: UniqueKey(),
-            title: 'ALARMA',
-            urlAsset: 'assets/images/flutter-img-4.png',
-            backgroundColor: HexColor('#F7F7F7'));
-      case 'item-6':
-        return FlutterPage(
-            key: UniqueKey(),
-            title: 'MENSAJE',
-            urlAsset: 'assets/images/flutter-img-5.png',
-            backgroundColor: HexColor('#F7F7F7'));
-      case 'item-7':
-        return FlutterPage(
-            key: UniqueKey(),
-            title: 'ALERTA',
-            urlAsset: 'assets/images/flutter-img-6.png',
-            backgroundColor: HexColor('#F7F7F7'));
+        return CreateSaran(authToken: widget.authToken);
       default:
         return FlutterPage(key: UniqueKey(), backgroundColor: Colors.white);
+    }
+  }
+
+  int _getSelectedIndex(String itemSelected) {
+    switch (itemSelected) {
+      case 'item-1':
+        return 0;
+      case 'item-2':
+        return 1;
+      case 'item-3':
+        return 2;
+      case 'item-4':
+        return 3;
+      case 'item-5':
+        return 4;
+      default:
+        return 0;
+    }
+  }
+
+  String _getSelectedItem(int index) {
+    switch (index) {
+      case 0:
+        return 'item-1';
+      case 1:
+        return 'item-2';
+      case 2:
+        return 'item-3';
+      case 3:
+        return 'item-4';
+      case 4:
+        return 'item-5';
+      default:
+        return 'item-1';
     }
   }
 }
@@ -195,27 +200,22 @@ class FlutterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: backgroundColor,
-      ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        alignment: Alignment.center,
-        color: backgroundColor,
-        padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.1, vertical: 120.0),
+    return Container(
+      color: backgroundColor,
+      child: Center(
         child: Column(
-          children: <Widget>[
-            Text(title!,
-                style: const TextStyle(
-                  color: Color(0xBB000000),
-                  fontSize: 35.0,
-                  fontWeight: FontWeight.w700,
-                )),
-            Expanded(child: Image.asset(urlAsset!, fit: BoxFit.contain)),
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              urlAsset!,
+              width: 200.0,
+              height: 200.0,
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              title!,
+              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+            ),
           ],
         ),
       ),
@@ -233,8 +233,8 @@ class PageReveal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipOval(
-      clipper: CircleRevealClipper(revealPercent!),
       child: child,
+      clipper: CircleRevealClipper(revealPercent!),
     );
   }
 }
@@ -246,20 +246,18 @@ class CircleRevealClipper extends CustomClipper<Rect> {
 
   @override
   Rect getClip(Size size) {
-    final epicenter = Offset(size.width / 2, size.height * 0.5);
+    final epicenter = Offset(size.width / 2, size.height / 2);
     double theta = atan(epicenter.dy / epicenter.dx);
     final distanceToCorner = epicenter.dy / sin(theta);
-
     final radius = distanceToCorner * revealPercent;
-
     final diameter = 2 * radius;
 
-    return Rect.fromLTWH(
-        epicenter.dx - radius, epicenter.dy - radius, diameter, diameter);
+    return Rect.fromLTWH(epicenter.dx - radius, epicenter.dy - radius,
+        diameter, diameter);
   }
 
   @override
   bool shouldReclip(CustomClipper<Rect> oldClipper) {
-    return true;
+    return revealPercent != oldClipper;
   }
 }

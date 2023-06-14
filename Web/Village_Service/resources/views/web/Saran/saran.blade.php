@@ -4,19 +4,14 @@
     <div class="content-page">
         <div class="container-fluid">
             <div class="row">
-
                 <div class="col-lg-12">
                     <div class="d-flex flex-wrap align-items-center justify-content-between my-schedule mb-4">
                         <div class="d-flex align-items-center justify-content-between">
-                            <h4 class="font-weight-bold">Saran</h4>
+                            <h4 class="font-weight-bold">Daftar Saran</h4>
                         </div>
                         <div class="create-workform">
                             <div class="d-flex flex-wrap align-items-center justify-content-between">
                                 <div class="modal-product-search d-flex">
-                                    <form class="mr-3 position-relative">
-                                        <div class="form-group mb-0">
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -51,6 +46,7 @@
                                                     <th scope="col" class="text-right">
                                                         Aksi
                                                     </th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -60,7 +56,7 @@
                                                             <div
                                                                 class="custom-control custom-checkbox custom-control-inline">
                                                                 <input type="checkbox" class="custom-control-input m-0"
-                                                                    id="customCheck" value="{{ $user->id }}">
+                                                                    id="customCheck" value="{{ $saran->user_id }}">
                                                                 <label class="custom-control-label"
                                                                     for="customCheck"></label>
                                                             </div>
@@ -69,47 +65,20 @@
                                                             <div class="active-project-1 d-flex align-items-center mt-0 ">
                                                                 <div class="data-content">
                                                                     <div>
-                                                                        <a href="{{ route('update-penduduk', $user->id) }}"
-                                                                            class="font-weight-bold">{{ $user->user_name }}</a>
+                                                                        <a href="#"
+                                                                            class="font-weight-bold">{{ $saran->user_name }}</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td>{{ $penduduk->nik }}</td>
+                                                        <td>{{ $saran->saran}}</td>
                                                         <td>
                                                             <div class="d-flex justify-content-end align-items-center">
-                                                                <a class="" data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="View"
-                                                                    href="customer-view.html">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        class="text-secondary" width="20"
-                                                                        fill="none" viewBox="0 0 24 24"
-                                                                        stroke="currentColor">
-                                                                        <path stroke-linecap="round"
-                                                                            stroke-linejoin="round" stroke-width="2"
-                                                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                        <path stroke-linecap="round"
-                                                                            stroke-linejoin="round" stroke-width="2"
-                                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                                    </svg>
-                                                                </a>
-                                                                <a class="" data-toggle="tooltip"
-                                                                    data-placement="top" title=""
-                                                                    data-original-title="Edit" href="#"
-                                                                    onclick="redirectToPendudukUpdate({{ $saran->saran }})">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        class="text-secondary mx-4" width="20"
-                                                                        fill="none" viewBox="0 0 24 24"
-                                                                        stroke="currentColor">
-                                                                        <path stroke-linecap="round"
-                                                                            stroke-linejoin="round" stroke-width="2"
-                                                                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                                                    </svg>
-                                                                </a>
+                                                            
                                                                 <a class="badge bg-danger" data-toggle="tooltip"
                                                                     data-placement="top" title=""
                                                                     data-original-title="Delete" href="#"
-                                                                    onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this?')){ deletePenduduk({{ $penduduk->id }}); }">
+                                                                    onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this?')){ deleteSaran({{ $saran->id }}); }">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         fill="none" viewBox="0 0 24 24"
                                                                         stroke="currentColor">
@@ -118,6 +87,7 @@
                                                                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                                     </svg>
                                                                 </a>
+
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -129,14 +99,46 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+
+    {{-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Daftar Saran</title>
+</head>
+<body>
+    <h1>Daftar Saran</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Jenis Saran</th>
+                <th>Deskripsi</th>
+                <th>File</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($saran as $index => $saran)
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ $user->user_name }}</td>
+                <td>{{ $user->jenis_saran }}</td>
+                <td>{{ $user->deskripsi }}</td>
+                <td>{{ $user->file }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</body>
+</html> --}}
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/auth/js/backend-bundle.min.js') }}"></script>
-
 
     <!-- Flextree Javascript-->
     <script src="{{ asset('assets/auth/js/flex-tree.min.js') }}"></script>
@@ -310,16 +312,16 @@
         })(jQuery);
     </script>
     <script>
-        function deletePenduduk(id) {
+        function deleteSaran(id) {
             $.ajax({
-                url: '/penduduk/' + id,
+                url: '/saran/' + id,
                 type: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function() {
                     // Handle success response here
-                    window.location.href = "{{ route('penduduk.index') }}";
+                    window.location.href = "{{ route('saran.index') }}";
                     console.log('Record deleted successfully');
                 },
                 error: function() {
@@ -327,11 +329,6 @@
                     console.log('An error occurred while deleting the record');
                 }
             });
-        }
-    </script>
-    <script>
-        function redirectToPendudukUpdate(pendudukId) {
-            window.location.href = "{{ route('penduduk.update', ':id') }}".replace(':id', pendudukId);
         }
     </script>
 @endsection

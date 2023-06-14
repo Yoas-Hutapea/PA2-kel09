@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'tempat_lahir' => 'Jakarta',
             'password' => Hash::make('yoas12345'),
         ]);
-
+        
         $admin->assignRole('admin');
 
         User::create([

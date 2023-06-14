@@ -11,12 +11,7 @@
                                 <ul class="iq-edit-profile d-flex nav nav-pills">
                                     <li class="col-md-3 p-0">
                                         <a class="nav-link active" data-toggle="pill" href="#personal-information">
-                                            Personal Information
-                                        </a>
-                                    </li>
-                                    <li class="col-md-3 p-0">
-                                        <a class="nav-link" data-toggle="pill" href="#chang-pwd">
-                                            Change Password
+                                            Data Pribadi
                                         </a>
                                     </li>
                                 </ul>
@@ -31,7 +26,7 @@
                                 <div class="card">
                                     <div class="card-header d-flex justify-content-between">
                                         <div class="header-title">
-                                            <h4 class="card-title">Personal Information</h4>
+                                            <h4 class="card-title">Data Pribadi</h4>
                                         </div>
                                     </div>
                                     <div class="card-body">

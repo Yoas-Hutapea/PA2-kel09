@@ -60,27 +60,6 @@ class _WidgetHomeState extends State<WidgetHome> {
                 ],
               ),
             ),
-            CircularStepProgressIndicator(
-              totalSteps: int.parse(widget.progress_percentage),
-              currentStep: int.parse(widget.progress_percentage),
-              stepSize: 2,
-              selectedColor: ThemeColors().blue,
-              unselectedColor: ThemeColors().grey,
-              padding: 0,
-              width: 50,
-              height: 50,
-              selectedStepSize: 2,
-              roundedCap: (_, __) => true,
-              child: Center(
-                child: Text(
-                  '${widget.progress_percentage}%',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

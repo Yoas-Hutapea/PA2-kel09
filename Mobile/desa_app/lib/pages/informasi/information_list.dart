@@ -14,15 +14,13 @@ class Information extends StatelessWidget {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         elevation: 0,
-        title: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: 'Informasi Seputar Desa'.text.color(Colors.black).make()),
-        backgroundColor: Colors.transparent,
+        title: 'Informasi Seputar Desa'.text.color(Colors.white).make(),
+        backgroundColor: Colors.indigo,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         child: DefaultTabController(
-          length: 4,
+          length: 3,
           child: Column(
             children: [
               const TabBar(
@@ -40,11 +38,13 @@ class Information extends StatelessWidget {
                 ],
               ),
               Expanded(
-                child: TabBarView(children: [
-                  buildList(items: semuaInformasi),
-                  buildList(items: daftarTempatIbadah),
-                  buildList(items: daftarWisataBudaya),
-                ]),
+                child: TabBarView(
+                  children: [
+                    buildList(items: semuaInformasi),
+                    buildList(items: daftarTempatIbadah),
+                    buildList(items: daftarWisataBudaya),
+                  ],
+                ),
               ),
             ],
           ),

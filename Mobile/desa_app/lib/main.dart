@@ -1,3 +1,4 @@
+import 'package:desa_app/Core/Theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -18,7 +19,7 @@ class LoginUiApp extends StatelessWidget {
     final ColorScheme colorScheme = ColorScheme.fromSwatch(
       primarySwatch: Colors.grey,
     ).copyWith(
-      primary: _primaryColor,
+      primary: ThemeColors().blue,
       secondary: _accentColor,
     );
 

@@ -1,21 +1,7 @@
+import 'package:desa_app/core/colors/Hex_Color.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
-
-class SettingsUI extends StatelessWidget {
-  final dynamic authenticatedUser;
-
-  const SettingsUI({required this.authenticatedUser});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Setting UI",
-      home: EditProfilePage(authenticatedUser: authenticatedUser),
-    );
-  }
-}
 
 class EditProfilePage extends StatefulWidget {
   final dynamic authenticatedUser;
@@ -46,7 +32,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   void _initializeFields() {
-    _tanggalLahirController.text = widget.authenticatedUser['tanggal_lahir'] ?? '';
+    _tanggalLahirController.text =
+        widget.authenticatedUser['tanggal_lahir'] ?? '';
     _selectedGender = widget.authenticatedUser['jenis_kelamin'];
   }
 
@@ -61,7 +48,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
     if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
         _selectedDate = pickedDate;
-        _tanggalLahirController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+        _tanggalLahirController.text =
+            DateFormat('yyyy-MM-dd').format(pickedDate);
       });
     }
   }
@@ -90,21 +78,26 @@ class _EditProfilePageState extends State<EditProfilePage> {
     final String? alamat = widget.authenticatedUser['alamat'];
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Edit Profile',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.indigo,
+      ),
+      backgroundColor: HexColor('#F7F7F7'),
       body: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+        padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
           },
           child: ListView(
             children: [
-              Text(
-                "Edit Profile",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(height: 15),
               buildProfileImage(),
-              SizedBox(height: 35),
+              SizedBox(height: 20),
               buildTextField("Nama", nama),
               buildTextField("NIK", nik),
               buildTextField("No Telepon", no_telp),
@@ -121,7 +114,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
               buildTextField("Agama", agama),
               buildTextField("No KK", kk),
               buildTextField("Alamat", alamat),
-              SizedBox(height: 35),
               buildActionButtons(),
             ],
           ),
@@ -157,7 +149,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 fit: BoxFit.cover,
                 image: imageUrl != null
                     ? NetworkImage(imageUrl)
-                    : NetworkImage("https://img.freepik.com/free-icon/user_318-159711.jpg"),
+                    : NetworkImage(
+                  "https://img.freepik.com/free-icon/user_318-159711.jpg",
+                ),
               ),
             ),
           ),
@@ -191,32 +185,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   Widget buildTextField(String labelText, String? value) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextField(
-        controller: TextEditingController(text: value),
+      padding: const EdgeInsets.only(bottom: 30.0),
+      child: TextFormField(
+        initialValue: value,
         obscureText: labelText == "Password",
         decoration: InputDecoration(
-          suffixIcon: labelText == "Password"
-              ? IconButton(
-            onPressed: () {
-              setState(() {
-                showPassword = !showPassword;
-              });
-            },
-            icon: Icon(
-              Icons.remove_red_eye,
-              color: Colors.grey,
-            ),
-          )
-              : null,
-          contentPadding: EdgeInsets.only(bottom: 3),
           labelText: labelText,
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          hintText: '',
-          hintStyle: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.indigo),
           ),
         ),
       ),
@@ -229,7 +214,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
           labelText: labelText,
-          floatingLabelBehavior: FloatingLabelBehavior.always,
+          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.indigo),
+          ),
         ),
         value: value,
         onChanged: (newValue) {
@@ -255,39 +251,45 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        OutlinedButton(
-          style: OutlinedButton.styleFrom(
-            padding: EdgeInsets.symmetric(horizontal: 50),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+        Expanded(
+          child: OutlinedButton(
+            onPressed: () {},
+            style: OutlinedButton.styleFrom(
+              padding: EdgeInsets.symmetric(vertical: 12),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              side: BorderSide(color: Colors.indigo),
             ),
-          ),
-          onPressed: () {},
-          child: Text(
-            "CANCEL",
-            style: TextStyle(
-              fontSize: 14,
-              letterSpacing: 2.2,
-              color: Colors.black,
+            child: Text(
+              "CANCEL",
+              style: TextStyle(
+                fontSize: 14,
+                letterSpacing: 2.2,
+                color: Colors.indigo,
+              ),
             ),
           ),
         ),
-        ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            primary: Colors.indigo,
-            padding: EdgeInsets.symmetric(horizontal: 50),
-            elevation: 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+        SizedBox(width: 10),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              primary: Colors.indigo,
+              padding: EdgeInsets.symmetric(vertical: 12),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
             ),
-          ),
-          child: Text(
-            "SAVE",
-            style: TextStyle(
-              fontSize: 14,
-              letterSpacing: 2.2,
-              color: Colors.white,
+            child: Text(
+              "SAVE",
+              style: TextStyle(
+                fontSize: 14,
+                letterSpacing: 2.2,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

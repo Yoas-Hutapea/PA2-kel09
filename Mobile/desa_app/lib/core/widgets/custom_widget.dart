@@ -27,7 +27,7 @@ class _CustomContainerState extends State<CustomContainer> {
         width: 175,
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: ThemeColors().grey.withOpacity(0.5),
+          color: ThemeColors().grey.withOpacity(1),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(

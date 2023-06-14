@@ -23,13 +23,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
           children: [
             Container(
               color: Colors.white,
-              height: Get.height * 0.45,
+              height: Get.height * 0.4,
               child: Stack(
                 children: [
                   Align(
                     alignment: Alignment.topCenter,
                     child: Container(
-                      height: Get.height * 0.4,
+                      height: Get.height * 0.35,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: widget.detail_item.color,
@@ -64,7 +64,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               Radius.circular(20),
                             ),
                             child: Hero(
-                              tag: 'shoepic',
+                              tag: 'Village Service',
                               child: Image.asset(
                                 widget.detail_item.img,
                                 fit: BoxFit.cover,
@@ -87,11 +87,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   children: [
                     Text(
                       widget.detail_item.name,
-                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       widget.detail_item.location,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +111,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.offAll(() => const Information());
+                        Get.off(() => const Information());
                       },
                       child: Container(
                         height: Get.height * 0.07,
@@ -133,7 +133,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             Text(
                               'Kembali',
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 16,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                               ),

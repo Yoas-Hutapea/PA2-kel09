@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   Key _formKey = GlobalKey<FormState>();
   late TextEditingController _nikController;
   late TextEditingController _passwordController;
-  String? authenticatedUserName ='';
+  String? authenticatedUserName = '';
 
   @override
   void initState() {
@@ -40,83 +40,73 @@ class _LoginPageState extends State<LoginPage> {
               delay: 1,
               child: SafeArea(
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  margin: EdgeInsets.fromLTRB(20, 200, 20, 10), // This will be the login form
+                  padding: EdgeInsets.all(20),
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 200),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
+                  ),
                   child: Column(
                     children: [
                       Text(
                         'Login',
                         style: TextStyle(
-                          fontSize: 60,
+                          fontSize: 36,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      SizedBox(height: 10),
                       Text(
-                        'Silahkan Login dengan Akun anda',
+                        'Silahkan Login dengan Akun Anda',
                         style: TextStyle(color: Colors.grey),
                       ),
-                      SizedBox(height: 30.0),
+                      SizedBox(height: 30),
                       Form(
                         key: _formKey,
                         child: Column(
                           children: [
-                            Container(
-                              child: TextField(
-                                controller: _nikController,
-                                decoration: ThemeHelper().textInputDecoration(
-                                  'NIK',
-                                  'Masukkan Nik Anda',
-                                ),
+                            TextFormField(
+                              controller: _nikController,
+                              decoration: ThemeHelper().textInputDecoration(
+                                'NIK',
+                                'Masukkan Nik Anda',
                               ),
-                              decoration:
-                              ThemeHelper().inputBoxDecorationShaddow(),
                             ),
-                            SizedBox(height: 30.0),
-                            Container(
-                              child: TextField(
-                                controller: _passwordController,
-                                obscureText: true,
-                                decoration: ThemeHelper().textInputDecoration(
-                                  'Password',
-                                  'Masukkan Password Anda',
-                                ),
+                            SizedBox(height: 20),
+                            TextFormField(
+                              controller: _passwordController,
+                              obscureText: true,
+                              decoration: ThemeHelper().textInputDecoration(
+                                'Password',
+                                'Masukkan Password Anda',
                               ),
-                              decoration:
-                              ThemeHelper().inputBoxDecorationShaddow(),
                             ),
-                            SizedBox(height: 15.0),
+                            SizedBox(height: 20),
                             Container(
-                              decoration:
-                              ThemeHelper().buttonBoxDecoration(context),
+                              width: double.infinity,
+                              decoration: ThemeHelper().buttonBoxDecoration(context),
                               child: ElevatedButton(
                                 style: ThemeHelper().buttonStyle(),
-                                child: Padding(
-                                  padding:
-                                  EdgeInsets.fromLTRB(40, 10, 40, 10),
-                                  child: Text(
-                                    'Sign In'.toUpperCase(),
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
                                 onPressed: () async {
                                   final nik = _nikController.text;
                                   final password = _passwordController.text;
 
                                   try {
-                                    final response = await ApiService()
-                                        .loginUser(User(
+                                    final response = await ApiService().loginUser(User(
                                       nik: nik,
                                       password: password,
                                     ));
 
                                     if (response['access_token'] != null) {
-                                      final accessToken =
-                                      response['access_token'];
+                                      final accessToken = response['access_token'];
                                       ApiService().authToken = accessToken;
 
                                       // Set the authenticated user's name
@@ -129,7 +119,11 @@ class _LoginPageState extends State<LoginPage> {
                                       Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => NavbarPage(authenticatedUserName: authenticatedUserName ?? 'Unknown User', authenticatedUser: authenticatedUser),
+                                          builder: (context) => NavbarPage(
+                                            authenticatedUserName: authenticatedUserName ?? 'Unknown User',
+                                            authenticatedUser: authenticatedUser,
+                                            authToken: accessToken,
+                                          ),
                                         ),
                                       );
                                     } else {
@@ -145,6 +139,17 @@ class _LoginPageState extends State<LoginPage> {
                                     ).show();
                                   }
                                 },
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 10),
+                                  child: Text(
+                                    'Sign In'.toUpperCase(),
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ],

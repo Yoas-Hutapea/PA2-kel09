@@ -87,8 +87,14 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     //saran
     Route::get('/saran', [SaranController::class, 'index'])->name('saran.index');
+    Route::delete('/saran/{saran}', [SaranController::class, 'destroy'])->name('delete-saran');
+
 
     //pengajuan
     Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan.index');
+    Route::get('/pengajuan/{pengajuan}', [PengajuanController::class, 'edit'])->name('pengajuan.update');
+    Route::put('/pengajuan/{pengajuan}', [PengajuanController::class, 'update'])->name('update-pengajuan');
+    Route::delete('/pengumuman/{pengajuan}', [PengajuanController::class, 'destroy'])->name('delete-pengajuan');
+    Route::post('/download/{file}', [PengajuanController::class, 'downloadFile'])->name('downloadFile');
 
 });

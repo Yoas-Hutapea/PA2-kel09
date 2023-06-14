@@ -69,6 +69,14 @@ dependencies:
   path_provider: ^2.0.4
   shared_preferences: ^2.0.8
 
+  google_fonts: ^4.0.4
+  ionicons: ^0.2.2
+  file_picker: ^5.3.0
+
+  bottom_navy_bar: 6.0.0
+  flutter_form_builder: ^8.0.0
+  validation_textformfield: ^2.2.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -58,4 +58,28 @@ class AuthController extends Controller
             'message' => 'Successfully logged out.',
         ]);
     }
+    public function getAllPenduduk()
+    {
+        $penduduk = User::all();
+
+        return response()->json([
+            'data' => $penduduk,
+        ]);
+    }
+
+    public function getPendudukByNIK($nik)
+    {
+        $penduduk = User::where('nik', $nik)->first();
+
+        if ($penduduk) {
+            return response()->json([
+                'data' => $penduduk,
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'not_found',
+                'message' => 'Penduduk not found.',
+            ], 404);
+        }
+    }
 }

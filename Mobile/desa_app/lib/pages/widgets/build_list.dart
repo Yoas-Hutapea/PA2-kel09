@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:desa_app/pages/widgets/build_item.dart';
 import 'package:desa_app/models/informasiModel.dart';
 
-// ignore: unused_element
 Widget buildList({required List<InformationModel> items}) {
   return ListView.builder(
     itemCount: items.length,

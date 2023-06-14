@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Tambah Perangkat</h4>
+                                <h4 class="card-title">Ubah Data Perangkat</h4>
                             </div>
                             <div class="header-action">
                                 <i type="button" data-toggle="collapse" data-target="#form-element-1" aria-expanded="false"
@@ -255,5 +255,5 @@
                 }
             });
         });
-    </script>   
+    </script>
 @endsection
