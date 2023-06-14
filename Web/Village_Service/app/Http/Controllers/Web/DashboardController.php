@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $pengumuman = Pengumuman::latest()->take(5)->get();
+        $pengumuman = Pengumuman::latest()->take(7)->get();
         // $users = User::selectRaw('usia, count(*) as total')
         // ->groupBy('usia')
         // ->pluck('total', 'usia')
@@ -27,6 +27,9 @@ class DashboardController extends Controller
         ->pluck('total', 'kategori_usia')
         ->toArray();
         $total_user = User::count();
-        return view('web.dashboard', compact('pengumuman', 'users', 'total_user'));
+        $totalMale = User::where('jenis_kelamin', 'Laki-laki')->count();
+        $totalFemale = User::where('jenis_kelamin', 'Perempuan')->count();
+
+        return view('web.dashboard', compact('pengumuman', 'users', 'total_user', 'totalMale', 'totalFemale'));
     }
 }

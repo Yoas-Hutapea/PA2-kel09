@@ -6,11 +6,13 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            table-layout: fixed; /* Menentukan lebar tabel secara tetap */
         }
         
         th, td {
             border: 1px solid black;
             padding: 8px;
+            word-wrap: break-word; /* Memastikan teks dalam sel dapat mematahkan baris */
         }
         
         th {
@@ -23,6 +25,41 @@
         
         tr:hover {
             background-color: #d9d9d9;
+        }
+        
+        /* Menentukan lebar kolom dengan persentase */
+        th:nth-child(1),
+        td:nth-child(1) {
+            width: 3%;
+        }
+        
+        th:nth-child(2),
+        td:nth-child(2) {
+            width: 10%;
+        }
+        
+        /* Sisakan ruang untuk kolom lainnya */
+        th:nth-child(3),
+        td:nth-child(3),
+        th:nth-child(4),
+        td:nth-child(4),
+        th:nth-child(5),
+        td:nth-child(5),
+        th:nth-child(6),
+        td:nth-child(6),
+        th:nth-child(7),
+        td:nth-child(7),
+        th:nth-child(8),
+        td:nth-child(8),
+        th:nth-child(9),
+        td:nth-child(9),
+        th:nth-child(10),
+        td:nth-child(10),
+        th:nth-child(11),
+        td:nth-child(11),
+        th:nth-child(12),
+        td:nth-child(12) {
+            width: 6%;
         }
     </style>
 </head>
