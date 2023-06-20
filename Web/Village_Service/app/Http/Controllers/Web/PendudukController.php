@@ -194,7 +194,6 @@ class PendudukController extends Controller
             }
         }
 
-        $penduduk = User::findOrFail($penduduk);
         $penduduk->nama = $request->input('nama');
         $penduduk->nik = $request->input('nik');
         $penduduk->no_telp = $request->input('no_telp');
