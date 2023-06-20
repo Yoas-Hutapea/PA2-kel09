@@ -16,7 +16,7 @@ class DashboardController extends Controller
         // ->groupBy('usia')
         // ->pluck('total', 'usia')
         // ->toArray();
-        $users = User::selectRaw('CASE 
+        $users = User::selectRaw('CASE
                 WHEN usia BETWEEN 1 AND 10 THEN "Anak-anak"
                 WHEN usia BETWEEN 11 AND 17 THEN "Remaja"
                 WHEN usia BETWEEN 18 AND 30 THEN "Dewasa"

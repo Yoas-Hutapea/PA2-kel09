@@ -22,27 +22,28 @@ class UserSeeder extends Seeder
             'no_telp'=> '081373030589',
             'alamat' => 'Jln Tugu Raja Hutapea',
             'tempat_lahir' => 'Jakarta',
+            'kk' => '1212021711020000',
             'password' => Hash::make('yoas12345'),
         ]);
-        
+
         $admin->assignRole('admin');
 
         User::create([
-            'nama' => 'Warga 1',
+            'nama' => 'Julianti Sitorus',
             'nik' => '1212021711020003',
             'no_telp'=> '081373030589',
             'alamat' => 'Jln Tugu Raja Hutapea',
             'tempat_lahir' => 'Jakarta',
-            'password' => Hash::make('wargasatu'),
+            'password' => Hash::make('juli12345'),
         ]);
 
         User::create([
-            'nama' => 'warga 2',
+            'nama' => 'Rahel Sianipar',
             'nik' => '1212021711020004',
             'no_telp'=> '081373030589',
             'alamat' => 'Jln Tugu Raja Hutapea',
-            'tempat_lahir' => 'Jakarta',
-            'password' => Hash::make('wargadua'),
+            'tempat_lahir' => 'Parapat',
+            'password' => Hash::make('rahel12345'),
         ]);
     }
 }

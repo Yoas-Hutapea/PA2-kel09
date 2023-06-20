@@ -19,7 +19,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                         </svg>
-                                        Tambah Penduduk
+                                        Tambah Kepala Keluarga
                                     </a>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                                         Nama
                                                     </th>
                                                     <th scope="col">
-                                                        NIK
+                                                        No KK
                                                     </th>
                                                     <th scope="col" class="text-right">
                                                         Aksi
@@ -88,7 +88,7 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td>{{ $penduduk->nik }}</td>
+                                                        <td>{{ $penduduk->kk }}</td>
                                                         <td>
                                                             <div class="d-flex justify-content-end align-items-center">
                                                                 <a class="" data-toggle="tooltip" data-placement="top"

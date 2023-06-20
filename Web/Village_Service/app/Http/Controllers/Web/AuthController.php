@@ -25,23 +25,23 @@ class AuthController extends Controller
     public function do_login(Request $request)
     {
         $messages = [
-            'nik.required' => 'nik harus diisi',
-            'nik.min' => 'nik harus 16 angka',
-            'nik.max' => 'nik harus 16 angka',
+            'kk.required' => 'kk harus diisi',
+            'kk.min' => 'kk harus 16 angka',
+            'kk.max' => 'kk harus 16 angka',
             'password.required' => 'Password harus diisi',
             'password.min' => 'Password minimal 8 karakter',
         ];
         $validator = Validator::make($request->all(), [
-            'nik' => 'required|min:16|max:16',
+            'kk' => 'required|min:16|max:16',
             'password' => 'required|min:8',
         ], $messages);
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            if ($errors->has('nik')) {
+            if ($errors->has('kk')) {
                 return response()->json([
                     'alert' => 'error',
-                    'message' => $errors->first('nik'),
+                    'message' => $errors->first('kk'),
                 ]);
             } else {
                 return response()->json([
@@ -51,10 +51,10 @@ class AuthController extends Controller
             }
         }
 
-        $user = User::where('nik', $request->nik)->first();
+        $user = User::where('kk', $request->kk)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
-                if (Auth::attempt(['nik' => $request->nik, 'password' => $request->password], $request->remember)) {
+                if (Auth::attempt(['kk' => $request->kk, 'password' => $request->password], $request->remember)) {
                     return response()->json([
                         'alert' => 'valid',
                         'message' => 'Berhasil Login',
@@ -70,7 +70,7 @@ class AuthController extends Controller
         } else {
             return response()->json([
                 'alert' => 'error',
-                'message' => 'Maaf, nik Salah atau belum terdaftar.',
+                'message' => 'Maaf, kk Salah atau belum terdaftar.',
             ]);
         }
     }

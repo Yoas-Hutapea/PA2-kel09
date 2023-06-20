@@ -12,27 +12,93 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('create-penduduk') }}" data-toggle="validator" id="penduduk_form">
+                            <form method="POST" action="{{ route('create-penduduk') }}" data-toggle="validator"
+                                id="penduduk_form">
                                 @csrf
-                                <div class="form-group">
-                                    <label for="nik">NIK </label>
-                                    <input type="number" name="nik" class="form-control" id="nik"
-                                        placeholder="Masukkan NIK Warga yang ingin anda daftarkan" required autofocus>
-                                    <div id="nik_error" class="error-message"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nama">Nama </label>
-                                    <input type="text" name="nama" class="form-control" id="nama"
-                                        placeholder="Masukkan Nama Lengkap Warga yang ingin anda daftarkan" required
-                                        autofocus>
-                                    <div id="nama_error" class="error-message"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password </label>
-                                    <input type="password" name="password" class="form-control" id="password"
-                                        placeholder="Masukkan Password akun warga yang akan digunakan warga nantinya"
+                                <div class="row align-items-center">
+                                    <div class="form-group col-sm-6">
+                                        <label for="nama">Nama</label>
+                                        <input type="text" class="form-control" id="nama" name="nama" style="background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);" placeholder="Masukkan nama lengkap"
                                         required autofocus>
-                                    <div id="password_error" class="error-message"></div>
+                                        <div id="nama_error" class="error-message"></div>
+
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="nik">NIK</label>
+                                        <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukkan NIK">
+                                        <div id="nik_error" class="error-message"></div>
+
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="no_telp">No Telepon</label>
+                                        <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan No Telepon">
+                                        <div id="no_telp_error" class="error-message"></div>
+
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tempat_lahir">Tempat Lahir</label>
+                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" style="background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);" placeholder="Masukkan Tempat Lahir">
+                                        <div id="tempat_lahir_error" class="error-message"></div>
+
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" style="background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);" placeholder="Masukkan Tanggal Lahir" onchange="calculateAge()">
+                                        <div id="tanggal_lahir_error" class="error-message"></div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="usia">Usia</label>
+                                        <input type="text" class="form-control" id="usia" name="usia" placeholder="Akan otomatis muncul ketika tanggal lahir dimasukkan" readonly style="background-color: white">
+                                        <div id="usia_error" class="error-message"></div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" >
+                                            <option value="">Pilih Jenis Kelamin</option>
+                                            <option value="Laki-laki">Laki-laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
+                                        <div id="jenis_kelamin_error" class="error-message"></div>
+
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="pekerjaan">Pekerjaan</label>
+                                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" style="background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);" placeholder="Masukkan Pekerjaan">
+                                        <div id="pekerjaan_error" class="error-message"></div>
+
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="agama">Agama</label>
+                                        <select class="form-control" id="agama" name="agama" style="background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);" >
+                                            <option value="">Pilih Agama atau Aliran Kepercayaan</option>
+                                            <option value="Kristen Protestan">Kristen Protestan</option>
+                                            <option value="Katolik">Katolik</option>
+                                            <option value="Islam">Islam</option>
+                                            <option value="Hindu">Hindu</option>
+                                            <option value="Budha">Budha</option>
+                                            <option value="Konghucu">Konghucu</option>
+                                            <option value="Aliran Kepercayaan">Aliran Kepercayaan</option>
+                                        </select>
+                                        <div id="agama_error" class="error-message"></div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="kk">No KK</label>
+                                        <input class="form-control" id="kk" name="kk" placeholder="Masukkan KK">
+                                        <div id="kk_error" class="error-message"></div>
+
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label>Alamat</label>
+                                        <textarea class="form-control" name="alamat" id="alamat" rows="5" style="line-height: 22px; background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);" placeholder="Masukkan Alamat"></textarea>
+                                        <div id="alamat_error" class="error-message"></div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label for="password">Password </label>
+                                        <input type="password" name="password" class="form-control" id="password"
+                                            placeholder="Masukkan Password akun warga yang akan digunakan warga nantinya"
+                                            required autofocus>
+                                        <div id="password_error" class="error-message"></div>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 <button type="button" class="btn bg-danger" id="cancel_button">Cancel</button>
@@ -253,5 +319,18 @@
                 window.location.href = '{{ route('penduduk.index') }}';
             });
         });
+    </script>
+    <script>
+        function calculateAge() {
+            var tanggalLahir = document.getElementById("tanggal_lahir").value;
+            var today = new Date();
+            var birthDate = new Date(tanggalLahir);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            document.getElementById("usia").value = age;
+        }
     </script>
 @endsection

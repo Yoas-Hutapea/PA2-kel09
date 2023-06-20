@@ -59,6 +59,8 @@
                                                 <div class="form-group col-sm-6">
                                                     <label for="nama">Nama</label>
                                                     <input type="text" class="form-control" id="nama" name="nama"
+                                                        style="background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);"
+                                                        placeholder="Masukkan nama lengkap" required autofocus
                                                         value="{{ $penduduk->nama }}">
                                                     <div id="nama_error" class="error-message"></div>
 
@@ -66,116 +68,130 @@
                                                 <div class="form-group col-sm-6">
                                                     <label for="nik">NIK</label>
                                                     <input type="text" class="form-control" id="nik" name="nik"
-                                                        value="{{ $penduduk->nik }}">
+                                                        placeholder="Masukkan NIK" value="{{ $penduduk->nik }}">
                                                     <div id="nik_error" class="error-message"></div>
 
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="no_telp">No Telepon</label>
                                                     <input type="text" class="form-control" id="no_telp" name="no_telp"
-                                                        value="{{ $penduduk->no_telp }}">
+                                                        placeholder="Masukkan No Telepon" value="{{ $penduduk->no_telp }}">
                                                     <div id="no_telp_error" class="error-message"></div>
 
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="tempat_lahir">Tempat Lahir</label>
                                                     <input type="text" class="form-control" id="tempat_lahir"
-                                                        name="tempat_lahir" value="{{ $penduduk->tempat_lahir }}">
+                                                        name="tempat_lahir"
+                                                        style="background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);"
+                                                        placeholder="Masukkan Tempat Lahir"
+                                                        value="{{ $penduduk->tempat_lahir }}">
                                                     <div id="tempat_lahir_error" class="error-message"></div>
 
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="tanggal_lahir">Tanggal Lahir</label>
                                                     <input type="date" class="form-control" id="tanggal_lahir"
-                                                        name="tanggal_lahir" value="{{ $penduduk->tanggal_lahir }}">
+                                                        name="tanggal_lahir"
+                                                        style="background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);"
+                                                        placeholder="Masukkan Tanggal Lahir" onchange="calculateAge()"
+                                                        value="{{ $penduduk->tanggal_lahir }}">
                                                     <div id="tanggal_lahir_error" class="error-message"></div>
-
                                                 </div>
                                                 <div class="form-group col-sm-6">
-                                                    <label for="Usia">Usia</label>
-                                                    <input text="text" class="form-control" id="usia"
-                                                        name="usia" value="{{ $penduduk->usia }}">
+                                                    <label for="usia">Usia</label>
+                                                    <input type="text" class="form-control" id="usia"
+                                                        name="usia"
+                                                        placeholder="Akan otomatis muncul ketika tanggal lahir dimasukkan"
+                                                        readonly style="background-color: white"
+                                                        value="{{ $penduduk->usia }}">
                                                     <div id="usia_error" class="error-message"></div>
-
                                                 </div>
-                                                {{-- <div class="form-group col-sm-6">
-                                                    <label for="jenis_kelamin">Jenis Kelamin</label>
-                                                    <input text="text" class="form-control" id="jenis_kelamin"
-                                                      name="jenis_kelamin"  value="{{ $penduduk->jenis_kelamin }}">
-                                                </div> --}}
                                                 <div class="form-group col-sm-6">
                                                     <label for="jenis_kelamin">Jenis Kelamin</label>
                                                     <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                                                        <option>{{ $penduduk->jenis_kelamin }}</option>
-                                                        <option>Laki-laki</option>
-                                                        <option>Perempuan</option>
+                                                        <option value="{{ $penduduk->jenis_kelamin}}">{{ $penduduk->jenis_kelamin}}</option>
+                                                        <option value="Laki-laki">Laki-laki</option>
+                                                        <option value="Perempuan">Perempuan</option>
                                                     </select>
                                                     <div id="jenis_kelamin_error" class="error-message"></div>
-
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="pekerjaan">Pekerjaan</label>
                                                     <input type="text" class="form-control" id="pekerjaan"
-                                                        name="pekerjaan" value="{{ $penduduk->pekerjaan }}">
+                                                        name="pekerjaan"
+                                                        style="background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);"
+                                                        placeholder="Masukkan Pekerjaan"
+                                                        value="{{ $penduduk->pekerjaan }}">
                                                     <div id="pekerjaan_error" class="error-message"></div>
 
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="agama">Agama</label>
-                                                    <input type="text" class="form-control" id="agama"
-                                                        name="agama" value="{{ $penduduk->agama }}">
+                                                    <select class="form-control" id="agama" name="agama"
+                                                        style="background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);">
+                                                        <option value="{{ $penduduk->agama }}">{{ $penduduk->agama }}</option>
+                                                        <option value="Kristen Protestan">Kristen Protestan</option>
+                                                        <option value="Katolik">Katolik</option>
+                                                        <option value="Islam">Islam</option>
+                                                        <option value="Hindu">Hindu</option>
+                                                        <option value="Budha">Budha</option>
+                                                        <option value="Konghucu">Konghucu</option>
+                                                        <option value="Aliran Kepercayaan">Aliran Kepercayaan</option>
+                                                    </select>
                                                     <div id="agama_error" class="error-message"></div>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="kk">No KK</label>
                                                     <input class="form-control" id="kk" name="kk"
+                                                        placeholder="Masukkan KK"
                                                         value="{{ $penduduk->kk }}">
-                                                    <div id="kk_error" class="error-message"></div>
+                                                    <div id="kk_error"
+                                                        class="error-message">
+                                                </div>
 
-                                                </div>
-                                                <div class="form-group col-sm-12">
-                                                    <label>Alamat</label>
-                                                    <textarea class="form-control" name="alamat" id="alamat" rows="5" style="line-height: 22px;"> {{ $penduduk->alamat }}</textarea>
-                                                    <div id="alamat_error" class="error-message"></div>
-                                                </div>
                                             </div>
-                                            {{-- <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button> --}}
-                                            <button type="submit" class="btn btn-primary">Update</button>
-                                            <button type="button" class="btn bg-danger" id="cancel_button">Cancel</button>
-                                        </form>
+                                            <div class="form-group col-sm-12">
+                                                <label>Alamat</label>
+                                                <textarea class="form-control" name="alamat" id="alamat" rows="5"
+                                                    style="line-height: 22px; background-color: rgba(128, 128, 128, 0.1); border : 1px solid rgba(0, 0, 0, 0.2);"
+                                                    placeholder="Masukkan Alamat">{{ $penduduk->alamat }}</textarea>
+                                                <div id="alamat_error" class="error-message"></div>
+                                            </div>
                                     </div>
+                                    {{-- <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button> --}}
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="button" class="btn bg-danger" id="cancel_button">Cancel</button>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
-                                <div class="card">
-                                    <div class="card-header d-flex justify-content-between">
-                                        <div class="header-title">
-                                            <h4 class="card-title">Change Password</h4>
+                        </div>
+                        <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between">
+                                    <div class="header-title">
+                                        <h4 class="card-title">Change Password</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="cpass">Current Password:</label>
+                                            <a href="javascripe:void();" class="float-right">Forgot Password</a>
+                                            <input type="Password" class="form-control" id="cpass" value="">
                                         </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="cpass">Current Password:</label>
-                                                <a href="javascripe:void();" class="float-right">Forgot Password</a>
-                                                <input type="Password" class="form-control" id="cpass"
-                                                    value="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="npass">New Password:</label>
-                                                <input type="Password" class="form-control" id="npass"
-                                                    value="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="vpass">Verify Password:</label>
-                                                <input type="Password" class="form-control" id="vpass"
-                                                    value="">
-                                            </div>
-                                            {{-- <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button> --}}
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                            <button type="button" class="btn bg-danger" id="cancel_button">Cancel</button>
-                                        </form>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="npass">New Password:</label>
+                                            <input type="Password" class="form-control" id="npass" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="vpass">Verify Password:</label>
+                                            <input type="Password" class="form-control" id="vpass" value="">
+                                        </div>
+                                        {{-- <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button> --}}
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="button" class="btn bg-danger" id="cancel_button">Cancel</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -183,6 +199,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
 @section('scripts')
@@ -379,7 +396,7 @@
                         } else {
                             // Show success message using SweetAlert
                             Swal.fire('Success!', response.message, 'success').then((
-                            result) => {
+                                result) => {
                                 if (result.isConfirmed) {
                                     // Redirect to the desired page
                                     window.location.href =
@@ -401,5 +418,18 @@
                 window.location.href = '{{ route('penduduk.index') }}';
             });
         });
+    </script>
+    <script>
+        function calculateAge() {
+            var tanggalLahir = document.getElementById("tanggal_lahir").value;
+            var today = new Date();
+            var birthDate = new Date(tanggalLahir);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            document.getElementById("usia").value = age;
+        }
     </script>
 @endsection

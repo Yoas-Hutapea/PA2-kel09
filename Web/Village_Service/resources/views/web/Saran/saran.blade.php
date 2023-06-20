@@ -74,7 +74,7 @@
                                                         <td>{{ $saran->saran}}</td>
                                                         <td>
                                                             <div class="d-flex justify-content-end align-items-center">
-                                                            
+
                                                                 <a class="badge bg-danger" data-toggle="tooltip"
                                                                     data-placement="top" title=""
                                                                     data-original-title="Delete" href="#"

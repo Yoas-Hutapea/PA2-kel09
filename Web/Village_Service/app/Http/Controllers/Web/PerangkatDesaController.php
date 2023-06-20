@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class PerangkatDesaController extends Controller
 {
@@ -75,6 +76,10 @@ class PerangkatDesaController extends Controller
         $perangkatDesa->save();
 
         if ($perangkatDesa) {
+            // Assign 'admin' role to the user
+            $adminRole = Role::where('name', 'admin')->first();
+            $user->assignRole($adminRole);
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Perangkat Desa created successfully.',
