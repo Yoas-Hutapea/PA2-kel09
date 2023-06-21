@@ -21,7 +21,7 @@ class ApiService {
 
   Future<dynamic> loginUser(User user) async {
     final request = await http.post(
-      Uri.parse('https://078b-112-215-174-32.ngrok-free.app/api/login'),
+      Uri.parse('https://3dc9-114-122-37-250.ngrok-free.app/api/login'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json", // Add Accept header
@@ -45,7 +45,7 @@ class ApiService {
     }
 
     final request = await http.get(
-      Uri.parse('https://078b-112-215-174-32.ngrok-free.app/api/penduduk/$nik'),
+      Uri.parse('https://3dc9-114-122-37-250.ngrok-free.app/api/penduduk/$nik'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json",
@@ -67,7 +67,7 @@ class ApiService {
     }
 
     final request = await http.get(
-      Uri.parse('https://078b-112-215-174-32.ngrok-free.app/api/kegiatan'),
+      Uri.parse('https://3dc9-114-122-37-250.ngrok-free.app/api/kegiatan'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json",
@@ -83,7 +83,7 @@ class ApiService {
   }
   Future<dynamic> addPengajuan(Pengajuan pengajuan, String authToken) async {
     final response = await http.post(
-      Uri.parse('https://078b-112-215-174-32.ngrok-free.app/api/pengajuan'),
+      Uri.parse('https://3dc9-114-122-37-250.ngrok-free.app/api/pengajuan'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json",
@@ -91,17 +91,17 @@ class ApiService {
       },
       body: jsonEncode(pengajuan.toJson()),
     );
-    // if (response.statusCode == 200 ) {
-    //   print('Response body: $response');
-    // } else {
-    //   print('Response body: ${response.body}');
-    //   throw Exception('Failed to login user');
-    // }
+    if (response.statusCode == 200 ) {
+      print('Response body: $response');
+    } else {
+      print('Response body: ${response.body}');
+      throw Exception('Failed to login user');
+    }
   }
 
   Future<dynamic> addSaran(Saran saran, String authToken) async {
     final response = await http.post(
-      Uri.parse('https://078b-112-215-174-32.ngrok-free.app/api/saran'),
+      Uri.parse('https://3dc9-114-122-37-250.ngrok-free.app/api/saran'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json",
@@ -109,16 +109,16 @@ class ApiService {
       },
       body: jsonEncode(saran.toJson()),
     );
-    // if (response.statusCode == 200 ) {
-    //   print('Response body: $response');
-    // } else {
-    //   print('Response body: ${response.body}');
-    //   throw Exception('Failed to login user');
-    // }
+    if (response.statusCode == 200 ) {
+      print('Response body: $response');
+    } else {
+      print('Response body: ${response.body}');
+      throw Exception('Failed to login user');
+    }
   }
   Future<dynamic> getPengajuanList(String authToken) async {
     final response = await http.get(
-      Uri.parse('https://078b-112-215-174-32.ngrok-free.app/api/pengajuan'),
+      Uri.parse('https://3dc9-114-122-37-250.ngrok-free.app/api/pengajuan'),
       headers: {
         "Content-type": "application/json",
         "Accept": "application/json",

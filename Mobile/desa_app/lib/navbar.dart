@@ -82,7 +82,7 @@ class NavbarPageState extends State<NavbarPage> {
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.message),
-            title: Center(child: Text('Saran')),
+            title: Center(child: Text('Pengaduan')),
             activeColor: Colors.indigo,
           ),
         ],

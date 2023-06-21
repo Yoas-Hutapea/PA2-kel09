@@ -79,6 +79,13 @@ class _LoginPageState extends State<LoginPage> {
                                 'NIK',
                                 'Masukkan Nik Anda',
                               ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'NIK harus diisi';
+                                }
+                                // Tambahkan validasi khusus lainnya sesuai kebutuhan
+                                return null; // Mengembalikan null jika tidak ada pesan error
+                              },
                             ),
                             SizedBox(height: 20),
                             TextFormField(
@@ -88,6 +95,13 @@ class _LoginPageState extends State<LoginPage> {
                                 'Password',
                                 'Masukkan Password Anda',
                               ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Password harus diisi';
+                                }
+                                // Tambahkan validasi khusus lainnya sesuai kebutuhan
+                                return null; // Mengembalikan null jika tidak ada pesan error
+                              },
                             ),
                             SizedBox(height: 20),
                             Container(

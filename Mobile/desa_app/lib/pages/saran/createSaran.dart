@@ -65,7 +65,7 @@ class _CreateSaranState extends State<CreateSaran> {
                   child: Column(
                     children: [
                       Text(
-                        'Buat Saran',
+                        'Buat Pengaduan',
                         style: TextStyle(
                           fontSize: 24,
                           color: Colors.indigo,
@@ -90,8 +90,8 @@ class _CreateSaranState extends State<CreateSaran> {
                             TextFormField(
                               controller: _saranController,
                               decoration: ThemeHelper().textInputDecoration(
-                                'Saran',
-                                'Masukkan Saran',
+                                'Pengaduan',
+                                'Masukkan Pengaduan',
                               ),
                               maxLines: null,
                             ),
